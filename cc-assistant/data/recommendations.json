@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-08-13",
+  "skills": [
+    {
+      "id": "test-generator",
+      "name": "测试生成器",
+      "description": "生成并自验证单元/集成测试（路由、组件、hooks、工具函数）",
+      "installCmd": "npx skills add Nembie/claude-code-skills --skill test-generator",
+      "category": "测试",
+      "techStacks": ["*"],
+      "confidence": 3,
+      "source": "Nembie/claude-code-skills",
+      "verified": true
+    },
+    {
+      "id": "code-reviewer",
+      "name": "代码审查",
+      "description": "安全/性能/可维护性自动审查，按严重程度排序",
+      "installCmd": "npx skills add Nembie/claude-code-skills --skill code-reviewer",
+      "category": "代码审查",
+      "techStacks": ["*"],
+      "confidence": 3,
+      "source": "Nembie/claude-code-skills",
+      "verified": true
+    },
+    {
+      "id": "react-best-practices",
+      "name": "React 最佳实践",
+      "description": "React/Next.js 性能优化指南（40+ 规则，8 类）",
+      "installCmd": "npx skills add vercel-labs/agent-skills --skill react-best-practices",
+      "category": "代码生成",
+      "techStacks": ["react", "next"],
+      "confidence": 3,
+      "source": "vercel-labs/agent-skills",
+      "verified": true
+    },
+    {
+      "id": "writing-guidelines",
+      "name": "文档写作规范",
+      "description": "文档/文案审查（80+ 规则：语气、结构、排版）",
+      "installCmd": "npx skills add vercel-labs/agent-skills --skill writing-guidelines",
+      "category": "文档",
+      "techStacks": ["*"],
+      "confidence": 3,
+      "source": "vercel-labs/agent-skills",
+      "verified": true
+    },
+    {
+      "id": "web-design-guidelines",
+      "name": "Web 设计规范",
+      "description": "Web 界面设计规范",
+      "installCmd": "npx skills add vercel-labs/agent-skills --skill web-design-guidelines",
+      "category": "UI/设计",
+      "techStacks": ["react", "vue"],
+      "confidence": 2,
+      "source": "vercel-labs/agent-skills",
+      "verified": true
+    },
+    {
+      "id": "webapp-testing",
+      "name": "Web 应用测试",
+      "description": "基于 Playwright 的 UI/E2E 测试",
+      "installCmd": "npx skills add anthropics/skills --skill webapp-testing",
+      "category": "测试",
+      "techStacks": ["*"],
+      "confidence": 2,
+      "source": "anthropics/skills",
+      "verified": false
+    }
+  ],
+  "rules": [
+    {
+      "id": "conventional-commit",
+      "name": "提交信息规范",
+      "description": "Conventional Commits 提交信息格式",
+      "category": "规范",
+      "content": "# 提交信息规范（Conventional Commits）\n\n格式：`<type>(<scope>): <subject>`\n\n| type | 含义 |\n|---|---|\n| feat | 新功能 |\n| fix | 修复 bug |\n| docs | 文档 |\n| refactor | 重构 |\n| test | 测试 |\n| chore | 杂项 |\n\n示例：`feat(auth): 添加登录接口`"
+    },
+    {
+      "id": "naming-conventions",
+      "name": "命名规范",
+      "description": "变量/函数/组件/文件命名约定",
+      "category": "规范",
+      "content": "# 命名规范\n\n- 变量 / 函数：camelCase\n- 组件 / 类：PascalCase\n- 常量：UPPER_SNAKE_CASE\n- 文件名：kebab-case"
+    },
+    {
+      "id": "code-style",
+      "name": "代码风格",
+      "description": "清晰命名、短小函数、无冗余",
+      "category": "规范",
+      "content": "# 代码风格\n\n- 优先用清晰的命名表达意图，少写注释\n- 函数保持短小、单一职责\n- 不保留未使用的导入 / 变量"
+    }
+  ],
+  "hooks": [],
+  "scenarios": {
+    "new-feature": {
+      "skills": ["react-best-practices", "web-design-guidelines", "test-generator"],
+      "rules": ["naming-conventions", "code-style"],
+      "hooks": []
+    },
+    "bug-fix": {
+      "skills": ["code-reviewer", "test-generator"],
+      "rules": [],
+      "hooks": []
+    },
+    "testing": {
+      "skills": ["test-generator", "webapp-testing"],
+      "rules": [],
+      "hooks": []
+    },
+    "docs": {
+      "skills": ["writing-guidelines"],
+      "rules": [],
+      "hooks": []
+    },
+    "refactor": {
+      "skills": ["code-reviewer", "test-generator"],
+      "rules": ["code-style"],
+      "hooks": []
+    }
+  },
+  "newbieDefaults": {
+    "skills": ["test-generator", "code-reviewer", "writing-guidelines"],
+    "rules": ["conventional-commit", "code-style"],
+    "hooks": []
+  }
+}

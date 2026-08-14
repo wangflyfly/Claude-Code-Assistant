@@ -1,0 +1,45 @@
+# .spec-superflow.yaml — lightweight state machine
+# Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
+
+# === Core state ===
+state: specifying
+workflow: auto
+revision: null
+
+# === Hashes (fast staleness detection) ===
+artifacts_hash: sha256:0355996485dc0e71eeb415edc5080f434610a3dff53acf2e1d9464ee9af975dd
+contract_hash: sha256:3de1df27743bad4b9f08210d2f8a1b8fe0ac16ad6a821295cca0f0b6a11c3fb0
+
+# === Execution progress ===
+execution_mode: null
+execution_plan_hash: null
+execution_plan_revision: null
+batches_completed: 0
+test_result: null
+spec_merged: false
+
+# === Metadata ===
+change_name: cc-assistant-v1
+last_transition: 2026-08-14T00:49:52.513Z
+last_transition_from: null
+last_transition_to: null
+
+# === Decision points ===
+dp_0_decisions: 实现 CC Assistant v1 Skill：扫描环境→场景识别→两层目录推荐→代劳启用→反馈学习。交付=Skill+薄斜杠命令；纯手动触发；约束=v1核心闭环范围(不含MCP/社区/Subagent/定时)、数据本地分层永不回传、目录真实两层可配置、双维度引导；保持聚焦；沟通=先起草再审
+dp_0_result: confirmed
+dp_0_confirmed: true
+dp_0_timestamp: 2026-08-14T00:50:31Z
+dp_1_result: confirmed: 实现 CC Assistant v1 Skill(Skill+薄斜杠命令)，核心闭环Scanner/Matcher/Recommender/Health/Feedback；两层目录按id合并+双维度引导(用户等级×项目意图)+场景映射已定；规则写项目级；代劳启用前产品级显式确认；非目标=MCP/社区Hub/Subagent/定时/快速初始化/创建助手/上传/插件；成功标准=真实项目跑通/assist、目录真实、双层合并+双维度正确、健康度0-100、新手≤20行不推MCP、零上传；单change不拆分
+dp_1_timestamp: 2026-08-14T01:13:17Z
+dp_2_result: approved: proposal + 6 specs(28 req) + design(11 decisions) + tasks(4 batches 8 tasks)
+dp_2_timestamp: 2026-08-14T02:56:18Z
+dp_3_result: null
+dp_3_timestamp: null
+dp_4_result: null
+dp_4_timestamp: null
+dp_5_result: null
+dp_5_timestamp: null
+dp_6_result: null
+dp_6_timestamp: null
+dp_7_result: null
+dp_7_timestamp: null
