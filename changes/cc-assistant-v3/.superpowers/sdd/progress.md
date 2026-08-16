@@ -21,16 +21,24 @@
 **Review**：待 commit 后 wave-2 review receipt。
 **batches_completed**：2
 
-## Wave 3a — wave-3a-modules（模块支撑文件，parallel）🔜
+## Wave 3a — wave-3a-modules（模块支撑文件，parallel）✅
 
-- [ ] T7: modules/m0-onboarding.md
-- [ ] T8: modules/core.md
-- [ ] T9: modules/memory.md
-- [ ] T10: modules/skills.md
-- [ ] T11: modules/subagent.md
-- [ ] T12: modules/hooks.md
-- [ ] T13: modules/mcp.md
-- [ ] T14: modules/headless.md
-- [ ] T15: modules/sdk.md
-- [ ] T16: modules/plugins.md
-- [ ] T17: modules/engineering.md
+- [x] T7: modules/m0-onboarding.md（M0 定场+选项目+询问定位）
+- [x] T8: modules/core.md（REQ-COR-001~005）
+- [x] T9: modules/memory.md（CLAUDE.md 五层记忆+Rule 规则级）
+- [x] T10: modules/skills.md
+- [x] T11: modules/subagent.md
+- [x] T12: modules/hooks.md
+- [x] T13: modules/mcp.md（含 PME-005 降级）
+- [x] T14: modules/headless.md（含 PME-005 降级）
+- [x] T15: modules/sdk.md（含 PME-005 降级 + 高阶小节 TPT-002）
+- [x] T16: modules/plugins.md（含高阶小节 TPT-002）
+- [x] T17: modules/engineering.md（含高阶小节 TPT-002）
+- 安装副本 modules/ 已同步
+
+**Review**：待 commit 后 wave-3a review receipt。
+**batches_completed**：3
+
+## Wave 3b — wave-3b-capstone（收官整合模块）🔜
+
+- [ ] T18: modules/capstone.md（跨模块综合任务+体系讲解改写归因+高阶综合项目分支）
