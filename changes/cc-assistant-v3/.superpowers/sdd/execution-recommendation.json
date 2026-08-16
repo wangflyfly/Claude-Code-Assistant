@@ -1,0 +1,149 @@
+{
+  "recommendation": {
+    "available_modes": [
+      "inline",
+      "batch-inline",
+      "sdd"
+    ],
+    "recommendation": {
+      "mode": "sdd",
+      "reasons": [
+        "The declared execution waves include parallel work, which SDD can dispatch and review independently."
+      ]
+    },
+    "facts": {
+      "workflow": "full",
+      "documented_task_count": 31,
+      "planned_task_count": 31,
+      "planned_wave_count": 9,
+      "has_parallel_wave": true,
+      "inline_threshold": 3
+    }
+  },
+  "waves": [
+    {
+      "id": "wave-1-eval-red",
+      "strategy": "serial",
+      "tasks": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "wave-2-skill-core",
+      "strategy": "serial",
+      "tasks": [
+        "T4",
+        "T5",
+        "T6"
+      ],
+      "depends_on": [
+        "wave-1-eval-red"
+      ]
+    },
+    {
+      "id": "wave-3a-modules",
+      "strategy": "parallel",
+      "tasks": [
+        "T7",
+        "T8",
+        "T9",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17"
+      ],
+      "depends_on": [
+        "wave-2-skill-core"
+      ]
+    },
+    {
+      "id": "wave-3b-capstone",
+      "strategy": "serial",
+      "tasks": [
+        "T18"
+      ],
+      "depends_on": [
+        "wave-3a-modules"
+      ]
+    },
+    {
+      "id": "wave-3c-verify",
+      "strategy": "serial",
+      "tasks": [
+        "T19"
+      ],
+      "depends_on": [
+        "wave-3a-modules",
+        "wave-3b-capstone"
+      ]
+    },
+    {
+      "id": "wave-4-continuity",
+      "strategy": "serial",
+      "tasks": [
+        "T20"
+      ],
+      "depends_on": [
+        "wave-2-skill-core",
+        "wave-3c-verify"
+      ]
+    },
+    {
+      "id": "wave-5-docs",
+      "strategy": "serial",
+      "tasks": [
+        "T21",
+        "T22",
+        "T23",
+        "T24"
+      ],
+      "depends_on": [
+        "wave-2-skill-core"
+      ]
+    },
+    {
+      "id": "wave-6-eval-green",
+      "strategy": "serial",
+      "tasks": [
+        "T25",
+        "T26",
+        "T27",
+        "T28",
+        "T29"
+      ],
+      "depends_on": [
+        "wave-1-eval-red",
+        "wave-2-skill-core",
+        "wave-3a-modules",
+        "wave-3b-capstone",
+        "wave-3c-verify",
+        "wave-4-continuity",
+        "wave-5-docs"
+      ]
+    },
+    {
+      "id": "wave-7-spec-merge",
+      "strategy": "serial",
+      "tasks": [
+        "T30",
+        "T31"
+      ],
+      "depends_on": [
+        "wave-6-eval-green"
+      ]
+    }
+  ],
+  "artifacts_hash": "sha256:7f8cd2078dbd111305c159346b40610261ddf0e361f4571e6cfa1b5db302e099",
+  "contract_hash": "sha256:07d70319593c658d72651131736a3ca7f3d853de6fb7c11036697adce917fdf1",
+  "workflow": "full",
+  "execution_plan_revision_at_recommendation": null,
+  "created_at": "2026-08-16T06:05:27.484Z",
+  "hash": "sha256:f8e6bec6b78a855a91e22ddd91c2b162b6c1c37049162488666a0dfb451dd9d0"
+}

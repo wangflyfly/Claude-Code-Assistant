@@ -1,0 +1,45 @@
+# .spec-superflow.yaml — lightweight state machine
+# Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
+
+# === Core state ===
+state: executing
+workflow: full
+revision: 1
+
+# === Hashes (fast staleness detection) ===
+artifacts_hash: sha256:7f8cd2078dbd111305c159346b40610261ddf0e361f4571e6cfa1b5db302e099
+contract_hash: sha256:07d70319593c658d72651131736a3ca7f3d853de6fb7c11036697adce917fdf1
+
+# === Execution progress ===
+execution_mode: sdd
+execution_plan_hash: sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088
+execution_plan_revision: 1
+batches_completed: 0
+test_result: null
+spec_merged: false
+
+# === Metadata ===
+change_name: cc-assistant-v3
+last_transition: 2026-08-16T06:14:35.140Z
+last_transition_from: approved-for-build
+last_transition_to: executing
+
+# === Decision points ===
+dp_0_decisions: 新建 cc-assistant-v3 模块化上手引导课程：以 docs/harness-章节总结.md + docs/book-harness-summary.md 为内容素材，按功能模块逐个教学（每模块真实小练习），多会话渐进续接（项目级本地进度文件+询问），进阶广度→高阶深度两阶段，收官整合进阶讲成体系（综合任务+四层架构/选型体系）；继承 v2 核心教学/安全边界/参考层交叉引用（claude-code-guide+官方文档）；完整版 11 组模块；遵守 docs/skill-development-spec.md；沟通=先起草再审
+dp_0_result: confirmed
+dp_0_confirmed: true
+dp_0_timestamp: 2026-08-15T13:24:30Z
+dp_1_result: confirmed: v3 模块化课程定义——M0 定场+选项目（课前准备）+ 11 个课程模块（核心/记忆系统/Skills/子智能体/Hooks/MCP/Headless/Agent SDK/Plugins/工程化/收官整合）、多会话渐进+项目级本地进度文件+询问、每模块真实小练习、两阶段（进阶广度→高阶深度可选）、收官整合进阶（综合任务+体系讲解）、参考层交叉引用继承 v2（claude-code-guide+官方文档）、书总结作设计输入不内联（版权）、v2 核心教学与安全边界继承
+dp_1_timestamp: 2026-08-15T13:24:34Z
+dp_2_result: "approved: 4 规划工件评审通过——proposal（定稿）、specs（8 份 34 REQ）、design（D1-D13）、tasks（7 批次 31 项 T1-T31）各过交互式三轮自检"
+dp_2_timestamp: 2026-08-15T15:16:08Z
+dp_3_result: "approved: 执行契约定稿批准——34 REQ 全覆盖无未映射，9 wave（wave-3 拆 3a/3b/3c）与 tasks 7 Batch 一致，3 MEDIUM+4 LOW 全部落实并复核无遗留，外部一致性+影响面扫描已核对"
+dp_3_timestamp: 2026-08-16T04:58:50Z
+dp_4_result: sdd: plan revision 1; user-confirmed; user-selected execution mode (sdd, recommended)
+dp_4_timestamp: 2026-08-16T06:14:24.044Z
+dp_5_result: null
+dp_5_timestamp: null
+dp_6_result: null
+dp_6_timestamp: null
+dp_7_result: null
+dp_7_timestamp: null
