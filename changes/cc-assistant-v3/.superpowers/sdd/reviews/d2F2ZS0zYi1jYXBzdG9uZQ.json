@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "base": "d5cf2dc5683cce173f8fbbfdf62f37a38f33da24",
+  "head": "d2b8a93c19e5e704c808c2f00e717aa8af903a57",
+  "report": ".superpowers\\sdd\\reviews\\wave-3b-capstone.md",
+  "plan_hash": "sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088",
+  "plan_revision": 1,
+  "recorded_at": "2026-08-16T07:41:38.378Z"
+}

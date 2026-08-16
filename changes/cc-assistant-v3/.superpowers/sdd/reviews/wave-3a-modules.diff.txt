@@ -1,0 +1,453 @@
+diff --git a/cc-assistant/modules/core.md b/cc-assistant/modules/core.md
+new file mode 100644
+index 0000000..9066503
+--- /dev/null
++++ b/cc-assistant/modules/core.md
+@@ -0,0 +1,32 @@
++# 模块 1：核心能力（core）
++
++> 课程第一个模块：让学习者能安全、有效地给 Claude 下指令、审阅改动、用核心命令、配好 CLAUDE.md。继承 v2 核心教学（REQ-COR-001~005）。just-in-time，不预灌。
++
++## 是什么 / 何时用
++
++- **下指令**：Claude 按你给的指令做事。指令模糊 → 结果偏离预期。把指令说具体（目标、涉及文件范围、验收标准）能显著提高质量。
++- **审阅改动**：AI 产生 diff 后由你决定接受/拒绝。盲目全量接受会引入你不了解的改动。
++- **核心命令**：`/help`（求助）、`/clear`（清上下文）、`@文件`（引用具体文件）按需使用，非穷尽。
++- **CLAUDE.md**：项目的长期记忆文件，每次会话自动加载，让 Claude 记住项目约定。
++- **Plan Mode**：任务较大需先规划时用（何时用/怎么用/与直接执行的区别），普通任务不强行引入。
++
++**何时用（触发判据，D12）**：首次下指令或指令模糊 → 教改具体；第一次见 AI diff → 教审阅；对命令/上下文/文件引用困惑 → 按时刻教 `/help` `/clear` `@文件`；完成首个任务 → 教 CLAUDE.md；任务较大需先规划 → 教 Plan Mode。
++
++## 场景演示
++
++- 让学习者在自己的项目里下一个真实指令；若模糊，演示如何改成「目标 + 文件范围 + 验收标准」三要素（REQ-COR-001）。
++- 产生第一处改动时，展示 diff 怎么看、如何接受/拒绝单处、为何不盲目全量接受（REQ-COR-002）。
++- 若学习者表达困惑 → 在该时刻讲对应核心命令（REQ-COR-003）。
++- 完成后讲 CLAUDE.md 作用并演示模板，写入与否由学习者决定（REQ-COR-004 / SFT-004）。
++- 若当前任务较大需规划 → 讲 Plan Mode 并在该任务演示（REQ-COR-005）。
++
++## 真实轻练习
++
++- 学习者在自己项目里下一个具体指令（含三要素），跑通一个「下指令 → 审阅 → 接受/拒绝」的小闭环（REQ-PME-001/003）。
++- 交互模型（D13）：练习由学习者动手；卡住先引导自己尝试，必要时才给最小提示；学习者请求代做 → 拒绝并给提示方向。
++- 小而可逆（REQ-PME-004/SFT-001）：练习操作可撤销，不会造成不可恢复副作用。
++
++## 交叉引用
++
++- 参考类（CLAUDE.md 模板、最佳实践等）：**REQUIRED SUB-SKILL:** claude-code-guide，不内联复制。
++- Plan Mode 官方用法（claude-code-guide 未覆盖时）：引用 docs.anthropic.com，不凭记忆编造（REQ-RCL-002）。
+diff --git a/cc-assistant/modules/engineering.md b/cc-assistant/modules/engineering.md
+new file mode 100644
+index 0000000..c48e194
+--- /dev/null
++++ b/cc-assistant/modules/engineering.md
+@@ -0,0 +1,33 @@
++# 模块 10：工程化（engineering）
++
++> 从「会用」到「用得好」：成本、安全、指令、协作四要素。核心主题 = 工程化实战。
++
++## 是什么 / 何时用
++
++- **成本控制**：真实成本 = API 成本 + 人力时间成本。控制输出（输出价高于输入）、按需选模型、提高缓存命中、`--max-budget-usd` 硬兜底。
++- **安全**：最小权限是底线。权限模式 deny→ask→allow；`permissions.deny` 禁读敏感文件；密钥放环境变量 + 不进 Git + deny 禁读 + Hook 拦截四层防护。
++- **指令**：写好 CLAUDE.md 与 prompt——量化、示例驱动、明确边界（范围/工具/依赖/失败都定义「禁止项」）。
++- **协作**：`.claude/` 共享策略（共享与非共享清单）；团队规则走 PR 审查；受管设置做组织级强制。
++
++**何时用（触发判据，D12）**：关注成本/安全/指令/协作任一维度 → 走工程化；任务涉及敏感数据或预算 → 先配好安全与成本护栏。
++
++## 场景演示
++
++- 从学习者项目里找一个工程化切入点（如一次成本审视、一处安全薄弱点、一段待规范化的指令）。
++- 演示成本审视：哪些调用在烧钱、如何用护栏与模型分层控制。
++- 讲安全最小权限：当前项目的权限配置是否过宽、敏感文件是否暴露。
++
++## 真实轻练习
++
++- 学习者在自己的项目里做一次真实工程化练习（成本审视 / 权限收紧 / 指令规范 / 协作约定，选一项），并落下一个可验证的小改动（REQ-PME-001）。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：配置/文档类改动可回退；权限收紧先给学习者确认（SFT-004）。
++
++## 高阶深入实操（可选，phase=高阶时进入）
++
++- 高阶阶段（REQ-TPT-002）深化：跨维度综合——在一个真实场景里同时做成本护栏 + 权限收紧 + 指令沉淀 + 团队协作约定，形成工程化方案。
++
++## 交叉引用
++
++- 成本/权限/CLAUDE.md 最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。
++- 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/headless.md b/cc-assistant/modules/headless.md
+new file mode 100644
+index 0000000..64f8998
+--- /dev/null
++++ b/cc-assistant/modules/headless.md
+@@ -0,0 +1,30 @@
++# 模块 7：Headless 模式（headless）
++
++> 用 `claude -p` 以非交互方式脚本化/自动化调用 Claude。核心主题 = Headless 与自动化。
++
++## 是什么 / 何时用
++
++- **Headless 模式**：`claude -p "任务"` 非交互运行，适合 CI/CD、脚本、Unix 管道集成。
++- **关键参数**：`--output-format`（text/json/stream-json）、`--max-turns` 与 `--max-budget-usd`（成本护栏，防失控）、`--allowedTools`/`--disallowedTools`（安全边界）、`--model`/`--fallback-model`（模型与降级）、`--append-system-prompt`。
++- **安全**：`--dangerously-skip-permissions` 名称不是装饰，CI 中严禁（除非隔离容器）；生产用白名单 `--allowedTools`。
++- **会话管理**：`--resume $SESSION_ID` 跨步骤继承上下文、`--continue` 续最近会话。
++
++**何时用（触发判据，D12）**：想脚本化/自动化调用 Claude（CI 检查、批处理、管道）→ 用 Headless；一行 Shell 能描述的逻辑 → Headless（更复杂再用 Agent SDK）。
++
++## 场景演示
++
++- 从学习者项目里找一个适合自动化的任务（如 PR 自动审查、批量格式化、`cat log | claude -p` 语义分析）。
++- 演示 `claude -p` 一次真实调用，讲输出格式与成本护栏参数。
++- 讲安全：为何 CI 中要配 `--allowedTools` 白名单、`--max-budget-usd`。
++
++## 真实轻练习
++
++- 学习者在自己的项目里用 `claude -p` 跑一个真实脚本化调用（如管道分析一段文本/代码），并配好成本护栏（REQ-PME-001）。
++- **依赖缺失降级（REQ-PME-005）**：若无可用可执行环境/权限受限 → 讲解/演示/模拟，记 `degraded: true`。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：调用只读、无副作用；避免在真实项目上跑破坏性命令。
++
++## 交叉引用
++
++- Headless/CLI 用法：**REQUIRED SUB-SKILL:** claude-code-guide。
++- CLI 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/hooks.md b/cc-assistant/modules/hooks.md
+new file mode 100644
+index 0000000..c5a9783
+--- /dev/null
++++ b/cc-assistant/modules/hooks.md
+@@ -0,0 +1,30 @@
++# 模块 5：Hooks（hooks）
++
++> 在 Claude Code 的事件点自动触发脚本/校验，把「应做」变成「强制」。核心主题 = Hooks 事件驱动自动化。
++
++## 是什么 / 何时用
++
++- **Hooks**：在事件（会话开始/结束、工具调用前后、停止时等）自动触发的处理程序。与 CLAUDE.md/Skills 的「建议」不同，Hooks 是系统执行层强制（能否阻止是关键维度）。
++- **常用事件**：`PreToolUse`（工具调用前，可 allow/deny/改输入）、`PostToolUse`（调用后，观察/审计）、`Stop`（完成时，质量门控）、`SessionStart`（会话开始，注入环境）。
++- **3 种处理器**：`command`（跑 Shell 脚本，最可靠）、`prompt`（小型模型单次语义判断）、`agent`（子智能体多轮验证）。按「command→prompt→agent」降级选型。
++- **典型用途**：危险命令拦截、敏感文件保护、提交前检查、保存后格式化、测试质量门控。
++
++**何时用（触发判据，D12）**：有必须强制执行的检查/拦截（如危险命令、敏感文件、提交前校验）→ 配 Hook；只想观察记录 → 用 PostToolUse 只读审计。
++
++## 场景演示
++
++- 从学习者项目里找一个值得「强制」的检查点（如提交前 lint、保护 .env 文件）。
++- 演示一个最小 Hook 配置（settings.json 或项目 `.claude/settings.json`），讲事件选择与处理器类型。
++- 讲安全边界：改 settings.json 后 Hook 不立即生效，需在 /hooks 确认或重启会话（常见陷阱）。
++
++## 真实轻练习
++
++- 学习者在自己的项目里配置一个拦截/通知 Hook（如 PreToolUse 保护某个敏感文件，或 Stop 质量检查），并验证触发（REQ-PME-001）。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：配置可随时移除；测试 Hook 用无害命令。
++- 若项目不适合配 Hook → 换合适真实载体，仍做真实轻练习。
++
++## 交叉引用
++
++- Hooks 参考（事件清单、配置格式）：**REQUIRED SUB-SKILL:** claude-code-guide。
++- Hooks 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/m0-onboarding.md b/cc-assistant/modules/m0-onboarding.md
+new file mode 100644
+index 0000000..5013005
+--- /dev/null
++++ b/cc-assistant/modules/m0-onboarding.md
+@@ -0,0 +1,28 @@
++# 模块 M0：定场与选项目（课前准备）
++
++> 首次进入课程的引导脚本（REQ-MCO-001 / REQ-SCN-004）。此后每次续接不重复 M0，直接走 SKILL.md 进度定位。
++
++## 定场说明
++
++1. 介绍自己是「模块化上手引导课程」：用学习者的真实项目，按功能模块逐模块边做边教。
++2. 了解学习者的背景与熟悉度：开发经验、用过的 AI 编码工具、对 Claude Code 的了解程度。
++3. 说明课程形态：11 个模块、一次 `/assist` 教 1 个单机制模块、每模块一个真实小练习、多会话渐进续接。
++
++## 选真实项目
++
++引导学习者选定一个用于整门课程的真实项目（REQ-PME-002 同项目串联）：
++
++- 是学习者自己日常开发的项目（不是空壳/样例仓库，REQ-PME-001）。
++- 后续所有模块的练习都叠加在这个项目上，形成渐进积累。
++- 学习者后续可主动更换项目，但默认沿用。
++
++**安全边界（REQ-SFT-001/003）**：项目里有未提交改动 → 先建议 commit 或备份再继续；练习会选小而可逆的操作。
++
++## 询问定位
++
++选好项目后，询问（REQ-SCN-004 / REQ-MCO-001）：
++
++- **全新开始课程**：初始化进度，从「核心」模块开始。
++- **此前学过后想续接**：按学习者陈述 + 进度文件（若有）定位到对应模块。
++
++> 进度文件读写逻辑见 SKILL.md「进度续接段」（T20 落成）；本模块只负责首次进入的定场与询问。
+diff --git a/cc-assistant/modules/mcp.md b/cc-assistant/modules/mcp.md
+new file mode 100644
+index 0000000..143128d
+--- /dev/null
++++ b/cc-assistant/modules/mcp.md
+@@ -0,0 +1,31 @@
++# 模块 6：MCP（mcp）
++
++> 让 Claude 接入外部数据源与工具。核心主题 = MCP 集成。
++
++## 是什么 / 何时用
++
++- **MCP（Model Context Protocol）**：Claude 与外部数据源/工具的标准集成协议（「AI 时代的 USB-C」）。一次标准实现，多处复用。
++- **服务器暴露 3 类能力**：Tools（Claude 主动调用的函数）、Resources（只读数据）、Prompts（可复用提示词模板）。
++- **传输方式**：stdio（本地进程，默认）、HTTP（远程，OAuth 认证）。本地选 stdio、远程选 HTTP。
++- **添加方式**：`claude mcp add` 或项目 `.mcp.json` 配置。
++- **安全**：MCP 服务器能执行授权范围内任何操作 → 用只读账号、最小权限、信任评估（评估 MCP 服务器 ≈ 评估依赖包）；密钥放环境变量、不进配置文件。
++
++**何时用（触发判据，D12）**：需要实时外部数据/工具（数据库、GitHub、内部 API）→ 接入 MCP server；只凭 Claude 内置知识不够 → 接外部源。
++
++## 场景演示
++
++- 从学习者项目里找一个「需要外部数据/工具」的真实场景（如查数据库、操作 GitHub Issue）。
++- 演示添加一个 MCP server（`claude mcp add` 或 `.mcp.json`），讲三种能力与传输方式。
++- 讲安全边界：只读账号、密钥放环境变量、信任评估。
++
++## 真实轻练习
++
++- 学习者在自己的项目里添加一个 MCP server（本地 stdio 或远程 HTTP），并调用它的一个工具验证可用（REQ-PME-001）。
++- **依赖缺失降级（REQ-PME-005）**：若无可用 MCP server / 无法连接 → 讲解/演示/模拟该练习，记 `degraded: true`，概念与场景仍计入完成。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：添加/移除 server 可撤销；敏感凭证由学习者自己决定存放（SFT-004）。
++
++## 交叉引用
++
++- MCP 概念与配置：**REQUIRED SUB-SKILL:** claude-code-guide。
++- MCP 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/memory.md b/cc-assistant/modules/memory.md
+new file mode 100644
+index 0000000..c9b0e42
+--- /dev/null
++++ b/cc-assistant/modules/memory.md
+@@ -0,0 +1,30 @@
++# 模块 2：记忆系统（memory）
++
++> 让 Claude「不失忆」：用 CLAUDE.md 与规则文件把项目约定沉淀为长期记忆。核心主题 = 记忆系统。
++
++## 是什么 / 何时用
++
++- **记忆系统**：Claude 每次会话默认只带训练数据与当前上下文。要让它持续记住项目约定，需写入记忆文件，会话启动时自动加载。
++- **CLAUDE.md（项目级）**：团队共享的「员工手册」，提交 Git。记录关键命令、定制规范、架构约束、避坑指南。
++- **规则级 `.claude/rules/`**：条件化加载——用 Glob 匹配路径，只在相关文件被操作时生效（懒加载）。不带 `paths` 的规则文件等于无条件全量加载，退化成 CLAUDE.md。
++- **用户级/企业级**：`~/.claude/CLAUDE.md`（个人偏好）、`/etc/claude-code/CLAUDE.md`（组织强制底线）。
++- **文件引用**：`@docs/xxx.md` 语法把 CLAUDE.md 变成「索引总纲」，引用其他文件，按需展开。
++
++**何时用（触发判据，D12）**：想让 Claude 记住项目约定/规范 → 写 CLAUDE.md；想规则只在特定路径生效 → 用 `.claude/rules/` + `paths`；有可推导的通用惯例/空泛建议 → 不要写（少即是多）。
++
++## 场景演示
++
++- 拿学习者项目举例：该项目里「什么约定值得写进 CLAUDE.md」（如命令、架构铁律、避坑），什么不该写（通用惯例、可推导信息、易变信息）。
++- 演示 CLAUDE.md 结构：先给「写作三问」引导（WHY 推理依据 / WHAT 行为边界 / HOW 标准流程），再定内容。
++- 若项目已有 CLAUDE.md，请学习者打开，逐条评估「这条是否有指导意义」（黄金检验：删掉后 Claude 行为是否改变）。
++
++## 真实轻练习
++
++- 学习者在自己的项目里写/改一份 CLAUDE.md（或一个 `.claude/rules/` 规则文件）：先列 3 条该项目的真实约定，再判断每条该放 CLAUDE.md 还是 rules，最后写入（REQ-PME-001）。
++- 交互模型（D13）：由学习者动手起草；卡住给提示方向；写入与否由学习者决定（REQ-SFT-004）。
++- 小而可逆（REQ-PME-004）：写文件可撤销；不改动学习者已有提交。
++
++## 交叉引用
++
++- CLAUDE.md 模板与最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。
++- 记忆机制官方文档（claude-code-guide 未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/plugins.md b/cc-assistant/modules/plugins.md
+new file mode 100644
+index 0000000..9bc291b
+--- /dev/null
++++ b/cc-assistant/modules/plugins.md
+@@ -0,0 +1,35 @@
++# 模块 9：Plugins（plugins）
++
++> 把一组能力打包成分发单位，跨项目/团队复用。核心主题 = Plugins 生态与分发决策。
++
++## 是什么 / 何时用
++
++- **Plugin**：打包 Commands、Agents、Skills、Hooks、MCP 配置的「分发单位」。类比 npm/pip：一条命令让一组能力全部就位。
++- **结构**：`plugin.json` 必须在 `.claude-plugin/` 子目录；其余功能目录直接在 Plugin 根目录。
++- **安装**：`/plugin install`（市场 / URL / 本地目录）；`/plugin list/remove/update` 管理。
++- **命名空间**：安装后组件自动加 `plugin-name:` 前缀，团队可放心组合多个 Plugin。
++- **分发决策**：单项目 → 项目级 `.claude/`；个人跨项目 → 用户级；跨团队/组织 → Plugin；企业统一 → 组织级 Plugin（版本锁定）。
++
++**何时用（触发判据，D12）**：想扩展 Claude Code 能力/把一组能力打包分发 → 用 Plugin；只服务单个项目 → 不必 Plugin，项目级 `.claude/` 足够。
++
++## 场景演示
++
++- 从学习者项目里讨论：是否有值得打包分发的组合能力（如一组审查命令 + 一个 skill + 一个 hook）。
++- 演示 Plugin 的最小结构（plugin.json + 一个组件），讲安装与命名空间。
++- 讲分发方式决策表：按「谁用、跨不跨团队」选项目级/用户级/Plugin/组织级。
++
++## 真实轻练习
++
++- 学习者在自己的项目里评估/安装一个真实插件，或做一个分发决策（单项目 vs 插件）并说明理由（REQ-PME-001）。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：安装/移除插件可撤销；落地由学习者决定（SFT-004）。
++- 若学习者项目不适合装插件 → 换合适真实载体，仍做真实轻练习。
++
++## 高阶深入实操（可选，phase=高阶时进入）
++
++- 高阶阶段（REQ-TPT-002）深化：动手做一个最小 Plugin（plugin.json + 一个命令/skill），本地 `--plugin-dir` 实时测试，讲命名空间与分发落地。
++
++## 交叉引用
++
++- Plugins 参考：**REQUIRED SUB-SKILL:** claude-code-guide。
++- Plugins 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/sdk.md b/cc-assistant/modules/sdk.md
+new file mode 100644
+index 0000000..fc72b64
+--- /dev/null
++++ b/cc-assistant/modules/sdk.md
+@@ -0,0 +1,35 @@
++# 模块 8：Agent SDK（sdk）
++
++> 用 SDK 把 Claude 嵌进自己的应用，从「使用 Claude Code」变成「构建以 Claude 为引擎的应用」。核心主题 = Agent SDK。
++
++## 是什么 / 何时用
++
++- **Agent SDK**（`claude-agent-sdk`，Python/TypeScript）：编程方式调用 Claude Agent。
++- **核心 API `query(prompt, options)`**：返回消息流（异步生成器），可流式处理，不是一次性结果。
++- **`ClaudeAgentOptions`**：把 CLI 参数变编程接口——model、max_turns、max_budget_usd、allowed_tools、permission_mode、system_prompt 等。
++- **权限模式**：default / acceptEdits / plan（只读）/ bypassPermissions（仅限隔离容器，否则等于给 Claude 任意命令权限）。
++- **自定义工具**：注册自己的工具（进程内 MCP 服务器）；工具内做零信任参数校验，别信 Claude 传入的参数。
++
++**何时用（触发判据，D12）**：需要在应用里嵌入 Claude Agent（产品功能、自动化流程）→ 用 SDK；需要 if/else 或循环的逻辑 → 用 SDK（比 Headless CLI 适合复杂控制流）。
++
++## 场景演示
++
++- 从学习者项目里找一个「把 Claude 嵌进应用」的真实场景（如一个脚本/服务里调用 query 做分类/摘要）。
++- 演示 `query()` 最小调用：发 prompt、遍历消息流、读 result 的 subtype。
++- 讲权限模式与安全：默认先最小权限；bypassPermissions 绝不用于真实环境。
++
++## 真实轻练习
++
++- 学习者在自己的项目里用 SDK 写一个真实 `query` 调用（如读一段输入、返回结构化结论），并设好 max_turns/max_budget（REQ-PME-001）。
++- **依赖缺失降级（REQ-PME-005）**：若 SDK/API key/环境不可用 → 讲解/演示/模拟，记 `degraded: true`。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：新建脚本/文件，可删除；API key 由学习者自己管理（SFT-004）。
++
++## 高阶深入实操（可选，phase=高阶时进入）
++
++- 进阶阶段只做最小 `query` 调用（广度）。高阶阶段（REQ-TPT-002）深化：自定义工具注册、结构化输出、权限模式切换、处理错误重试与成本追踪——在学习者项目里做一个更大的集成场景。
++
++## 交叉引用
++
++- Agent SDK 参考：**REQUIRED SUB-SKILL:** claude-code-guide。
++- Agent SDK 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/skills.md b/cc-assistant/modules/skills.md
+new file mode 100644
+index 0000000..ba2c28d
+--- /dev/null
++++ b/cc-assistant/modules/skills.md
+@@ -0,0 +1,31 @@
++# 模块 3：Skills（skills）
++
++> 把「可复用的流程/斜杠命令」固化成 Claude Code 的 skill。核心主题 = Skills 工程。
++
++## 是什么 / 何时用
++
++- **Skill**：一个包含 `SKILL.md` 的目录（`.claude/skills/<名称>/SKILL.md`）。`SKILL.md` 用 YAML Frontmatter 声明 name、description 等，正文编排能力。
++- **触发**：显式 `/skill-name` 或 Claude 按 description 语义自动匹配。
++- **渐进式披露**：description（常驻）→ SKILL.md 正文（触发时加载）→ reference/ 引用文件（执行时按需读）。避免一次加载全部内容。
++- **任务型 vs 参考型**：有副作用（自动提交、删除）的任务 → 任务型（`disable-model-invocation: true` 手动触发）；纯参考/分析 → 参考型（自动触发）。
++- **allowed-tools**：白名单限定 skill 可用工具；`Bash(*)` 几乎等于无防线，高危 skill 严禁。
++
++**何时用（触发判据，D12）**：有反复要做的流程/斜杠命令 → 定义 skill；流程有副作用 → 任务型；只读分析 → 参考型。
++
++## 场景演示
++
++- 从学习者项目里找一个「反复做」的场景（如重复的代码审查、固定格式的输出），讨论它是否值得固化成 skill。
++- 演示 skill 的最小结构：目录 + SKILL.md + description 怎么写（写给 Claude 的「语义指纹」）。
++- 讲渐进式披露：大 skill 如何分层，避免一次性把内容灌进正文。
++
++## 真实轻练习
++
++- 学习者在自己的项目里定义一个最小 skill（如一个固定输出格式的小命令），并测试它的触发（REQ-PME-001）。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：新建目录/文件，可删除。
++- 若学习者项目不适合建 skill → 换一个合适的真实载体，仍做真实轻练习（design 第 3 轮 LOW：不因无场景跳过/降级练习）。
++
++## 交叉引用
++
++- skill 编写规范与最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。
++- Skills 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/cc-assistant/modules/subagent.md b/cc-assistant/modules/subagent.md
+new file mode 100644
+index 0000000..47e9ac8
+--- /dev/null
++++ b/cc-assistant/modules/subagent.md
+@@ -0,0 +1,30 @@
++# 模块 4：子智能体（subagent）
++
++> 把独立子任务委派给具备独立上下文与受限工具的子智能体。核心主题 = 子智能体与任务委派。
++
++## 是什么 / 何时用
++
++- **子智能体**：独立上下文窗口、受限工具权限、明确任务范围的 Claude 实例。完成后只回传结论，中间过程不污染主上下文。
++- **定义文件** `.claude/agents/*.md`：YAML 配置 name、description（路由依据）、tools（白名单）、model、permissionMode 等。
++- **两种使用**：自动委派（按 description 语义匹配）vs 显式请求。
++- **典型模式**：只读型（审查/审计）、执行型（高噪声→低输出）、并行型（独立任务 MapReduce）、流水线型（阶段有依赖，交接契约）、团队型（长期协作，慎用）。
++
++**何时用（触发判据，D12）**：有多个独立可并行的子任务 → 委派；输入≫输出的高噪声任务（如大日志→结论）→ 子智能体隔离噪声；要保护主上下文不溢出 → 委派。
++
++## 场景演示
++
++- 从学习者项目里找一个「输入大、输出小」的真实任务（如分析一大段日志/一份长报告），演示委派给子智能体。
++- 演示 `.claude/agents/*.md` 最小定义：name + description + tools（白名单）+ model。
++- 讲工具白名单 = 最小权限的物理边界；讲只读子智能体的 permissionMode。
++
++## 真实轻练习
++
++- 学习者在自己的项目里定义一个只读子智能体（或把上述场景任务委派出去），验证它只读、结论精简（REQ-PME-001）。
++- 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
++- 小而可逆（REQ-PME-004）：新建定义文件/跑一次委派，可删除。
++- 若学习者项目场景不匹配 → 换合适真实载体，仍做真实轻练习。
++
++## 交叉引用
++
++- 子智能体最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。
++- Agents 官方文档（未覆盖时）：引用 docs.anthropic.com。
+diff --git a/changes/cc-assistant-v3/.superpowers/sdd/progress.md b/changes/cc-assistant-v3/.superpowers/sdd/progress.md
+index 69e1c97..2a02d2d 100644
+--- a/changes/cc-assistant-v3/.superpowers/sdd/progress.md
++++ b/changes/cc-assistant-v3/.superpowers/sdd/progress.md
+@@ -21,16 +21,24 @@
+ **Review**：待 commit 后 wave-2 review receipt。
+ **batches_completed**：2
+ 
+-## Wave 3a — wave-3a-modules（模块支撑文件，parallel）🔜
+-
+-- [ ] T7: modules/m0-onboarding.md
+-- [ ] T8: modules/core.md
+-- [ ] T9: modules/memory.md
+-- [ ] T10: modules/skills.md
+-- [ ] T11: modules/subagent.md
+-- [ ] T12: modules/hooks.md
+-- [ ] T13: modules/mcp.md
+-- [ ] T14: modules/headless.md
+-- [ ] T15: modules/sdk.md
+-- [ ] T16: modules/plugins.md
+-- [ ] T17: modules/engineering.md
++## Wave 3a — wave-3a-modules（模块支撑文件，parallel）✅
++
++- [x] T7: modules/m0-onboarding.md（M0 定场+选项目+询问定位）
++- [x] T8: modules/core.md（REQ-COR-001~005）
++- [x] T9: modules/memory.md（CLAUDE.md 五层记忆+Rule 规则级）
++- [x] T10: modules/skills.md
++- [x] T11: modules/subagent.md
++- [x] T12: modules/hooks.md
++- [x] T13: modules/mcp.md（含 PME-005 降级）
++- [x] T14: modules/headless.md（含 PME-005 降级）
++- [x] T15: modules/sdk.md（含 PME-005 降级 + 高阶小节 TPT-002）
++- [x] T16: modules/plugins.md（含高阶小节 TPT-002）
++- [x] T17: modules/engineering.md（含高阶小节 TPT-002）
++- 安装副本 modules/ 已同步
++
++**Review**：待 commit 后 wave-3a review receipt。
++**batches_completed**：3
++
++## Wave 3b — wave-3b-capstone（收官整合模块）🔜
++
++- [ ] T18: modules/capstone.md（跨模块综合任务+体系讲解改写归因+高阶综合项目分支）

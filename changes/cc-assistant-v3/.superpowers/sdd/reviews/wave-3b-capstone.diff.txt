@@ -1,0 +1,71 @@
+diff --git a/cc-assistant/modules/capstone.md b/cc-assistant/modules/capstone.md
+new file mode 100644
+index 0000000..1b7d4ab
+--- /dev/null
++++ b/cc-assistant/modules/capstone.md
+@@ -0,0 +1,33 @@
++# 模块 11：收官整合（capstone）
++
++> 课程的最后一环：把前面 10 个模块学到的机制组合起来，做一个跨模块综合任务，并把各机制的定位讲成体系。本模块为多会话综合阶段（REQ-MCO-003），可拆多次 `/assist` 完成。
++
++## 是什么 / 何时用
++
++- **收官整合**：综合运用前面学过的 2+ 种 Harness 机制，在一个跨模块真实任务里协同工作。
++- **体系讲解**：把各机制的职责边界与协同方式讲成体系（四层架构 / 触发口诀 / 关注点分离 / 选型决策树），帮助学习者从「会用单个机制」升级为「知道何时用哪个、怎么组合」。
++
++**何时用（触发判据，D12）**：课程进入收官整合模块 → 综合任务 + 体系讲解；前面模块未完成时先走续接补齐，不跳过必修模块。
++
++## 场景演示
++
++- **综合任务**：从学习者项目里引导选定/给出一个需组合 2+ 机制的真实任务（如「记忆系统 + Hooks」配置一个带质量门控的项目，或「Skills + MCP」做一个带外部数据的自动化流程）。任务沿用之前模块的同一项目（REQ-ICN-001）。
++- **体系讲解（改写归因）**：把机制分层讲成体系——记忆层（CLAUDE.md 让模型不失忆）、扩展层（Commands/Skills/子智能体/Hooks 扩展能力）、集成层（MCP/Headless 连接外部）、编程层（Agent SDK 构建应用）；触发口诀（手动叫它 / 它自己知道该做 / 安排别人做 / 到这一步就检查）；选型决策树（按场景选组件）。以上体系框架源自《Claude Code 实战》黄佳（人民邮电出版社），此处为课程自有改写并归因，不保留原文表述（REQ-ICN-003）。
++- 讲关注点分离：CLAUDE.md「知道什么」、Skills「怎么做」、子智能体「谁来做」、Hooks「能否做」，边界清晰才能自由组合。
++
++## 真实综合练习
++
++- 学习者独立完成综合任务：组合 2+ 机制，自己决定用哪些机制、怎么组合；skill 只引导与核对，不代做（REQ-ICN-002 / D13）。
++- **说出选型理由**：任务完成后，学习者需说出「为什么用 A 不用 B」（理由涉及所用机制的适用条件）。说不出 → 回到相关机制教学点补讲，再让学习者复述（REQ-ICN-002）。
++- 综合任务可拆多次会话完成，每次记录进度（REQ-MCO-003）。
++- 小而可逆（REQ-PME-004/SFT-001）：综合任务也选可逆操作；危险操作先征得同意（SFT-002）；落地由学习者决定（SFT-004）。
++
++## 高阶综合项目（可选，phase=高阶时进入）
++
++- 进阶阶段完成上面综合任务 + 体系讲解即为收官。高阶阶段（REQ-TPT-002）：做更大的综合项目，深度组合机制（如 Agent SDK + Hooks + MCP 的完整产品化流程），并独立完成选型与工程化落地。
++
++## 交叉引用
++
++- 参考类（机制最佳实践）：**REQUIRED SUB-SKILL:** claude-code-guide。
++- 官方文档（未覆盖时）：引用 docs.anthropic.com。
++- 体系框架来源：黄佳《Claude Code 实战：Harness 工程之道》（人民邮电出版社，2026）——本模块体系讲解为课程自有改写并归因，未内联书原文。
+diff --git a/cc-assistant/modules/memory.md b/cc-assistant/modules/memory.md
+index c9b0e42..68ba18c 100644
+--- a/cc-assistant/modules/memory.md
++++ b/cc-assistant/modules/memory.md
+@@ -8,6 +8,7 @@
+ - **CLAUDE.md（项目级）**：团队共享的「员工手册」，提交 Git。记录关键命令、定制规范、架构约束、避坑指南。
+ - **规则级 `.claude/rules/`**：条件化加载——用 Glob 匹配路径，只在相关文件被操作时生效（懒加载）。不带 `paths` 的规则文件等于无条件全量加载，退化成 CLAUDE.md。
+ - **用户级/企业级**：`~/.claude/CLAUDE.md`（个人偏好）、`/etc/claude-code/CLAUDE.md`（组织强制底线）。
++- **本地级** `./CLAUDE.local.md`：个人备忘，默认自动进 `.gitignore`，不随项目共享。
+ - **文件引用**：`@docs/xxx.md` 语法把 CLAUDE.md 变成「索引总纲」，引用其他文件，按需展开。
+ 
+ **何时用（触发判据，D12）**：想让 Claude 记住项目约定/规范 → 写 CLAUDE.md；想规则只在特定路径生效 → 用 `.claude/rules/` + `paths`；有可推导的通用惯例/空泛建议 → 不要写（少即是多）。
+diff --git a/changes/cc-assistant-v3/.superpowers/sdd/progress.md b/changes/cc-assistant-v3/.superpowers/sdd/progress.md
+index 2a02d2d..6c7845a 100644
+--- a/changes/cc-assistant-v3/.superpowers/sdd/progress.md
++++ b/changes/cc-assistant-v3/.superpowers/sdd/progress.md
+@@ -39,6 +39,13 @@
+ **Review**：待 commit 后 wave-3a review receipt。
+ **batches_completed**：3
+ 
+-## Wave 3b — wave-3b-capstone（收官整合模块）🔜
++## Wave 3b — wave-3b-capstone（收官整合模块）✅
+ 
+-- [ ] T18: modules/capstone.md（跨模块综合任务+体系讲解改写归因+高阶综合项目分支）
++- [x] T18: modules/capstone.md（跨模块综合任务 2+ 机制 + 四层架构/触发口诀/关注点分离/选型决策树体系讲解改写归因 + 高阶综合项目分支 REQ-TPT-002）
++
++**Review**：待 commit 后 wave-3b review receipt。
++**batches_completed**：4
++
++## Wave 3c — wave-3c-verify（全模块交叉核对）🔜
++
++- [ ] T19: 全模块交叉核对（11 模块+ M0 与 SKILL.md 编排次序、progress moduleId、phase、REQ-PME-002/004、TPT-001/003 承载）

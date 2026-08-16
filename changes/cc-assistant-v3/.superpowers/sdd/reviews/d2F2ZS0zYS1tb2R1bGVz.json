@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "base": "65e43ba06254ab717b7a50b59506a458837eef50",
+  "head": "e8dc6c89dff377df066a5a6c761ba90ae5581267",
+  "report": ".superpowers\\sdd\\reviews\\wave-3a-modules.md",
+  "plan_hash": "sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088",
+  "plan_revision": 1,
+  "recorded_at": "2026-08-16T07:21:23.770Z"
+}
