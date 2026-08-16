@@ -1,50 +1,24 @@
 ---
 name: cc-assistant
-description: Use when a developer new to Claude Code requests a guided onboarding session (e.g. types /assist, or asks how to use Claude Code on a real task).
+description: Use when a developer who can code but is new to Claude Code types /assist or asks how to use Claude Code on a real task.
 ---
 
-# CC Assistant（上手引导）
+# CC Assistant（模块化上手引导课程）
 
-## Overview
+## 会话编排
 
-对「有开发经验但不熟悉 Claude Code」的开发者，做一次「用真实任务边做边教」的引导会话。你只负责引导编排；参考类内容交叉引用 `claude-code-guide`，不内联复制。
+只引导、不代做练习；模块教学内容在 `modules/` 支撑文件，按序读取。
 
-## 会话流程
-
-按序推进，不跳环节：
-
-1. **定场说明**：介绍自己是上手引导；说明将用一个真实任务边做边教；了解学习者的背景与熟悉度。
-2. **选真实小任务**：引导学习者从自己项目里选一个真实、小而可逆的任务作教学载体。
-   - 任务过大 → 拆成一个一节课能完成的小任务，并讲清拆分理由。
-   - 没有现成任务 → 提供贴合其技术栈的常见示例（修一个 bug / 加一个小功能 / 写一个测试）。
-3. **教学闭环**：下指令 → 审阅改动 → 迭代。一次只讲一件事，确认学习者理解后再继续。每个教学点见「教学要点」。
-4. **独立复现验证**：让学习者先定义该独立小任务的验收标准（应用「下指令」教的 目标/范围/验收标准），随后只观察与核对，不代做；学习者卡住时先引导其自己尝试，必要时才给最小提示。按学习者自定的验收标准判定通过/回退：结果不符 → 回到相关教学点重讲或给最小提示再试；仍失败 → 告知可用 `/help`、`claude-code-guide`、官方文档继续学习，不强行判定失败。
-5. **收尾**：总结本次学会的能力，并指向后续资源（`/help`、`claude-code-guide`、官方文档 docs.anthropic.com）。
-
-教学闭环完成前学习者想提前结束 → 提示还有「独立复现验证」环节，征询是继续还是明确结束。
-
-## 教学要点
-
-**时机（just-in-time）**：只在相关「教学时刻」讲对应概念，会话开始不预灌教材、只给继续所需的最低信息。
-
-- **下指令**：第一次让学习者给指令、或遇到模糊指令时，演示如何改具体——明确目标、涉及文件范围、验收标准。
-- **审阅改动**：学习者第一次看到 AI 的 diff 时，讲 diff 怎么看、如何接受/拒绝、为什么不要盲目接受全部改动。
-- **核心命令**：按教学时刻要点式讲解 `/help`、`/clear`（对上下文困惑时，讲上下文概念）、`@文件`（要引用具体文件时）。非穷尽，不用一次讲全。
-- **CLAUDE.md**：完成首个任务后，讲它的作用并演示一个模板；是否写入项目由学习者决定。
-- **进阶（按需）**：遇到可复用的重复性任务/规范 → 讲 Skill/Rule/Hook（交叉引用 claude-code-guide）；想接入外部数据/工具 → 讲 MCP；任务较大需先规划 → 讲 Plan Mode（何时用、怎么用、与直接执行的区别，并在该任务演示）；有多个独立可并行的子任务 → 讲 Agent/子代理。进阶均按需，可提示课后自行探索。
-
-## 交叉引用
-
-- 参考类概念（CLAUDE.md 模板、最佳实践等）：**REQUIRED SUB-SKILL:** claude-code-guide，不复制其内容。
-- claude-code-guide 未覆盖的（MCP / Plan Mode / Agent 等）：引用官方文档 docs.anthropic.com，不凭记忆编造。
+1. **定场与选项目**：读 `modules/m0-onboarding.md`，定场说明并引导选定真实项目。
+2. **定位进度**：读 `.claude/cc-assistant/progress.json`（存在→按 `currentModule` 模块级续接；损坏/缺失→询问「全新开始/续接」）；读写编排见进度续接段。
+3. **进入模块**：按固定次序进入 `modules/<module>.md`——核心→记忆系统→Skills→子智能体→Hooks→MCP→Headless→Agent SDK→Plugins→工程化→收官整合。一次 `/assist` 只教 1 个单机制模块；收官整合为多会话综合阶段、可拆多次完成。
+4. **模块教学**：概念（是什么/何时用）→ 场景 → 真实轻练习；练习由学习者动手、不代做；外部依赖缺失→降级讲解/演示并记 `degraded`。just-in-time，不预灌。
+5. **写进度与续接**：模块完成写 `progress.json`（`phase`/`moduleId`/`degraded`），提示下次续接下一模块。
 
 ## 安全边界
 
-- 危险/不可逆操作（删除数据、改数据库、force push 等）：先说明风险并征得学习者明确同意，否则不执行；必要时建议改用沙箱/临时项目。
-- 真实项目有未提交改动：开始操作前先检查 git 状态，有未提交改动则先建议 commit 或备份，再继续。
-- **学习者决定权**：演示/讲解可以，实际落地（如写入配置）由学习者决定，不代行决策。
+危险/不可逆操作先征得同意；未提交改动先 commit 或备份；落地动作由学习者决定。
 
-## 验证
+## 交叉引用
 
-- 成功标准：教学闭环后，学习者不靠引导独立完成一个小任务，且按其自定验收标准判定通过。
-- 独立复现的「只观察/核对、失败回退、不代做」与收尾的资源指引，分别按「会话流程」第 4、5 步执行。
+参考类内容用 **REQUIRED SUB-SKILL:** claude-code-guide；未覆盖的进阶内容引用 docs.anthropic.com。

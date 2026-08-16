@@ -1,6 +1,6 @@
 # CC Assistant v3 — 场景用例（eval/cases.md）
 
-> 用途：子代理 TDD 输入。每条场景 = 项目状态 / 学习者动作（WHEN）→ 期望引导行为（THEN）。T2 用无 skill 环境跑出基线（RED），T25 用有 skill 环境复测（GREEN）。
+> 用途：子智能体 TDD 输入。每条场景 = 项目状态 / 学习者动作（WHEN）→ 期望引导行为（THEN）。T2 用无 skill 环境跑出基线（RED），T25 用有 skill 环境复测（GREEN）。
 > 来源：`changes/cc-assistant-v3/specs/` 下 8 份 spec 的 34 条 REQ（REQ-MCO / REQ-COR / REQ-SFT / REQ-PME / REQ-SCN / REQ-TPT / REQ-ICN / REQ-RCL）。
 > 结构：A 模块化课程编排 → B 核心能力教学 → C 安全边界 → D 每模块真实小练习 → E 多会话进度续接 → F 两阶段教学 → G 收官整合 → H 参考层交叉引用 → I 模块用例面（11 模块概念问答 + 轻练习）→ J 成功标准谓词核对表 → K RED 基线区（T2 填充）→ L GREEN 区（T25 填充）。
 > 约束：措辞与 spec 保持一致，不引入 spec 外的新需求。每条场景标注覆盖的 REQ ID；每个成功标准至少挂一条可观察 WHEN/THEN 谓词（design D10）。
@@ -254,7 +254,7 @@
 - **轻练习（REQ-PME）**：**WHEN** Skills 模块概念与场景讲解完成 **THEN** 系统引导学习者在本人项目定义一个最小 skill 或评估现有 skill 作为真实轻练习
 
 ### I-4 子智能体模块（subagent）
-- **概念问答（REQ-MCO-004/TPT-001）**：**WHEN** 系统询问子智能体（Agent）的适用场景 **THEN** 学习者能说出至少一个正确触发条件（如「有多个独立可并行子任务时委派」「想隔离上下文时用子代理」）
+- **概念问答（REQ-MCO-004/TPT-001）**：**WHEN** 系统询问子智能体（Agent）的适用场景 **THEN** 学习者能说出至少一个正确触发条件（如「有多个独立可并行子任务时委派」「想隔离上下文时用子智能体」）
 - **轻练习（REQ-PME）**：**WHEN** 子智能体模块概念与场景讲解完成 **THEN** 系统引导学习者在本人项目委派一个真实子任务作为轻练习
 
 ### I-5 Hooks 模块（hooks）
@@ -302,7 +302,7 @@
 
 ## K. RED 基线区（Baseline）——无 skill 对照
 
-> 本区由 T2/T3 填充：在无 skill 环境下用子代理模拟学习者跑 2 个代表场景（记忆系统模块 + 多会话续接），逐字记录行为与合理化，识别失败模式，形成 RED 基线。基线应证明「无 skill 时不引导」。完整报告见 `.superpowers/sdd/reports/baseline.md`（T2 落盘）。
+> 本区由 T2/T3 填充：在无 skill 环境下用子智能体模拟学习者跑 2 个代表场景（记忆系统模块 + 多会话续接），逐字记录行为与合理化，识别失败模式，形成 RED 基线。基线应证明「无 skill 时不引导」。完整报告见 `.superpowers/sdd/reports/baseline.md`（T2 落盘）。
 
 > **基线方法（T2）**：以「纯净 Claude Code 会话」为被测对象——无 cc-assistant skill、无任何引导类 skill、无 `/assist` 命令。针对代表场景的 WHEN（学习者动作/项目状态），记录该纯净会话的自然默认行为，作为 T25（有 skill）复测的 RED 对照基准。
 
@@ -360,4 +360,4 @@
 
 ## L. GREEN 区（GREEN）——有 skill 对照
 
-> 本区由 T25 填充：在带 skill 环境下用子代理模拟学习者重跑代表场景，逐条对照 K 区基线失败模式，验证行为收敛。GREEN 应证明「有 skill 时引导」。
+> 本区由 T25 填充：在带 skill 环境下用子智能体模拟学习者重跑代表场景，逐条对照 K 区基线失败模式，验证行为收敛。GREEN 应证明「有 skill 时引导」。
