@@ -8,6 +8,7 @@
 - **CLAUDE.md（项目级）**：团队共享的「员工手册」，提交 Git。记录关键命令、定制规范、架构约束、避坑指南。
 - **规则级 `.claude/rules/`**：条件化加载——用 Glob 匹配路径，只在相关文件被操作时生效（懒加载）。不带 `paths` 的规则文件等于无条件全量加载，退化成 CLAUDE.md。
 - **用户级/企业级**：`~/.claude/CLAUDE.md`（个人偏好）、`/etc/claude-code/CLAUDE.md`（组织强制底线）。
+- **本地级** `./CLAUDE.local.md`：个人备忘，默认自动进 `.gitignore`，不随项目共享。
 - **文件引用**：`@docs/xxx.md` 语法把 CLAUDE.md 变成「索引总纲」，引用其他文件，按需展开。
 
 **何时用（触发判据，D12）**：想让 Claude 记住项目约定/规范 → 写 CLAUDE.md；想规则只在特定路径生效 → 用 `.claude/rules/` + `paths`；有可推导的通用惯例/空泛建议 → 不要写（少即是多）。

@@ -39,6 +39,13 @@
 **Review**：待 commit 后 wave-3a review receipt。
 **batches_completed**：3
 
-## Wave 3b — wave-3b-capstone（收官整合模块）🔜
+## Wave 3b — wave-3b-capstone（收官整合模块）✅
 
-- [ ] T18: modules/capstone.md（跨模块综合任务+体系讲解改写归因+高阶综合项目分支）
+- [x] T18: modules/capstone.md（跨模块综合任务 2+ 机制 + 四层架构/触发口诀/关注点分离/选型决策树体系讲解改写归因 + 高阶综合项目分支 REQ-TPT-002）
+
+**Review**：待 commit 后 wave-3b review receipt。
+**batches_completed**：4
+
+## Wave 3c — wave-3c-verify（全模块交叉核对）🔜
+
+- [ ] T19: 全模块交叉核对（11 模块+ M0 与 SKILL.md 编排次序、progress moduleId、phase、REQ-PME-002/004、TPT-001/003 承载）
