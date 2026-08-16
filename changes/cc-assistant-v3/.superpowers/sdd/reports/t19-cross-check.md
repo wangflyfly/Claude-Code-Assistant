@@ -1,0 +1,93 @@
+# T19 全模块交叉核对报告
+
+> 任务：CC Assistant v3 全模块交叉核对（只读，不修改任何文件）
+> 范围：`cc-assistant/SKILL.md`、`cc-assistant/modules/*.md`（12 个文件：m0 + 11 模块）、`cc-assistant/eval/cases.md`、`changes/cc-assistant-v3/tasks.md`、`changes/cc-assistant-v3/design.md`
+> 结论：**通过（PASS）**——Critical 0 / Important 0 / Minor 1（信息性）
+
+---
+
+## 1. 模块清单一致性 —— 一致
+
+SKILL.md 步骤 3 固定次序（`cc-assistant/SKILL.md:14`）：
+
+```
+核心→记忆系统→Skills→子智能体→Hooks→MCP→Headless→Agent SDK→Plugins→工程化→收官整合
+```
+
+与四处一一对应、次序完全一致、无缺无多：
+
+| 序 | moduleId | SKILL.md:14 | 模块文件 | cases.md I 区 | tasks.md:31 |
+|---|---|---|---|---|---|
+| 1 | core | 核心 | core.md:1（模块 1） | I-1（cases.md:244） | core |
+| 2 | memory | 记忆系统 | memory.md:1（模块 2） | I-2（cases.md:248） | memory |
+| 3 | skills | Skills | skills.md:1（模块 3） | I-3（cases.md:252） | skills |
+| 4 | subagent | 子智能体 | subagent.md:1（模块 4） | I-4（cases.md:256） | subagent |
+| 5 | hooks | Hooks | hooks.md:1（模块 5） | I-5（cases.md:260） | hooks |
+| 6 | mcp | MCP | mcp.md:1（模块 6） | I-6（cases.md:264） | mcp |
+| 7 | headless | Headless | headless.md:1（模块 7） | I-7（cases.md:268） | headless |
+| 8 | sdk | Agent SDK | sdk.md:1（模块 8） | I-8（cases.md:272） | sdk |
+| 9 | plugins | Plugins | plugins.md:1（模块 9） | I-9（cases.md:277） | plugins |
+| 10 | engineering | 工程化 | engineering.md:1（模块 10） | I-10（cases.md:282） | engineering |
+| 11 | capstone | 收官整合 | capstone.md:1（模块 11） | I-11（cases.md:287） | capstone |
+
+- `modules/` 目录恰好 12 个文件（m0 + 11 模块），无孤儿文件、无缺失。
+- M0 独立于固定次序：SKILL.md:12（步骤 1）单独读 `m0-onboarding.md`，不混入 11 模块次序，与 tasks.md「11 模块 + M0」口径一致。
+- cases.md V-02（cases.md:16）固定次序字符串与 SKILL.md:14 逐字一致。
+
+## 2. 引用无悬空 —— 一致（1 处 Minor 交接 stub）
+
+- SKILL.md:12 引用 `modules/m0-onboarding.md` ✓ 存在；SKILL.md:14 引用 `modules/<module>.md`，11 个全部存在 ✓。
+- 各模块内部交叉引用：`**REQUIRED SUB-SKILL:** claude-code-guide`（已安装子 skill，可解析）+ `docs.anthropic.com`（官方文档，外部目标）+ 概念路径（`.claude/agents/*.md`、`.claude/skills/`、`.claude/rules/`、`CLAUDE.md`），均指向存在/合理的目标，无悬空。
+- capstone.md:15/33 书框架归因（黄佳《Claude Code 实战》）为外部来源标注，非文件引用。
+- **Minor（信息性）**：`m0-onboarding.md:28` 引用「SKILL.md『进度续接段』（T20 落成）」——SKILL.md 当前仅有步骤 2/5 的读/写 stub（SKILL.md:13/16），无同名小节。这是 tasks.md:48（T4 交接 stub）与 tasks.md:70（T20 落成续接段）的**有意交接点**，且 T19 先于 T20（依赖链 tasks.md:97），非悬空引用、非缺陷。
+
+## 3. phase 区分（REQ-TPT-003）—— 一致
+
+高阶阶段复用同模块号、以 `phase` 区分，sdk/plugins/engineering（及 capstone）均以高阶小节承载：
+
+- sdk.md:28「## 高阶深入实操（可选，phase=高阶时进入）」✓
+- plugins.md:28 同 ✓
+- engineering.md:26 同 ✓
+- capstone.md:25「## 高阶综合项目（可选，phase=高阶时进入）」✓
+- progress 结构含 `phase` 字段（tasks.md:31，`{phase, moduleId}`），cases.md V-32/V-43（cases.md:143-144/188-190）记录 `(高阶, 模块号)` 与 `(进阶, 模块号)` 并存，与 design D3/D11（design.md:31-34/71-74）一致。
+
+## 4. REQ 承载 —— 一致
+
+| REQ | 判定 | 证据 |
+|---|---|---|
+| REQ-PME-002 同项目串联 | 一致 | M0 选项目 + 各模块练习「在自己的项目里」双点承载：m0-onboarding.md:13-17（选真实项目、后续所有模块练习叠加、可主动更换）；core.md:25、memory.md:24、skills.md:23、subagent.md:22、hooks.md:22、mcp.md:23、headless.md:22、sdk.md:23、plugins.md:23、engineering.md:22、capstone.md:14（任务沿用之前模块同一项目） |
+| REQ-PME-001 不在空壳/样例做 | 一致 | m0-onboarding.md:15 显式「不是空壳/样例仓库」；全部模块练习强调「自己的项目里」真实练习 |
+| REQ-PME-004 练习小而可逆 | 一致 | 11 个模块全部含「小而可逆」：core.md:27、memory.md:26、skills.md:25、subagent.md:24、hooks.md:24、mcp.md:26、headless.md:25、sdk.md:26、plugins.md:25、engineering.md:24、capstone.md:23 |
+| REQ-TPT-001 进阶必修覆盖 11 模块 | 一致 | SKILL.md:14 固定次序覆盖全部 11 模块、无跳步；capstone.md:10「前面模块未完成时先走续接补齐，不跳过必修模块」；cases.md V-02/V-39/V-40（cases.md:16/173-178） |
+| 无适用场景→同项目内换载体、不降级 | 一致 | 4 模块承载「换载体」：skills.md:26（含 design 第 3 轮 LOW 注）、subagent.md:25、hooks.md:25、plugins.md:26——均「换合适真实载体，仍做真实轻练习」 |
+| 降级严格限定外部依赖缺失 | 一致 | 仅 mcp/headless/sdk 含 REQ-PME-005 降级：mcp.md:24、headless.md:23、sdk.md:24（外部依赖缺失→讲解/演示/模拟、记 `degraded: true`）；skills/subagent/hooks/plugins 走「换载体」而非降级，与 design D12（design.md:77「降级严格限定于外部依赖缺失一个来源」）一致 |
+
+注：hooks.md:9（command→prompt→agent 降级选型）与 headless.md:8（`--fallback-model` 模型降级）中的「降级」为技术语境，非课程练习降级，不构成违规。
+
+## 5. 术语统一 —— 一致
+
+- 「子代理」残留：对 `cc-assistant/` 全量 grep，0 命中 ✓
+- 「子智能体」统一：subagent.md:1/3、capstone.md:15、cases.md:257 ✓
+- 「记忆系统」：SKILL.md:14、memory.md:1、cases.md:248、tasks.md:10 ✓
+- 「收官整合」：SKILL.md:14、capstone.md:1、cases.md:287、tasks.md:19 ✓
+
+## 附加核对
+
+- SKILL.md 正文 <200 词：实际 51 词（`wc -w` 对 frontmatter 后正文），满足 D2/V-08 ✓
+- SKILL.md:16 写进度结构 `phase/moduleId/degraded` 与 D3、tasks.md:31 一致 ✓
+
+---
+
+## 发现分级汇总
+
+| 级别 | 数量 | 说明 |
+|---|---|---|
+| Critical | 0 | — |
+| Important | 0 | — |
+| Minor | 1 | m0-onboarding.md:28 续接段引用为 T4→T20 有意交接 stub，T20 落成后自然闭合（信息性，不阻塞） |
+
+## 结论
+
+**通过（PASS）**。模块清单、固定次序、moduleId 集合四方一致无缺无多；引用无悬空；REQ-TPT-003 phase 区分、REQ-PME-001/002/004、REQ-TPT-001 及「换载体不降级 + 降级限定外部依赖」均由模块/进度结构承载；术语统一无「子代理」残留。唯一 Minor 为预期中的 T20 交接点，非缺陷。可进入 T20（进度续接编排指令段）。
+
+自检：外部一致性已核对（SKILL.md / modules / cases.md / tasks.md / design.md 实际读取比对），遗留 0 项阻塞项。

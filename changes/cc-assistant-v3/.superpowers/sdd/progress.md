@@ -46,6 +46,13 @@
 **Review**：待 commit 后 wave-3b review receipt。
 **batches_completed**：4
 
-## Wave 3c — wave-3c-verify（全模块交叉核对）🔜
+## Wave 3c — wave-3c-verify（全模块交叉核对）✅
 
-- [ ] T19: 全模块交叉核对（11 模块+ M0 与 SKILL.md 编排次序、progress moduleId、phase、REQ-PME-002/004、TPT-001/003 承载）
+- [x] T19: 全模块交叉核对（报告 `reports/t19-cross-check.md`）：模块清单四方一致、无悬空、phase 区分、REQ-PME/TPT 承载、术语统一；0 Critical/Important，1 Minor 信息性（T4→T20 交接 stub，预期）
+
+**Review**：待 commit 后 wave-3c review receipt。
+**batches_completed**：5
+
+## Wave 4 — wave-4-continuity（进度续接）🔜
+
+- [ ] T20: SKILL.md 写 progress.json 续接编排指令段（读写/询问/续接，D3 编码，REQ-SCN-001~005）
