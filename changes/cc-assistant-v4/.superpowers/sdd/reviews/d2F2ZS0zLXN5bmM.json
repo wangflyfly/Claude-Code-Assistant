@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "base": "3e9be451897fd9ad6036f840dbbd13779f87800b",
+  "head": "c2e27ff05e6749877e3c2c6421d50a8952db3df2",
+  "report": ".superpowers\\sdd\\reviews\\wave-3-sync.md",
+  "plan_hash": "sha256:233c66583ff80489302dc37cf8c6963f211972a4b54a27ade63dab2a95cfbe14",
+  "plan_revision": 1,
+  "recorded_at": "2026-08-26T13:33:32.262Z"
+}

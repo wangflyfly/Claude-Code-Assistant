@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "base": "a7e38e2b3228eb58bd9ec7cbe5d811617e25e50f",
+  "head": "973a4272fa53785bbbd96f6b4b7ac9b75124ea0f",
+  "report": ".superpowers\\sdd\\reviews\\wave-1-data-layer.md",
+  "plan_hash": "sha256:233c66583ff80489302dc37cf8c6963f211972a4b54a27ade63dab2a95cfbe14",
+  "plan_revision": 1,
+  "recorded_at": "2026-08-26T13:22:35.340Z"
+}

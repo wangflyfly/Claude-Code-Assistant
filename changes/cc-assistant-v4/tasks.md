@@ -44,47 +44,47 @@
 
 ### Batch 1 — 目录数据层
 
-- [ ] T1: 创建 `catalog/topics.json`——初始主题词表（starter 集：core-workflow / skills / rules / hooks / mcp / memory / plugins / sdk / subagent / headless / plan-mode / engineering / project-workflow，每主题含 `id` + `description`）；依赖：无；验收：合法 JSON、每主题 id 小写连字符且唯一、description 非空
-- [ ] T2: 创建 `catalog/topics.md`——词表人类可读说明 + 扩充流程（新增主题 = 提 PR 改 topics.json + topics.md，走 CI 校验 + 维护者审核）；依赖：T1；验收：扩充流程可操作、说明与 topics.json 一致
-- [ ] T3: 创建 `catalog/catalog.schema.json`——顶层对象 + `skills` 数组，字段类型与必填项按 REQ-CAT-002（id/name/description/author/install/repo/license/topics 全部必填，topics 为字符串数组）；依赖：T1（schema 的 topics 不枚举，词表独立校验）；验收：schema 能约束非法结构（缺字段/类型错）失败
-- [ ] T4: 创建 `catalog/course-mapping.json`——11 模块键（core~capstone，不含 m0-onboarding）各映射到非空主题子集；依赖：T1；验收：每个键映射非空、引用主题 ∈ topics.json、键集 = `cc-assistant/modules/*.md` 文件名剔除 m0-onboarding
-- [ ] T5: 创建 `catalog/catalog.json`——含 `cc-assistant` 自荐首条（author 为维护者、其余字段按 REQ-CAT-002），`skills` 数组其余留空待 PR 填充；依赖：T3、T4；验收：cc-assistant 条目通过字段约束、文件过 schema 校验
+- [x] T1: 创建 `catalog/topics.json`——初始主题词表（starter 集：core-workflow / skills / rules / hooks / mcp / memory / plugins / sdk / subagent / headless / plan-mode / engineering / project-workflow，每主题含 `id` + `description`）；依赖：无；验收：合法 JSON、每主题 id 小写连字符且唯一、description 非空
+- [x] T2: 创建 `catalog/topics.md`——词表人类可读说明 + 扩充流程（新增主题 = 提 PR 改 topics.json + topics.md，走 CI 校验 + 维护者审核）；依赖：T1；验收：扩充流程可操作、说明与 topics.json 一致
+- [x] T3: 创建 `catalog/catalog.schema.json`——顶层对象 + `skills` 数组，字段类型与必填项按 REQ-CAT-002（id/name/description/author/install/repo/license/topics 全部必填，topics 为字符串数组）；依赖：T1（schema 的 topics 不枚举，词表独立校验）；验收：schema 能约束非法结构（缺字段/类型错）失败
+- [x] T4: 创建 `catalog/course-mapping.json`——11 模块键（core~capstone，不含 m0-onboarding）各映射到非空主题子集；依赖：T1；验收：每个键映射非空、引用主题 ∈ topics.json、键集 = `cc-assistant/modules/*.md` 文件名剔除 m0-onboarding
+- [x] T5: 创建 `catalog/catalog.json`——含 `cc-assistant` 自荐首条（author 为维护者、其余字段按 REQ-CAT-002），`skills` 数组其余留空待 PR 填充；依赖：T3、T4；验收：cc-assistant 条目通过字段约束、文件过 schema 校验
 
 ### Batch 2 — 校验脚本（TDD）
 
-- [ ] T6: 创建 `catalog/validate.mjs`——先写合法 / 非法用例矩阵（RED：合法条目通过、非法 JSON / 缺必填 / id 重复 / 词表外 topics / 映射键与模块不符各自失败），再实现校验逻辑（GREEN）：JSON 合法、schema 校验、id 唯一、topics ⊆ topics.json、必填字段齐全、course-mapping 键与 `cc-assistant/modules/*.md` 一致且引用主题存在；依赖：T1-T5；验收：用例矩阵全过、退出码 0/1 正确、错误信息定位到文件+字段
+- [x] T6: 创建 `catalog/validate.mjs`——先写合法 / 非法用例矩阵（RED：合法条目通过、非法 JSON / 缺必填 / id 重复 / 词表外 topics / 映射键与模块不符各自失败），再实现校验逻辑（GREEN）：JSON 合法、schema 校验、id 唯一、topics ⊆ topics.json、必填字段齐全、course-mapping 键与 `cc-assistant/modules/*.md` 一致且引用主题存在；依赖：T1-T5；验收：用例矩阵全过、退出码 0/1 正确、错误信息定位到文件+字段
 
 ### Batch 3 — 同步脚本（TDD）
 
-- [ ] T7: 创建 `catalog/sync-catalog.mjs`——先写输出断言用例（RED：给定小样本 catalog + course-mapping，三产物内容应是什么），再实现（GREEN）：输入 catalog.json + course-mapping.json，机器生成 `site/data/catalog.json`、`site/data/course-mapping.json`、`cc-assistant/modules/_community-skills.md`（按主题分组，每 skill 含 name + 一句话描述 + install 提示 + repo）；输出排序稳定（确定性，R7）；`--check` 模式比较已提交产物与最新生成，退出码 0=一致 / 1=漂移；依赖：T1、T4、T5（sync 输入含 catalog.json）；验收：三产物正确、二次运行 `--check` 退出码 0、手工改产物后退出码 1
+- [x] T7: 创建 `catalog/sync-catalog.mjs`——先写输出断言用例（RED：给定小样本 catalog + course-mapping，三产物内容应是什么），再实现（GREEN）：输入 catalog.json + course-mapping.json，机器生成 `site/data/catalog.json`、`site/data/course-mapping.json`、`cc-assistant/modules/_community-skills.md`（按主题分组，每 skill 含 name + 一句话描述 + install 提示 + repo）；输出排序稳定（确定性，R7）；`--check` 模式比较已提交产物与最新生成，退出码 0=一致 / 1=漂移；依赖：T1、T4、T5（sync 输入含 catalog.json）；验收：三产物正确、二次运行 `--check` 退出码 0、手工改产物后退出码 1
 
 ### Batch 4 — 网页静态站
 
-- [ ] T8: 创建 `site/.nojekyll` + `site/index.html`——页面结构：免责声明横幅（REQ-CON-005）、主题 chips 区、课程模块下拉、skill 列表容器；依赖：无；验收：结构包含三区块、本地 HTTP 服务可加载骨架
-- [ ] T9: 创建 `site/assets/style.css`——筛选 chips / 模块下拉 / skill 卡片样式；依赖：T8；验收：本地 HTTP 服务下页面可正常渲染布局
-- [ ] T10: 创建 `site/assets/app.js`——fetch `site/data/catalog.json` 与 `site/data/course-mapping.json`，主题 chips 筛选（REQ-SIT-003）、课程模块下拉筛选（由 course-mapping 推导模块→主题→匹配 skill，REQ-SIT-004）、skill 卡片渲染（name/description/author/topics/repo/install/license，REQ-SIT-005）；依赖：T8；验收：本地 HTTP 服务下两种筛选与渲染正确、与数据一致
-- [ ] T11: 生成 `site/data/` 产物——运行 `node catalog/sync-catalog.mjs` 生成 `site/data/catalog.json` 与 `site/data/course-mapping.json`，在本地静态 HTTP 服务（`python -m http.server`）验证网页完整可用；依赖：T5、T7、T10（T5 的 catalog.json 是 sync 输入）；验收：页面筛选/渲染正常、`file://` 直开提示不可用（CORS 说明，L3）
+- [x] T8: 创建 `site/.nojekyll` + `site/index.html`——页面结构：免责声明横幅（REQ-CON-005）、主题 chips 区、课程模块下拉、skill 列表容器；依赖：无；验收：结构包含三区块、本地 HTTP 服务可加载骨架
+- [x] T9: 创建 `site/assets/style.css`——筛选 chips / 模块下拉 / skill 卡片样式；依赖：T8；验收：本地 HTTP 服务下页面可正常渲染布局
+- [x] T10: 创建 `site/assets/app.js`——fetch `site/data/catalog.json` 与 `site/data/course-mapping.json`，主题 chips 筛选（REQ-SIT-003）、课程模块下拉筛选（由 course-mapping 推导模块→主题→匹配 skill，REQ-SIT-004）、skill 卡片渲染（name/description/author/topics/repo/install/license，REQ-SIT-005）；依赖：T8；验收：本地 HTTP 服务下两种筛选与渲染正确、与数据一致
+- [x] T11: 生成 `site/data/` 产物——运行 `node catalog/sync-catalog.mjs` 生成 `site/data/catalog.json` 与 `site/data/course-mapping.json`，在本地静态 HTTP 服务（`python -m http.server`）验证网页完整可用；依赖：T5、T7、T10（T5 的 catalog.json 是 sync 输入）；验收：页面筛选/渲染正常、`file://` 直开提示不可用（CORS 说明，L3）
 
 ### Batch 5 — CI 与贡献流程
 
-- [ ] T12: 创建 `.github/workflows/catalog-ci.yml`——`validate` job（on: pull_request, paths: catalog/**）：跑 validate.mjs 结构校验 + sync-catalog.mjs `--check` 防漂移，只读不写（R6 供应链防护）；`sync` job（on: push: main, paths: catalog/**）：跑 sync-catalog.mjs 重新生成三产物并提交（GITHUB_TOKEN，防递归触发）；依赖：T6、T7；验收：PR 校验只读、合入后产物自动更新、非法 PR 明确失败
-- [ ] T13: 创建 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md`——字段填写说明 + 示例条目 + 提交前自检清单（本地 `node catalog/validate.mjs` 可跑）+ 维护者审核清单（SKILL.md 形态 / repo 可访问 / license 明确 / description 与正文一致 / topics 匹配，REQ-CON-001/003）；依赖：T6（引用本地校验命令）；验收：模板覆盖 REQ-CAT-002 全字段、审核清单含 REQ-CON-003 核对项
-- [ ] T14: 创建 `catalog/CONTRIBUTING.md`——贡献流程（如何加一条 skill / 本地预校验 / CI 查什么）、收录判据（REQ-CAT-004 仅 SKILL.md 形态）、审核流程（REQ-CON-002）、免责声明（REQ-CON-005）；依赖：T6；验收：内容覆盖 REQ-CON 全部场景、含免责声明文本
+- [x] T12: 创建 `.github/workflows/catalog-ci.yml`——`validate` job（on: pull_request, paths: catalog/**）：跑 validate.mjs 结构校验 + sync-catalog.mjs `--check` 防漂移，只读不写（R6 供应链防护）；`sync` job（on: push: main, paths: catalog/**）：跑 sync-catalog.mjs 重新生成三产物并提交（GITHUB_TOKEN，防递归触发）；依赖：T6、T7；验收：PR 校验只读、合入后产物自动更新、非法 PR 明确失败
+- [x] T13: 创建 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md`——字段填写说明 + 示例条目 + 提交前自检清单（本地 `node catalog/validate.mjs` 可跑）+ 维护者审核清单（SKILL.md 形态 / repo 可访问 / license 明确 / description 与正文一致 / topics 匹配，REQ-CON-001/003）；依赖：T6（引用本地校验命令）；验收：模板覆盖 REQ-CAT-002 全字段、审核清单含 REQ-CON-003 核对项
+- [x] T14: 创建 `catalog/CONTRIBUTING.md`——贡献流程（如何加一条 skill / 本地预校验 / CI 查什么）、收录判据（REQ-CAT-004 仅 SKILL.md 形态）、审核流程（REQ-CON-002）、免责声明（REQ-CON-005）；依赖：T6；验收：内容覆盖 REQ-CON 全部场景、含免责声明文本
 
 ### Batch 6 — 课程集成（依赖 v3 模块文件稳定，执行序列最后）
 
-- [ ] T15: `cc-assistant/SKILL.md` 编排层补充「社区好 skill」指引——模块教学小节说明「本模块对应主题的社区 skill 见本地快照 `modules/_community-skills.md` 对应分组，不联网」；依赖：T14、**v3 模块冻结确认**；验收：编排层含快照引用指引、无联网措辞
-- [ ] T16: `core / memory / skills / subagent / hooks` 5 模块文件新增「社区好 skill」短小节——列出本模块映射主题，引用 `_community-skills.md` 对应主题分组（REQ-SNP-003）；依赖：T15、T4；验收：每模块小节正确引用其映射主题分组、不内联整篇
-- [ ] T17: `mcp / headless / sdk / plugins / engineering / capstone` 6 模块文件新增「社区好 skill」短小节——同 T16 模式；依赖：T16（模式先立）；验收：同 T16，11 模块全部覆盖、无 m0-onboarding 小节
+- [x] T15: `cc-assistant/SKILL.md` 编排层补充「社区好 skill」指引——模块教学小节说明「本模块对应主题的社区 skill 见本地快照 `modules/_community-skills.md` 对应分组，不联网」；依赖：T14、**v3 模块冻结确认**；验收：编排层含快照引用指引、无联网措辞
+- [x] T16: `core / memory / skills / subagent / hooks` 5 模块文件新增「社区好 skill」短小节——列出本模块映射主题，引用 `_community-skills.md` 对应主题分组（REQ-SNP-003）；依赖：T15、T4；验收：每模块小节正确引用其映射主题分组、不内联整篇
+- [x] T17: `mcp / headless / sdk / plugins / engineering / capstone` 6 模块文件新增「社区好 skill」短小节——同 T16 模式；依赖：T16（模式先立）；验收：同 T16，11 模块全部覆盖、无 m0-onboarding 小节
 
 ### Batch 7 — 文档影响面 + eval 收尾
 
-- [ ] T18: 更新 `CONTEXT.md`——登记新术语：社区 Skill 目录（catalog，英文为规范词，与文件系统「目录」区分）/ 主题标签 / 课程映射 / 快照；并注明「本 catalog 与 v1 已删除的推荐目录（recommendations 内置目录）无恢复关系」；依赖：T1、T4；验收：四术语入表、无「目录」歧义、v1 无恢复关系已注明（逐条核对）
-- [ ] T19: 更新根 `CLAUDE.md`——**追加**「目录子系统 + CI 校验」说明段（catalog 唯一事实源 / site/ 发布源 / PR 贡献 / 课程快照）；不碰 Project 段 change 指针与 Architecture 主体（由 v3 负责）；依赖：T18；验收：仅追加段、Project 指针与 Architecture 未改动（git diff 核对）
-- [ ] T20: 更新 `README.md`（站点入口 + 贡献方式）+ `.gitignore`（生成产物说明注释：site/data/ 与 _community-skills.md 须入库勿忽略，不忽略它们）；依赖：无；验收：README 含站点与 PR 引导、.gitignore 注释到位且三产物未被忽略
-- [ ] T21: `cc-assistant/eval/cases.md` 增目录 eval 用例——catalog 校验矩阵（合法/非法条目）、同步一致性（改 catalog → 产物跟随）、网友 PR 流程场景；先用子智能体模拟「网友」无模板基线跑测（RED，记录行为）；依赖：T6、T7；验收：基线报告落盘、每个场景有 WHEN/THEN 判据
-- [ ] T22: 有模板/有脚本跑测——子智能体模拟「网友」按 `skill-entry.md` 模板提交 PR，验证本地 validate 通过 →（模拟 CI）→ sync 生成产物路径（GREEN，REQ-CON-001 / REQ-CIV-001 行为收敛）；依赖：T21、T13、T14；验收：与 T21 基线对比、模板引导生效、无代填/跳过字段
-- [ ] T23: 回归与收尾——全量校验（validate.mjs + sync `--check` 退出码 0）、三产物与 catalog/course-mapping 一致、网页本地 HTTP 服务渲染核对、CONTEXT/CLAUDE/README 无残留、tasks 复选框按实现进度统一勾选；**边界/否定型 REQ 断言**（REQ-LOC-002 目录仅元数据不托管分发、REQ-LOC-004 安全边界继承、REQ-CON-004 无自动合入、REQ-CMP-005 无 phase 粒度，逐条核对）；**跨 change 核对**（`.claude/cc-assistant/progress.json` 忽略已由 v3 落地，确认不重复处理）；依赖：T5-T22；验收：遗留 0 项、复选框状态与实际一致、上述边界 REQ 有逐条核对记录
+- [x] T18: 更新 `CONTEXT.md`——登记新术语：社区 Skill 目录（catalog，英文为规范词，与文件系统「目录」区分）/ 主题标签 / 课程映射 / 快照；并注明「本 catalog 与 v1 已删除的推荐目录（recommendations 内置目录）无恢复关系」；依赖：T1、T4；验收：四术语入表、无「目录」歧义、v1 无恢复关系已注明（逐条核对）
+- [x] T19: 更新根 `CLAUDE.md`——**追加**「目录子系统 + CI 校验」说明段（catalog 唯一事实源 / site/ 发布源 / PR 贡献 / 课程快照）；不碰 Project 段 change 指针与 Architecture 主体（由 v3 负责）；依赖：T18；验收：仅追加段、Project 指针与 Architecture 未改动（git diff 核对）
+- [x] T20: 更新 `README.md`（站点入口 + 贡献方式）+ `.gitignore`（生成产物说明注释：site/data/ 与 _community-skills.md 须入库勿忽略，不忽略它们）；依赖：无；验收：README 含站点与 PR 引导、.gitignore 注释到位且三产物未被忽略
+- [x] T21: `cc-assistant/eval/cases.md` 增目录 eval 用例——catalog 校验矩阵（合法/非法条目）、同步一致性（改 catalog → 产物跟随）、网友 PR 流程场景；先用子智能体模拟「网友」无模板基线跑测（RED，记录行为）；依赖：T6、T7；验收：基线报告落盘、每个场景有 WHEN/THEN 判据
+- [x] T22: 有模板/有脚本跑测——子智能体模拟「网友」按 `skill-entry.md` 模板提交 PR，验证本地 validate 通过 →（模拟 CI）→ sync 生成产物路径（GREEN，REQ-CON-001 / REQ-CIV-001 行为收敛）；依赖：T21、T13、T14；验收：与 T21 基线对比、模板引导生效、无代填/跳过字段
+- [x] T23: 回归与收尾——全量校验（validate.mjs + sync `--check` 退出码 0）、三产物与 catalog/course-mapping 一致、网页本地 HTTP 服务渲染核对、CONTEXT/CLAUDE/README 无残留、tasks 复选框按实现进度统一勾选；**边界/否定型 REQ 断言**（REQ-LOC-002 目录仅元数据不托管分发、REQ-LOC-004 安全边界继承、REQ-CON-004 无自动合入、REQ-CMP-005 无 phase 粒度，逐条核对）；**跨 change 核对**（`.claude/cc-assistant/progress.json` 忽略已由 v3 落地，确认不重复处理）；依赖：T5-T22；验收：遗留 0 项、复选框状态与实际一致、上述边界 REQ 有逐条核对记录
 
 ## 依赖与顺序
 
