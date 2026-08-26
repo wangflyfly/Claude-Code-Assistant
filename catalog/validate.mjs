@@ -59,7 +59,9 @@ export function validate({ catalogFile, topicsFile, mappingFile, modulesDir } = 
     ? fs.readdirSync(modulesDir).filter((f) => f.endsWith('.md') && f !== 'm0-onboarding.md').map((f) => f.replace(/\.md$/, ''))
     : [];
   const moduleSet = new Set(moduleFiles);
-  if (mapping && typeof mapping === 'object' && !Array.isArray(mapping)) {
+  if (mapping !== undefined && (typeof mapping !== 'object' || mapping === null || Array.isArray(mapping))) {
+    errors.push({ file: 'course-mapping.json', field: '', message: '应为主题映射对象（模块→主题数组）' });
+  } else if (mapping !== undefined) {
     for (const k of moduleSet) if (!(k in mapping)) errors.push({ file: 'course-mapping.json', field: k, message: '缺少模块键' });
     for (const k of Object.keys(mapping)) if (!moduleSet.has(k)) errors.push({ file: 'course-mapping.json', field: k, message: `非模块键: ${k}（模块清单=${moduleFiles.join(',')}）` });
     for (const [k, v] of Object.entries(mapping)) {
