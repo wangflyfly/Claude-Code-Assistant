@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "base": "e1f241923984efb289a0b9fa645b4af2f8e9da7a",
+  "head": "f990c9e6cee2188ddacd427a06e4c53cafcd5e2d",
+  "report": ".superpowers\\sdd\\reviews\\wave-4-continuity.md",
+  "plan_hash": "sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088",
+  "plan_revision": 1,
+  "recorded_at": "2026-08-26T11:55:42.472Z"
+}

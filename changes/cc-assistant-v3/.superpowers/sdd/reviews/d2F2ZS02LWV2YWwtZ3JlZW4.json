@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "base": "641174da663a31e7f82ed53d54b55a9ebc7f7994",
+  "head": "dae76d8d4ed80329db868fa2c87eba679de7b785",
+  "report": ".superpowers\\sdd\\reviews\\wave-6-eval-green.md",
+  "plan_hash": "sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088",
+  "plan_revision": 1,
+  "recorded_at": "2026-08-26T12:37:21.599Z"
+}
