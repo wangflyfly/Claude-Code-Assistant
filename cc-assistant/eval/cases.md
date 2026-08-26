@@ -360,4 +360,43 @@
 
 ## L. GREEN 区（GREEN）——有 skill 对照
 
-> 本区由 T25 填充：在带 skill 环境下用子智能体模拟学习者重跑代表场景，逐条对照 K 区基线失败模式，验证行为收敛。GREEN 应证明「有 skill 时引导」。
+> 本区由 T25/T26/T28 填充：在带 skill 环境下用子智能体模拟学习者重跑代表场景，逐条对照 K 区基线失败模式，验证行为收敛。完整逐字转录与磁盘证据见 `.superpowers/sdd/reports/t25-green-memory.md`、`t25-green-continuation.md`、`t26-green-capstone.md`、`t28-green-degradation.md`。
+
+### 记忆系统模块场景（I-2）—— GREEN 收敛
+
+| 基线失败模式 | GREEN 收敛判定 | 证据 |
+|---|---|---|
+| F1 过度预灌 | ✅ 先概念后递进（记忆原理→CLAUDE.md→rules），进阶载体显式推迟，不一次倾倒 | t25-green-memory.md |
+| F2 漏覆盖教学时机 | ✅ 概念（是什么/何时用）→ 场景演示（用学习者项目举例）→ 真实轻练习闭环 | 同上 |
+| F3 续接不上 | ✅ 读 progress.json 按 `currentModule` 续接，不重讲已完成模块 | 同上 |
+| F4 替学习者代做 | ✅ 拒绝代写练习文件，只审阅草稿给反馈（磁盘验证仅 skill 写进度） | 同上 |
+
+### 多会话续接场景（V-30/V-37）—— GREEN 收敛
+
+| 基线失败模式 | GREEN 收敛判定 | 证据 |
+|---|---|---|
+| F3 续接不上 | ✅ 读 progress.json 按 `currentModule=skills` 续接；P2「上次学记忆系统」依进度确认而非光听学习者话头（REQ-SCN-005 不重讲） | t25-green-continuation.md |
+| F1 过度预灌 | ✅ Skills 先概念后递进，触发/任务型等到练习审阅才 just-in-time 引入 | 同上 |
+| F2 漏覆盖教学时机 | ✅ 概念→场景演示→真实轻练习闭环齐全 | 同上 |
+| F4 替学习者代做 | ✅ 不代写练习文件，显式「写文件由你来」 | 同上 |
+| REQ-SCN-003 | ✅ 模块完成写进度：skills 追加 completedModules、currentModule 前移、updatedAt 刷新 | 同上 |
+
+### 收官综合（REQ-ICN-001/002/003）—— GREEN 收敛
+
+| 判据 | GREEN 收敛判定 | 证据 |
+|---|---|---|
+| ICN-001 组合 2+ 机制真实任务 | ✅ 学习者在本人项目提出 记忆系统+Hooks 综合任务 | t26-green-capstone.md |
+| ICN-002 独立完成+说出选型理由+核对 | ✅ 独立完成、理由非空且涉及所用机制适用条件、skill 核对后收尾 | 同上 |
+| ICN-003 体系讲解改写归因 | ✅ 四层架构/触发口诀/关注点分离自有表达+归因（T27 审计复核无整段照抄） | 同上 + t27-book-framework-audit.md |
+| MCO-003 收官可拆多会话 | ✅ 声明可拆多次完成、未完成不标 capstone | 同上 |
+
+### 依赖缺失降级（REQ-PME-005）—— GREEN 收敛
+
+| 判据 | GREEN 收敛判定 | 证据 |
+|---|---|---|
+| 说明降级原因 | ✅ 归因缺可连接 MCP server + API key，关联小而可逆/学习者决定边界 | t28-green-degradation.md |
+| 降级讲解/演示/模拟 | ✅ 4 步模拟走查（register→check→call-tool-verify→reversible cleanup+key security） | 同上 |
+| 记 degraded:true 计入进度 | ✅ `{"phase":"进阶","moduleId":"mcp","degraded":true}` 落盘、概念与场景计完成 | 同上（磁盘验证） |
+| 不阻塞课程 | ✅ currentModule 前进到 headless，无 fake-do（不假装 server 添加成功） | 同上 |
+
+**GREEN 结论**：带 skill 会话在代表场景上对基线四失败规律（F1-F4）全部收敛；进度文件读写（SCN）、收官综合谓词（ICN）、降级语义（PME-005）均满足。无失败用例、无回归。
