@@ -25,6 +25,10 @@
 - 交互模型（D13）：由学习者动手起草；卡住给提示方向；写入与否由学习者决定（REQ-SFT-004）。
 - 小而可逆（REQ-PME-004）：写文件可撤销；不改动学习者已有提交。
 
+## 社区好 skill
+
+- 本模块主题（`memory` / `rules`）相关社区 skill 见本地快照 `_community-skills.md` 的 §memory §rules；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - CLAUDE.md 模板与最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。

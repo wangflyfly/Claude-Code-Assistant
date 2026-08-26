@@ -29,6 +29,10 @@
 
 - 进阶阶段只做最小 `query` 调用（广度）。高阶阶段（REQ-TPT-002）深化：自定义工具注册、结构化输出、权限模式切换、处理错误重试与成本追踪——在学习者项目里做一个更大的集成场景。
 
+## 社区好 skill
+
+- 本模块主题（`sdk`）相关社区 skill 见本地快照 `_community-skills.md` 的 §sdk；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - Agent SDK 参考：**REQUIRED SUB-SKILL:** claude-code-guide。

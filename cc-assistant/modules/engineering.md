@@ -27,6 +27,10 @@
 
 - 高阶阶段（REQ-TPT-002）深化：跨维度综合——在一个真实场景里同时做成本护栏 + 权限收紧 + 指令沉淀 + 团队协作约定，形成工程化方案。
 
+## 社区好 skill
+
+- 本模块主题（`engineering`）相关社区 skill 见本地快照 `_community-skills.md` 的 §engineering；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - 成本/权限/CLAUDE.md 最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。

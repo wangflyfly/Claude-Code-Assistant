@@ -24,6 +24,10 @@
 - 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
 - 小而可逆（REQ-PME-004）：调用只读、无副作用；避免在真实项目上跑破坏性命令。
 
+## 社区好 skill
+
+- 本模块主题（`headless`）相关社区 skill 见本地快照 `_community-skills.md` 的 §headless；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - Headless/CLI 用法：**REQUIRED SUB-SKILL:** claude-code-guide。

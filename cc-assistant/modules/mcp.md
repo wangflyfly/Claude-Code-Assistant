@@ -25,6 +25,10 @@
 - 交互模型（D13）：由学习者动手；卡住给提示方向；不代做。
 - 小而可逆（REQ-PME-004）：添加/移除 server 可撤销；敏感凭证由学习者自己决定存放（SFT-004）。
 
+## 社区好 skill
+
+- 本模块主题（`mcp`）相关社区 skill 见本地快照 `_community-skills.md` 的 §mcp；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - MCP 概念与配置：**REQUIRED SUB-SKILL:** claude-code-guide。

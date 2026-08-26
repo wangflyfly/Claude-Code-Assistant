@@ -24,6 +24,10 @@
 - 小而可逆（REQ-PME-004）：配置可随时移除；测试 Hook 用无害命令。
 - 若项目不适合配 Hook → 换合适真实载体，仍做真实轻练习。
 
+## 社区好 skill
+
+- 本模块主题（`hooks`）相关社区 skill 见本地快照 `_community-skills.md` 的 §hooks；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - Hooks 参考（事件清单、配置格式）：**REQUIRED SUB-SKILL:** claude-code-guide。

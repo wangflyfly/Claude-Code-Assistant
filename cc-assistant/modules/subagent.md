@@ -24,6 +24,10 @@
 - 小而可逆（REQ-PME-004）：新建定义文件/跑一次委派，可删除。
 - 若学习者项目场景不匹配 → 换合适真实载体，仍做真实轻练习。
 
+## 社区好 skill
+
+- 本模块主题（`subagent`）相关社区 skill 见本地快照 `_community-skills.md` 的 §subagent；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - 子智能体最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。

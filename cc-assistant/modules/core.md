@@ -26,6 +26,10 @@
 - 交互模型（D13）：练习由学习者动手；卡住先引导自己尝试，必要时才给最小提示；学习者请求代做 → 拒绝并给提示方向。
 - 小而可逆（REQ-PME-004/SFT-001）：练习操作可撤销，不会造成不可恢复副作用。
 
+## 社区好 skill
+
+- 本模块主题（`core-workflow` / `plan-mode`）相关社区 skill 见本地快照 `_community-skills.md` 的 §core-workflow §plan-mode；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - 参考类（CLAUDE.md 模板、最佳实践等）：**REQUIRED SUB-SKILL:** claude-code-guide，不内联复制。

@@ -25,6 +25,10 @@
 - 小而可逆（REQ-PME-004）：新建目录/文件，可删除。
 - 若学习者项目不适合建 skill → 换一个合适的真实载体，仍做真实轻练习（design 第 3 轮 LOW：不因无场景跳过/降级练习）。
 
+## 社区好 skill
+
+- 本模块主题（`skills`）相关社区 skill 见本地快照 `_community-skills.md` 的 §skills；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - skill 编写规范与最佳实践：**REQUIRED SUB-SKILL:** claude-code-guide。

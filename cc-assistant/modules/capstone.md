@@ -26,6 +26,10 @@
 
 - 进阶阶段完成上面综合任务 + 体系讲解即为收官。高阶阶段（REQ-TPT-002）：做更大的综合项目，深度组合机制（如 Agent SDK + Hooks + MCP 的完整产品化流程），并独立完成选型与工程化落地。
 
+## 社区好 skill
+
+- 本模块主题（`project-workflow`）相关社区 skill 见本地快照 `_community-skills.md` 的 §project-workflow；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - 参考类（机制最佳实践）：**REQUIRED SUB-SKILL:** claude-code-guide。

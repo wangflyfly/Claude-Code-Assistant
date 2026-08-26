@@ -29,6 +29,10 @@
 
 - 高阶阶段（REQ-TPT-002）深化：动手做一个最小 Plugin（plugin.json + 一个命令/skill），本地 `--plugin-dir` 实时测试，讲命名空间与分发落地。
 
+## 社区好 skill
+
+- 本模块主题（`plugins`）相关社区 skill 见本地快照 `_community-skills.md` 的 §plugins；只读本地快照、不联网（REQ-LOC-001），安装与否由学习者决定（REQ-LOC-004）。
+
 ## 交叉引用
 
 - Plugins 参考：**REQUIRED SUB-SKILL:** claude-code-guide。
