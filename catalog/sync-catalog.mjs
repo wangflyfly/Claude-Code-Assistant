@@ -35,7 +35,8 @@ export function build({ catalog, mapping, topics }) {
 export function check({ catalog, mapping, topics, catalogFile, mappingFile, snapshotFile }) {
   const fresh = build({ catalog, mapping, topics });
   const diffs = [];
-  const read = (f) => fs.readFileSync(f, 'utf8');
+  // 行尾归一化：git autocrlf 检出会转 CRLF，比较内容而非行尾
+  const read = (f) => fs.readFileSync(f, 'utf8').replace(/\r\n/g, '\n');
   if (read(catalogFile) !== fresh.catalogJson) diffs.push('site/data/catalog.json 与 catalog.json 不一致（需重新生成）');
   if (read(mappingFile) !== fresh.mappingJson) diffs.push('site/data/course-mapping.json 与 course-mapping.json 不一致（需重新生成）');
   if (read(snapshotFile) !== fresh.snapshot) diffs.push('_community-skills.md 与 catalog 不一致（需重新生成）');

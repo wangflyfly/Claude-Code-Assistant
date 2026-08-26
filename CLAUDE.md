@@ -28,6 +28,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **全程本地、零上传**：教学尊重学习者对项目的决定权；危险/不可逆操作先征得同意，实际落地由学习者自行决定。
 - **安装位置**：用户级 `~/.claude/skills/cc-assistant/`（SKILL.md）+ `~/.claude/commands/assist.md`（`/assist` 入口），保证学习者在任意项目可触发。
 
+## 目录子系统（社区 Skill 目录）
+
+仓库附带社区 Skill 目录子系统（v4）：`catalog/catalog.json` 为唯一事实源；`catalog/sync-catalog.mjs` 机器生成 `site/data/`（GitHub Pages 发布源 `site/`）与课程快照 `cc-assistant/modules/_community-skills.md`；社区贡献走 PR（模板 `skill-entry.md` → CI `validate` 结构校验 + `--check` 防漂移 → 维护者审核合入 → CI `sync` 再生成）。术语见 `CONTEXT.md`。
+
 ## Agent skills
 
 ### Issue tracker

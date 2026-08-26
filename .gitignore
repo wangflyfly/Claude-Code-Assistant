@@ -35,3 +35,6 @@ cc助手需求.v0.backup.md
 
 # Node（如未来引入）
 node_modules/
+
+# 生成产物说明：site/data/ 与 cc-assistant/modules/_community-skills.md 为入库提交的生成产物，
+# 由 catalog/sync-catalog.mjs 机器生成（GitHub Pages 只服务已提交文件），勿手工编辑、勿加入忽略。

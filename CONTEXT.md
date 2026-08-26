@@ -23,3 +23,10 @@ CC Assistant（Claude Code 上手引导）的领域词汇表。只收录已敲�
 - **MCP**：进阶能力模块之一——讲解 MCP 是什么、如何添加 server、适用场景（进阶、非必需）；外部依赖缺失时降级讲解/演示/模拟并记 `degraded`。
 
 - **Headless / Agent SDK / Plugins**：进阶能力模块——Headless（`claude -p` 非交互自动化）、Agent SDK（用代码构建 Agent 应用）、Plugins（插件机制与安装分发决策）；高阶阶段可选深入实操，外部依赖缺失时降级。
+
+## 目录子系统（v4）
+
+- **社区 Skill 目录（catalog）**：集中式、机器可读的 Claude Code skill 收录清单，唯一事实源 `catalog/catalog.json`。「catalog」为规范英文词，与文件系统「目录」（directory）区分。本 catalog 与 v1 已删除的推荐目录（recommendations 内置目录）**无恢复关系**。
+- **主题标签（topic）**：catalog 条目的分类标签，来自 `catalog/topics.json` 机器可读词表（每主题 `id` + `description`）。
+- **课程映射（course mapping）**：课程模块 → 主题标签的映射（`catalog/course-mapping.json`），使目录与课程结构解耦——课程改模块只改映射、catalog 条目不动。
+- **快照（snapshot）**：按主题分组的社区 skill 本地快照 `_community-skills.md`，由 `catalog/sync-catalog.mjs` 机器生成、随课程分发，课程运行时不联网。

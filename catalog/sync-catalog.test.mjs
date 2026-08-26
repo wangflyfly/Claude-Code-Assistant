@@ -70,5 +70,15 @@ check('二次生成一致（确定性）', out.catalogJson === out2.catalogJson 
   check('--check 手工改快照 → 漂移', c2.ok === false, '未检出漂移');
 }
 
+// 10. CRLF 检出归一化（git autocrlf 将 \n 检出为 \r\n，比较应忽略行尾）
+{
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'v4-sync-crlf-'));
+  fs.writeFileSync(path.join(dir, 'catalog.json'), out.catalogJson.replace(/\n/g, '\r\n'));
+  fs.writeFileSync(path.join(dir, 'course-mapping.json'), out.mappingJson.replace(/\n/g, '\r\n'));
+  fs.writeFileSync(path.join(dir, 'snapshot.md'), out.snapshot.replace(/\n/g, '\r\n'));
+  const r = syncCheck({ catalog: SAMPLE_CATALOG, mapping: SAMPLE_MAPPING, topics: SAMPLE_TOPICS, catalogFile: path.join(dir, 'catalog.json'), mappingFile: path.join(dir, 'course-mapping.json'), snapshotFile: path.join(dir, 'snapshot.md') });
+  check('--check 容忍 CRLF 检出（行尾归一化）', r.ok === true, JSON.stringify(r.diffs));
+}
+
 console.log(failures === 0 ? '\n全部用例通过 ✓' : `\n${failures} 个用例失败 ✗`);
 process.exit(failures === 0 ? 0 : 1);

@@ -56,7 +56,7 @@ export function validate({ catalogFile, topicsFile, mappingFile, modulesDir } = 
 
   // course-mapping.json：键 = 模块文件剔除 m0，值非空且 ⊆ 词表（REQ-CMP-002/004）
   const moduleFiles = fs.existsSync(modulesDir)
-    ? fs.readdirSync(modulesDir).filter((f) => f.endsWith('.md') && f !== 'm0-onboarding.md').map((f) => f.replace(/\.md$/, ''))
+    ? fs.readdirSync(modulesDir).filter((f) => f.endsWith('.md') && f !== 'm0-onboarding.md' && f !== '_community-skills.md').map((f) => f.replace(/\.md$/, ''))
     : [];
   const moduleSet = new Set(moduleFiles);
   if (mapping !== undefined && (typeof mapping !== 'object' || mapping === null || Array.isArray(mapping))) {

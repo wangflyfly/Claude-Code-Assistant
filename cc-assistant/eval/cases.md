@@ -400,3 +400,65 @@
 | 不阻塞课程 | ✅ currentModule 前进到 headless，无 fake-do（不假装 server 添加成功） | 同上 |
 
 **GREEN 结论**：带 skill 会话在代表场景上对基线四失败规律（F1-F4）全部收敛；进度文件读写（SCN）、收官综合谓词（ICN）、降级语义（PME-005）均满足。无失败用例、无回归。
+
+---
+
+## M. 目录子系统 eval（v4：catalog 校验 / 同步一致性 / 网友 PR 流程）
+
+> 用途：v4 目录子系统的行为验证。T21 用无模板/无脚本环境模拟「网友」提交 skill 条目跑出 RED 基线；T22 带 `skill-entry.md` 模板 + 脚本复测（GREEN）。每条场景 = WHEN/THEN 谓词（design D10 规则）。
+
+### M-1 · 校验矩阵：合法条目通过（REQ-CAT-002/003、REQ-CIV-001）
+- **WHEN** `catalog/catalog.json` 中的条目满足 REQ-CAT-002 全部字段约束
+- **THEN** `node catalog/validate.mjs` 退出码 0，无违规输出
+
+### M-2 · 校验矩阵：非法条目被拒（REQ-CAT-003、REQ-CIV-001）
+- **WHEN** 条目缺必填字段 / `id` 重复 / `topics` 含词表外标签 / JSON 非法 / 类型错误
+- **THEN** `validate.mjs` 退出码 1，输出定位到文件+字段+原因
+
+### M-3 · 映射键一致性（REQ-CMP-004、REQ-CIV-002）
+- **WHEN** `course-mapping.json` 的模块键与 `cc-assistant/modules/*.md`（剔除 m0）不一致，或映射引用词表外主题
+- **THEN** `validate.mjs` 退出码 1，提示需同步映射或词表
+
+### M-4 · 同步一致性：改 catalog → 产物跟随（REQ-CIV-003/004、REQ-SNP-005）
+- **WHEN** `catalog/catalog.json` 新增/修改条目后运行 `node catalog/sync-catalog.mjs`
+- **THEN** `site/data/catalog.json`、`site/data/course-mapping.json`、`_community-skills.md` 三产物与 catalog 一致；再运行 `--check` 退出码 0
+
+### M-5 · 防漂移：手工改产物被检出（REQ-CIV-004）
+- **WHEN** 有人手工改动 `site/data/catalog.json` 或 `_community-skills.md`，使其与 catalog 不符
+- **THEN** `node catalog/sync-catalog.mjs --check` 退出码 1，指出漂移产物
+
+### M-6 · 网友 PR 流程（REQ-CON-001、REQ-CIV-001）
+- **WHEN** 网友按 `skill-entry.md` 模板往 `catalog.json` 提交一条 skill 条目并提 PR
+- **THEN** 模板引导其逐字段填写（含示例与自检清单）；本地 `validate.mjs` 通过；PR 触发 CI `validate` 通过、产物无漂移；合入后 `sync` 再生成使网页自动展示
+
+### M-7 · 边界/否定断言（REQ-LOC-002/004、REQ-CON-004、REQ-CMP-005）
+- **WHEN** 审查目录/网页/课程集成交付物
+- **THEN** catalog 仅元数据不托管分发（LOC-002）、不诱导不可逆操作且安装由学习者决定（LOC-004）、CI 不做自动合入（CON-004）、目录与映射均无 phase 粒度（CMP-005）
+
+### M-RED 基线区（无模板/无脚本对照）—— T21 填充
+
+> T21 用子智能体模拟「网友」在无 `skill-entry.md` 模板、无 validate/sync 脚本认知的环境下提交 skill 条目。完整报告 `.superpowers/sdd/reports/t21-catalog-red.md`。
+
+无引导网友的自然行为与失败规律：
+
+| # | 失败规律 | 表现 |
+|---|---|---|
+| M-R1 | 漏/松散必填字段 | `install` 缺命令入口与结构；部分字段凭直觉填写 |
+| M-R2 | 词表外标签 | `topics` 用编造的 `git`/`conventional-commit`/`commit`，不在 `topics.json` |
+| M-R3 | 无自检 + 无派生产物同步意识 | 不跑校验、不重新生成 site/data 与快照 |
+| M-R4 | id 唯一性/格式不校验 | 不核对 `^[a-z0-9-]+$` 与既有条目冲突 |
+
+**基线结论**：无模板/无脚本环境下，网友提交的条目大概率含词表外标签、缺必填字段、无产物同步——证明「无引导时不达标」。
+
+### M-GREEN 区（有模板/有脚本对照）—— T22 填充
+
+> T22 带模板 + 脚本复测。完整报告 `.superpowers/sdd/reports/t22-catalog-green.md`。
+
+| 失败规律 | GREEN 收敛判定 | 证据 |
+|---|---|---|
+| M-R1 漏字段 | ✅ 模板 8 字段逐项引导 + schema required/minLength，条目全字段非空 | t22-catalog-green.md |
+| M-R2 词表外标签 | ✅ 模板指向 topics.json，validate 拒词表外标签 exit 1；条目只用词表内 `rules`/`engineering` | 同上 |
+| M-R3 无自检无产物意识 | ✅ 模板自检清单 + CONTRIBUTING 强制 validate/sync exit 0 + 再生成三产物；`--check` 兜底 | 同上 |
+| M-R4 id 不校验 | ✅ 模板规则 + schema `^[a-z0-9-]+$` + validate 重复检查 | 同上 |
+
+**GREEN 收敛**：validate=0、sync=0、--check=0、validate.test=10/10。**顺带修复 2 处真实缺陷**：① `_community-skills.md` 被误当课程模块（仅排除 m0）→ validate 对 pristine repo 报「缺少模块键」——已排除该生成文件（含回归）；② `--check` 对 git autocrlf 检出的 CRLF 行尾误报漂移——已行尾归一化（含回归用例）。
