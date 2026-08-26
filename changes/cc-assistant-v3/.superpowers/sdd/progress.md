@@ -79,3 +79,11 @@
 
 **Review**：wave-6-eval-green review pass（641174d..dae76d8，报告 `reviews/wave-6-eval-green.md`）；§L 逐行与报告核对一致，无 Critical/Important。
 **batches_completed**：8
+
+## Wave 7 — wave-7-spec-merge（spec 合并与归档）✅
+
+- [x] T30: 移交 spec-merger——`ssf sync` 合并 8 份 v3 spec 进根 `specs/`（core-teaching/reference-crosslink 继承改写，6 份新增），4 份 v2 spec 打废弃标注；spec-selfcheck 2 轮（round-1 发现 H1/H2/M1，round-2 verify 全部落实、遗留 0 项）；合并 worktree 分支 cc-assistant-v3→main 解决 H1/H2 外部一致性；`spec_merged: true`
+- [x] T31: 全量回归与归档——tasks 复选框 31/31 按实现进度勾选、交付物表面 v2 残留 grep 0 命中、`changes/cc-assistant-v2/` 指针残留 0、skill 交付物齐备（SKILL.md 95 词/modules 12 份/eval cases.md 含 §L）/assist 命令在位）、worktree 已清理
+
+**Review**：wave-7-spec-merge review pass（dae76d8..acd759b，报告 `reviews/wave-7-spec-merge.md`）；spec 合并经独立 spec-selfcheck 2 轮、归档逐项核对通过。
+**batches_completed**：9

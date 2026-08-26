@@ -14,9 +14,9 @@ contract_hash: sha256:07d70319593c658d72651131736a3ca7f3d853de6fb7c11036697adce9
 execution_mode: sdd
 execution_plan_hash: sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088
 execution_plan_revision: 1
-batches_completed: 8
+batches_completed: 9
 test_result: null
-spec_merged: false
+spec_merged: true
 
 # === Metadata ===
 change_name: cc-assistant-v3
