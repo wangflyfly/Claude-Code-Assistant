@@ -1,0 +1,52 @@
+# CC Assistant 社区 Skill 目录 CI（REQ-CIV-001~005）
+# validate：PR 只读校验（结构 + 产物防漂移）
+# sync：合入 main 后重新生成三产物并提交（GITHUB_TOKEN 提交不会递归触发 push）
+name: catalog-ci
+
+on:
+  pull_request:
+    paths:
+      - 'catalog/**'
+  push:
+    branches: [main]
+    paths:
+      - 'catalog/**'
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 结构校验（JSON / schema / id 唯一 / topics ⊆ 词表 / 必填 / 映射键一致）
+        run: node catalog/validate.mjs
+      - name: 产物防漂移（site/data 与快照须与 catalog 一致）
+        run: node catalog/sync-catalog.mjs --check
+
+  sync:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 重新生成三产物
+        run: node catalog/sync-catalog.mjs
+      - name: 提交生成产物
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/ cc-assistant/modules/_community-skills.md
+          if git diff --cached --quiet; then
+            echo "无产物变更"
+          else
+            git commit -m "chore(catalog): sync generated products"
+            git push
+          fi
