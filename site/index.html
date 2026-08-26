@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC Assistant 社区 Skill 目录</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <h1>CC Assistant 社区 Skill 目录</h1>
+    <p class="disclaimer">⚠️ 收录不构成质量或安全背书：条目由社区提交、维护者审核收录，使用第三方 skill 前请自行核验其来源与安全。</p>
+  </header>
+
+  <section id="filters" aria-label="筛选">
+    <div id="topic-chips"><span class="filter-label">按主题筛选：</span></div>
+    <div id="module-wrap">
+      <label for="module-select">按课程模块筛选：</label>
+      <select id="module-select"></select>
+    </div>
+    <div id="filter-status"></div>
+  </section>
+
+  <main id="skill-list"></main>
+
+  <footer>
+    <p>本站点数据由 <code>catalog/sync-catalog.mjs</code> 从 <code>catalog/catalog.json</code> 机器生成。贡献新 skill 请提 PR（见 <code>catalog/CONTRIBUTING.md</code>）。</p>
+    <p id="local-note"></p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
