@@ -26,7 +26,7 @@ venv/
 .claude/logs/
 .claude/todos/
 .claude/workspace/
-.claude/cc-assistant/project.json
+.claude/cc-assistant/progress.json
 
 # 需求文档（内部工作文档，不上传）
 cc助手需求.md
