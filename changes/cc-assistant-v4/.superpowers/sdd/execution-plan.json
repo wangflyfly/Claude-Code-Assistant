@@ -1,0 +1,245 @@
+{
+  "mode": "sdd",
+  "source": "user-confirmed",
+  "rationale": "user-selected execution mode (sdd, recommended)",
+  "waves": [
+    {
+      "id": "wave-1-data-layer",
+      "strategy": "serial",
+      "tasks": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "wave-2-validate",
+      "strategy": "serial",
+      "tasks": [
+        "T6"
+      ],
+      "depends_on": [
+        "wave-1-data-layer"
+      ]
+    },
+    {
+      "id": "wave-3-sync",
+      "strategy": "serial",
+      "tasks": [
+        "T7"
+      ],
+      "depends_on": [
+        "wave-1-data-layer"
+      ]
+    },
+    {
+      "id": "wave-4-site",
+      "strategy": "serial",
+      "tasks": [
+        "T8",
+        "T9",
+        "T10",
+        "T11"
+      ],
+      "depends_on": [
+        "wave-3-sync"
+      ]
+    },
+    {
+      "id": "wave-5-ci-contrib",
+      "strategy": "serial",
+      "tasks": [
+        "T12",
+        "T13",
+        "T14"
+      ],
+      "depends_on": [
+        "wave-2-validate",
+        "wave-3-sync"
+      ]
+    },
+    {
+      "id": "wave-6-course-integration",
+      "strategy": "serial",
+      "tasks": [
+        "T15",
+        "T16",
+        "T17"
+      ],
+      "depends_on": [
+        "wave-5-ci-contrib"
+      ]
+    },
+    {
+      "id": "wave-7-docs-eval",
+      "strategy": "serial",
+      "tasks": [
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "T23"
+      ],
+      "depends_on": [
+        "wave-1-data-layer",
+        "wave-2-validate",
+        "wave-3-sync",
+        "wave-5-ci-contrib"
+      ]
+    }
+  ],
+  "artifacts_hash": "sha256:907ca9fd9b995862f7758420f1d88fb850fe098883b9296335e272adc8b6b90a",
+  "contract_hash": "sha256:a435fec5ef1b71a6cb3b92392faab875ad6d7d5bec68a72b7d976017d3688261",
+  "workflow": "auto",
+  "revision": 1,
+  "recommendation": {
+    "available_modes": [
+      "inline",
+      "batch-inline",
+      "sdd"
+    ],
+    "recommendation": {
+      "mode": "sdd",
+      "reasons": [
+        "The declared work spans multiple waves, so SDD keeps dependencies and review receipts explicit."
+      ]
+    },
+    "facts": {
+      "workflow": "auto",
+      "documented_task_count": 23,
+      "planned_task_count": 23,
+      "planned_wave_count": 7,
+      "has_parallel_wave": false,
+      "inline_threshold": 3
+    }
+  },
+  "recommendation_receipt": {
+    "recommendation": {
+      "available_modes": [
+        "inline",
+        "batch-inline",
+        "sdd"
+      ],
+      "recommendation": {
+        "mode": "sdd",
+        "reasons": [
+          "The declared work spans multiple waves, so SDD keeps dependencies and review receipts explicit."
+        ]
+      },
+      "facts": {
+        "workflow": "auto",
+        "documented_task_count": 23,
+        "planned_task_count": 23,
+        "planned_wave_count": 7,
+        "has_parallel_wave": false,
+        "inline_threshold": 3
+      }
+    },
+    "waves": [
+      {
+        "id": "wave-1-data-layer",
+        "strategy": "serial",
+        "tasks": [
+          "T1",
+          "T2",
+          "T3",
+          "T4",
+          "T5"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "wave-2-validate",
+        "strategy": "serial",
+        "tasks": [
+          "T6"
+        ],
+        "depends_on": [
+          "wave-1-data-layer"
+        ]
+      },
+      {
+        "id": "wave-3-sync",
+        "strategy": "serial",
+        "tasks": [
+          "T7"
+        ],
+        "depends_on": [
+          "wave-1-data-layer"
+        ]
+      },
+      {
+        "id": "wave-4-site",
+        "strategy": "serial",
+        "tasks": [
+          "T8",
+          "T9",
+          "T10",
+          "T11"
+        ],
+        "depends_on": [
+          "wave-3-sync"
+        ]
+      },
+      {
+        "id": "wave-5-ci-contrib",
+        "strategy": "serial",
+        "tasks": [
+          "T12",
+          "T13",
+          "T14"
+        ],
+        "depends_on": [
+          "wave-2-validate",
+          "wave-3-sync"
+        ]
+      },
+      {
+        "id": "wave-6-course-integration",
+        "strategy": "serial",
+        "tasks": [
+          "T15",
+          "T16",
+          "T17"
+        ],
+        "depends_on": [
+          "wave-5-ci-contrib"
+        ]
+      },
+      {
+        "id": "wave-7-docs-eval",
+        "strategy": "serial",
+        "tasks": [
+          "T18",
+          "T19",
+          "T20",
+          "T21",
+          "T22",
+          "T23"
+        ],
+        "depends_on": [
+          "wave-1-data-layer",
+          "wave-2-validate",
+          "wave-3-sync",
+          "wave-5-ci-contrib"
+        ]
+      }
+    ],
+    "artifacts_hash": "sha256:907ca9fd9b995862f7758420f1d88fb850fe098883b9296335e272adc8b6b90a",
+    "contract_hash": "sha256:a435fec5ef1b71a6cb3b92392faab875ad6d7d5bec68a72b7d976017d3688261",
+    "workflow": "auto",
+    "execution_plan_revision_at_recommendation": null,
+    "created_at": "2026-08-26T13:12:25.792Z",
+    "hash": "sha256:fef6e5e263ce8c28c6aca9e9988a0b72fd3157d847b4769121435669548c596a"
+  },
+  "selection": {
+    "confirmed": true,
+    "followed_recommendation": true,
+    "acknowledged_non_recommendation": false
+  },
+  "hash": "sha256:233c66583ff80489302dc37cf8c6963f211972a4b54a27ade63dab2a95cfbe14"
+}
