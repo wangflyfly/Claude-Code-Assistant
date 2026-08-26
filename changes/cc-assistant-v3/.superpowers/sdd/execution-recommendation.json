@@ -140,10 +140,10 @@
       ]
     }
   ],
-  "artifacts_hash": "sha256:7f8cd2078dbd111305c159346b40610261ddf0e361f4571e6cfa1b5db302e099",
+  "artifacts_hash": "sha256:34e265b25e342117c5ef106af09ec14187f6f6ea60f3761fd629973b852a0072",
   "contract_hash": "sha256:07d70319593c658d72651131736a3ca7f3d853de6fb7c11036697adce917fdf1",
   "workflow": "full",
-  "execution_plan_revision_at_recommendation": null,
-  "created_at": "2026-08-16T06:05:27.484Z",
-  "hash": "sha256:f8e6bec6b78a855a91e22ddd91c2b162b6c1c37049162488666a0dfb451dd9d0"
+  "execution_plan_revision_at_recommendation": 1,
+  "created_at": "2026-08-26T13:04:10.819Z",
+  "hash": "sha256:2c51b2973f9a453a4d3e1f1681f838ac7b1391218c222f689e19a0549b92cfbd"
 }

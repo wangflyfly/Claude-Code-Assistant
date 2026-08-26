@@ -3,7 +3,7 @@
   "base": "11437e77fcf0176e1bb9ba6161a15f5a418aa92f",
   "head": "94b815d0fe5f2c5e5617982c184b68f1d65a8006",
   "report": ".superpowers\\sdd\\reviews\\wave-1-eval-red.md",
-  "plan_hash": "sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088",
-  "plan_revision": 1,
-  "recorded_at": "2026-08-16T06:34:41.313Z"
+  "plan_hash": "sha256:07a870463cff5e569b2a30d691b1839e1c639bd7d5bdce0a3ec82a02d43918ac",
+  "plan_revision": 2,
+  "recorded_at": "2026-08-26T13:05:59.913Z"
 }

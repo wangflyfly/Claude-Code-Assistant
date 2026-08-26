@@ -2,9 +2,9 @@
 # Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
 
 # === Core state ===
-state: executing
+state: closing
 workflow: full
-revision: 1
+revision: 2
 
 # === Hashes (fast staleness detection) ===
 artifacts_hash: sha256:7f8cd2078dbd111305c159346b40610261ddf0e361f4571e6cfa1b5db302e099
@@ -12,17 +12,17 @@ contract_hash: sha256:07d70319593c658d72651131736a3ca7f3d853de6fb7c11036697adce9
 
 # === Execution progress ===
 execution_mode: sdd
-execution_plan_hash: sha256:adaee2138b65b65da0b865c6ef483165d67d0dd5164f164d80eaf9023ba93088
-execution_plan_revision: 1
+execution_plan_hash: sha256:07a870463cff5e569b2a30d691b1839e1c639bd7d5bdce0a3ec82a02d43918ac
+execution_plan_revision: 2
 batches_completed: 9
-test_result: null
+test_result: pass
 spec_merged: true
 
 # === Metadata ===
 change_name: cc-assistant-v3
-last_transition: 2026-08-16T06:14:35.140Z
-last_transition_from: approved-for-build
-last_transition_to: executing
+last_transition: 2026-08-26T13:06:34.316Z
+last_transition_from: executing
+last_transition_to: closing
 
 # === Decision points ===
 dp_0_decisions: 新建 cc-assistant-v3 模块化上手引导课程：以 docs/harness-章节总结.md + docs/book-harness-summary.md 为内容素材，按功能模块逐个教学（每模块真实小练习），多会话渐进续接（项目级本地进度文件+询问），进阶广度→高阶深度两阶段，收官整合进阶讲成体系（综合任务+四层架构/选型体系）；继承 v2 核心教学/安全边界/参考层交叉引用（claude-code-guide+官方文档）；完整版 11 组模块；遵守 docs/skill-development-spec.md；沟通=先起草再审
@@ -35,11 +35,11 @@ dp_2_result: "approved: 4 规划工件评审通过——proposal（定稿）、s
 dp_2_timestamp: 2026-08-15T15:16:08Z
 dp_3_result: "approved: 执行契约定稿批准——34 REQ 全覆盖无未映射，9 wave（wave-3 拆 3a/3b/3c）与 tasks 7 Batch 一致，3 MEDIUM+4 LOW 全部落实并复核无遗留，外部一致性+影响面扫描已核对"
 dp_3_timestamp: 2026-08-16T04:58:50Z
-dp_4_result: sdd: plan revision 1; user-confirmed; user-selected execution mode (sdd, recommended)
-dp_4_timestamp: 2026-08-16T06:14:24.044Z
+dp_4_result: sdd: plan revision 2; user-confirmed-revision; T31 归档：tasks.md 复选框统一勾选后重录计划锚定新 artifacts hash
+dp_4_timestamp: 2026-08-26T13:04:16.665Z
 dp_5_result: null
 dp_5_timestamp: null
-dp_6_result: null
-dp_6_timestamp: null
-dp_7_result: null
-dp_7_timestamp: null
+dp_6_result: pass: 9/9 wave review pass（含 wave-7 spec 合并归档）；eval GREEN 四失败规律收敛（t25/26/28 报告）；spec_merged true；selfcheck 2 轮遗留 0；变更限于契约 scope
+dp_6_timestamp: 2026-08-26T14:30:00Z
+dp_7_result: confirmed: cc-assistant-v3 模块化上手引导课程交付完成——SKILL.md 编排层+11 模块+eval 用例面+安装副本，9 wave 全 pass，spec 合并归档，全库旧痕迹清零
+dp_7_timestamp: 2026-08-26T14:32:00Z
