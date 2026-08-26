@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wangflyfly/Claude-Code-Assistant/blob/main/catalog/catalog.schema.json",
+  "title": "CC Assistant 社区 Skill 目录",
+  "description": "catalog/catalog.json 的结构约束（REQ-CAT-002/003）。顶层对象含 skills 数组；每条 skill 记录字段全部必填。",
+  "type": "object",
+  "required": ["skills"],
+  "additionalProperties": false,
+  "properties": {
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "author", "install", "repo", "license", "topics"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "小写字母/数字/连字符，全目录唯一" },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1, "description": "说明该 skill 何时用" },
+          "author": { "type": "string", "minLength": 1 },
+          "install": { "type": "string", "minLength": 1, "description": "可执行的安装指引" },
+          "repo": { "type": "string", "format": "uri" },
+          "license": { "type": "string", "minLength": 1 },
+          "topics": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true }
+        }
+      }
+    }
+  }
+}

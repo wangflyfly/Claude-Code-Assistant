@@ -1,0 +1,15 @@
+[
+  { "id": "core-workflow", "description": "Claude Code 核心工作流：下指令、审阅改动、核心命令" },
+  { "id": "plan-mode", "description": "任务规划（Plan Mode）：较大任务先规划再执行" },
+  { "id": "memory", "description": "记忆系统：CLAUDE.md 与项目级长期上下文" },
+  { "id": "rules", "description": "规则（Rule）：全局或项目级行为约束" },
+  { "id": "skills", "description": "Skills：可复用流程与斜杠命令的固化" },
+  { "id": "subagent", "description": "子智能体（Agent）：任务委派与上下文隔离" },
+  { "id": "hooks", "description": "Hooks：事件驱动的自动化拦截与通知" },
+  { "id": "mcp", "description": "MCP：接入外部数据与工具" },
+  { "id": "headless", "description": "Headless 模式：claude -p 非交互自动化" },
+  { "id": "sdk", "description": "Agent SDK：用代码构建 Agent 应用" },
+  { "id": "plugins", "description": "Plugins：扩展 Claude Code 能力与命令分发" },
+  { "id": "engineering", "description": "工程化：成本、安全、指令、协作" },
+  { "id": "project-workflow", "description": "项目工作流：跨模块综合任务与体系实践" }
+]

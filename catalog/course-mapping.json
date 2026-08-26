@@ -1,0 +1,13 @@
+{
+  "core": ["core-workflow", "plan-mode"],
+  "memory": ["memory", "rules"],
+  "skills": ["skills"],
+  "subagent": ["subagent"],
+  "hooks": ["hooks"],
+  "mcp": ["mcp"],
+  "headless": ["headless"],
+  "sdk": ["sdk"],
+  "plugins": ["plugins"],
+  "engineering": ["engineering"],
+  "capstone": ["project-workflow"]
+}
