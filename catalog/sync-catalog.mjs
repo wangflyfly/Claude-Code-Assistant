@@ -19,7 +19,7 @@ export function build({ catalog, mapping, topics }) {
   for (const s of sortedSkills) for (const topic of s.topics ?? []) if (byTopic.has(topic)) byTopic.get(topic).push(s);
 
   const sortedTopics = [...(topics ?? [])].sort((a, b) => a.id.localeCompare(b.id));
-  const lines = ['# 社区好 Skill 快照', '', '> 本文件由 `catalog/sync-catalog.mjs` 从 `catalog/catalog.json` + `catalog/course-mapping.json` 机器生成，随课程分发，勿手工编辑。', ''];
+  const lines = ['# 社区好 Skill 快照', '', '> 本文件由 `catalog/sync-catalog.mjs` 从 `catalog/catalog.json`（skill 条目）+ `catalog/topics.json`（主题分组）机器生成，随课程分发，勿手工编辑。', ''];
   for (const t of sortedTopics) {
     lines.push(`## ${t.id} — ${t.description}`, '');
     const list = byTopic.get(t.id) ?? [];

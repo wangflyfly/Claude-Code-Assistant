@@ -1,6 +1,6 @@
 # 社区好 Skill 快照
 
-> 本文件由 `catalog/sync-catalog.mjs` 从 `catalog/catalog.json` + `catalog/course-mapping.json` 机器生成，随课程分发，勿手工编辑。
+> 本文件由 `catalog/sync-catalog.mjs` 从 `catalog/catalog.json`（skill 条目）+ `catalog/topics.json`（主题分组）机器生成，随课程分发，勿手工编辑。
 
 ## core-workflow — Claude Code 核心工作流：下指令、审阅改动、核心命令
 
