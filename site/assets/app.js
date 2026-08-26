@@ -45,6 +45,10 @@
     return true;
   }
 
+  function isSafeUrl(v) {
+    try { const u = new URL(v); return u.protocol === 'http:' || u.protocol === 'https:'; } catch { return false; }
+  }
+
   function render() {
     const list = skills.filter(matches);
     chipsEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.topic === activeTopic));
@@ -88,7 +92,7 @@
         meta.appendChild(item);
       };
       li('作者', s.author ?? '', false);
-      li('仓库', s.repo ?? '', s.repo);
+      li('仓库', s.repo ?? '', isSafeUrl(s.repo) ? s.repo : undefined);
       li('安装', s.install ?? '', false);
       li('License', s.license ?? '', false);
 
