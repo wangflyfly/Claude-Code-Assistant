@@ -29,9 +29,18 @@ venv/
 .claude/cc-assistant/progress.json
 .claude/worktrees/
 
-# 需求文档（内部工作文档，不上传）
+# 需求/规格内部文档（不上传）
 cc助手需求.md
 cc助手需求.v0.backup.md
+docs/harness-章节总结.md
+docs/book-harness-summary.md
+
+# SDD 执行数据
+.superpowers/
+changes/cc-assistant-v1/.superpowers/
+
+# 草稿
+horse-tamer-512.png
 
 # Node（如未来引入）
 node_modules/

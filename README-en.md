@@ -7,6 +7,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/anthropics/claude-code"><img src="https://img.shields.io/badge/Built_with-Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Built with Claude Code" /></a>
   <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-4CAF50?style=for-the-badge" alt="Quick Start" /></a>
   <a href="#license"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License" /></a>
 </p>
@@ -21,6 +22,10 @@
 
 <p align="center">
   <a href="README.md">中文</a> · English
+</p>
+
+<p align="center">
+  <img src="docs/horse-tamer.png" alt="Claude Code Horse Tamer" width="512" />
 </p>
 
 ---
