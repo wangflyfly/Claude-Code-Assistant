@@ -3,7 +3,7 @@ name: cc-assistant
 description: Use when a developer who can code but is new to Claude Code types /assist or asks how to use Claude Code on a real task.
 ---
 
-# CC Assistant（模块化上手引导课程）
+# Claude Code Horse Tamer（驯马师 · 模块化上手引导课程）
 
 ## 会话编排
 

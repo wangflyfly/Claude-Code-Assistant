@@ -1,4 +1,4 @@
-# CC Assistant 社区 Skill 目录 CI（REQ-CIV-001~005）
+# Claude Code Horse Tamer 社区 Skill 目录 CI（REQ-CIV-001~005）
 # validate：PR 只读校验（结构 + 产物防漂移）
 # sync：合入 main 后重新生成三产物并提交（GITHUB_TOKEN 提交不会递归触发 push）
 name: catalog-ci

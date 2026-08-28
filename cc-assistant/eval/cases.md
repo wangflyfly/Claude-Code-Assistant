@@ -1,4 +1,4 @@
-# CC Assistant v3 — 场景用例（eval/cases.md）
+# Claude Code Horse Tamer（驯马师）v3 — 场景用例（eval/cases.md）
 
 > 用途：子智能体 TDD 输入。每条场景 = 项目状态 / 学习者动作（WHEN）→ 期望引导行为（THEN）。T2 用无 skill 环境跑出基线（RED），T25 用有 skill 环境复测（GREEN）。
 > 来源：`changes/cc-assistant-v3/specs/` 下 8 份 spec 的 34 条 REQ（REQ-MCO / REQ-COR / REQ-SFT / REQ-PME / REQ-SCN / REQ-TPT / REQ-ICN / REQ-RCL）。

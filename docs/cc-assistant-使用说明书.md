@@ -1,4 +1,4 @@
-# CC Assistant v4 使用说明书
+# Claude Code Horse Tamer（驯马师）v4 使用说明书
 
 > 适用版本：cc-assistant v4（模块化上手引导课程 + 社区 Skill 目录）
 > 面向读者：学习者（会用 /assist 上课的人）+ 维护者（要安装、改模块、跑测试的人）
@@ -7,7 +7,7 @@
 
 ## 一、这是什么
 
-**CC Assistant** 是一个 Claude Code Skill + 薄斜杠命令 `/assist`，给「有开发经验、但不会用 Claude Code」的开发者，用**真实任务边做边教**，完成从零基础到能独立干活。
+**Claude Code Horse Tamer**（驯马师，原 CC Assistant）是一个 Claude Code Skill + 薄斜杠命令 `/assist`，给「有开发经验、但不会用 Claude Code」的开发者，用**真实任务边做边教**——像驯服烈马一样驯服 Claude Code，完成从零基础到能独立干活。
 
 v3 从 v2 的「单会话任务引导」升级为**模块化课程·多会话渐进**：
 

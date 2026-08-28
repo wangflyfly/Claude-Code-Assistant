@@ -1,10 +1,10 @@
 # CONTEXT
 
-CC Assistant（Claude Code 上手引导）的领域词汇表。只收录已敲定的规范术语，不含实现细节。
+Claude Code Horse Tamer（驯马师 · Claude Code 上手引导，原 CC Assistant）的领域词汇表。只收录已敲定的规范术语，不含实现细节。
 
 ## 核心概念
 
-- **CC Assistant**：一个 Claude Code 上手引导 skill，给有开发经验但不会用 Claude Code 的开发者，以模块化上手引导课程（多会话渐进续接）边做边教，完成从零基础到能独立干活。课程按功能模块组织，每模块含概念/场景/真实轻练习，练习由学习者动手、skill 不代做。
+- **Claude Code Horse Tamer（驯马师）**：一个 Claude Code 上手引导 skill（原 CC Assistant），给有开发经验但不会用 Claude Code 的开发者，以模块化上手引导课程（多会话渐进续接）边做边教——像驯服烈马一样驯服 Claude Code，完成从零基础到能独立干活。课程按功能模块组织，每模块含概念/场景/真实轻练习，练习由学习者动手、skill 不代做。内部标识符 `cc-assistant`。
 
 - **模块课程（module course）**：按功能模块组织的上手引导课程——进阶必修主线覆盖 11 个模块（核心/记忆系统/Skills/子智能体/Hooks/MCP/Headless/Agent SDK/Plugins/工程化/收官整合），一次 `/assist` 教 1 个单机制模块，多会话渐进续接（进度存项目级 `.claude/cc-assistant/progress.json`）。编排逻辑写在 `SKILL.md` 的自然语言指令里，由 Claude 运行时执行；教学节奏由 skill 引导，练习与落地交还学习者。
 

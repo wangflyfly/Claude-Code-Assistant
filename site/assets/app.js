@@ -1,4 +1,4 @@
-// CC Assistant 社区 Skill 目录客户端渲染（REQ-SIT-002/003/004/005）
+// Claude Code Horse Tamer 社区 Skill 目录客户端渲染（REQ-SIT-002/003/004/005）
 // 读取 site/data/catalog.json + course-mapping.json（机器生成副本），按主题/课程模块筛选。
 // 安全：所有 skill 数据经 textContent 渲染，禁止 innerHTML 注入（目录条目由社区 PR 提交）。
 (async () => {

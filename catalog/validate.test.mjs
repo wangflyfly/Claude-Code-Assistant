@@ -18,7 +18,7 @@ const REAL_MAPPING = {
   engineering: ['core-workflow'], capstone: ['core-workflow'],
 };
 const REAL_SKILL = {
-  id: 'cc-assistant', name: 'CC Assistant', description: 'desc', author: 'A',
+  id: 'cc-assistant', name: 'Claude Code Horse Tamer', description: 'desc', author: 'A',
   install: 'inst', repo: 'https://x.example/repo', license: 'MIT',
   topics: ['core-workflow', 'hooks'],
 };

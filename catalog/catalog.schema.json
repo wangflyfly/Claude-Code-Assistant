@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/wangflyfly/Claude-Code-Assistant/blob/main/catalog/catalog.schema.json",
-  "title": "CC Assistant 社区 Skill 目录",
+  "title": "Claude Code Horse Tamer 社区 Skill 目录",
   "description": "catalog/catalog.json 的结构约束（REQ-CAT-002/003）。顶层对象含 skills 数组；每条 skill 记录字段全部必填。",
   "type": "object",
   "required": ["skills"],

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**CC Assistant**（Claude Code 上手引导）是一个 Claude Code Skill + 薄斜杠命令，给有开发经验但不会用 Claude Code 的开发者，以模块化上手引导课程（每模块真实小练习、多会话渐进续接）边做边教，完成从零基础到能独立干活。领域词汇见 `CONTEXT.md`（本仓库唯一术语表，输出时使用其定义、勿漂移到同义词）。当前 v3 需求、规格、设计、任务清单以 spec-superflow change `changes/cc-assistant-v3/` 为准（`.spec-superflow.yaml` 状态机，当前 state `executing`，执行中）。
+**Claude Code Horse Tamer**（驯马师 · Claude Code 上手引导，原 CC Assistant）是一个 Claude Code Skill + 薄斜杠命令，给有开发经验但不会用 Claude Code 的开发者，以模块化上手引导课程（每模块真实小练习、多会话渐进续接）边做边教，完成从零基础到能独立干活。领域词汇见 `CONTEXT.md`（本仓库唯一术语表，输出时使用其定义、勿漂移到同义词）。当前 v4 需求、规格、设计、任务清单以 spec-superflow change `changes/cc-assistant-v4/` 为准（`.spec-superflow.yaml` 状态机，当前 state `closing`，已归档）。
 
 ## Skill 开发规范
 
