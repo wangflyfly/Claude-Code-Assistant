@@ -163,6 +163,6 @@ GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](d
 
 ## License
 
-No LICENSE file detected. Add a LICENSE to clarify project licensing.
+[MIT](LICENSE)
 
 <!-- BEAUTIFIED -->
