@@ -159,7 +159,19 @@ GitHub Pages deployment steps (including `gh` CLI) are in [`docs/github-pages-�
 
 ## Contributing
 
-See [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md): open a PR using the `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` template → CI structural validation + drift check → maintainer review and merge → CI auto-regenerates the products.
+Add a skill to the community catalog in 5 steps:
+
+1. Append an entry to the `skills` array in `catalog/catalog.json` — fields `id` / `name` / `description` (explain "when to use") / `author` / `install` / `repo` (http/https) / `license` / `topics` (must come from `catalog/topics.json`, ≥1)
+2. Validate locally and regenerate products (exit codes must be 0; commit the regenerated products too):
+   ```bash
+   node catalog/validate.mjs          # structural validation (JSON / schema / id uniqueness / topics ⊆ vocabulary / mapping keys)
+   node catalog/sync-catalog.mjs      # regenerate site/data/ files + course snapshot
+   ```
+3. Open a PR using the `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` template
+4. CI `validate` checks automatically (structure + drift) → maintainer reviews and merges
+5. After merge, CI regenerates automatically → **the web catalog + course snapshot update**
+
+See [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md) for full details (acceptance criteria, common rejections).
 
 ## License
 

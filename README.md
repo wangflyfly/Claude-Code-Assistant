@@ -159,7 +159,19 @@ GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](d
 
 ## 贡献
 
-社区 Skill 目录贡献见 [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md)：按 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` 模板提 PR → CI 结构校验 + 防漂移 → 维护者审核合入 → CI 自动重新生成产物。
+给社区 Skill 目录加一条 skill，5 步：
+
+1. 在 `catalog/catalog.json` 的 `skills` 数组末尾加条目——字段 `id` / `name` / `description`（说明「何时用」）/ `author` / `install` / `repo`（http/https）/ `license` / `topics`（须来自 `catalog/topics.json`，≥1）
+2. 本地校验 + 重新生成产物（退出码必须 0，再生成的三产物要一起提交）：
+   ```bash
+   node catalog/validate.mjs          # 结构校验（JSON / schema / id 唯一 / topics ⊆ 词表 / 映射键）
+   node catalog/sync-catalog.mjs      # 重新生成 site/data/ 两文件 + 课程快照
+   ```
+3. 按 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` 模板提 PR
+4. CI `validate` job 自动校验（结构 + 防漂移）→ 维护者审核合入
+5. 合入后 CI 自动再生成 → **网页目录 + 课程快照自动更新**
+
+详见 [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md)（收录判据、被拒常见原因）。
 
 ## License
 
