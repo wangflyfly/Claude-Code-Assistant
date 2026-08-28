@@ -3,7 +3,7 @@
   "base": "c2e27ff05e6749877e3c2c6421d50a8952db3df2",
   "head": "06773a1a680b3bda92cfeef5f0cbf41e69ae3b51",
   "report": ".superpowers\\sdd\\reviews\\wave-4-site.md",
-  "plan_hash": "sha256:233c66583ff80489302dc37cf8c6963f211972a4b54a27ade63dab2a95cfbe14",
-  "plan_revision": 1,
-  "recorded_at": "2026-08-26T13:46:09.772Z"
+  "plan_hash": "sha256:72c386917ed9d7a0dec64850e09806c39f10ed266a531718410e815c6c952ee8",
+  "plan_revision": 2,
+  "recorded_at": "2026-08-28T11:20:02.332Z"
 }

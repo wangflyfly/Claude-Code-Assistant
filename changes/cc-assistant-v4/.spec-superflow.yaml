@@ -2,9 +2,9 @@
 # Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
 
 # === Core state ===
-state: executing
+state: closing
 workflow: auto
-revision: 1
+revision: 2
 
 # === Hashes (fast staleness detection) ===
 artifacts_hash: sha256:907ca9fd9b995862f7758420f1d88fb850fe098883b9296335e272adc8b6b90a
@@ -12,17 +12,17 @@ contract_hash: sha256:a435fec5ef1b71a6cb3b92392faab875ad6d7d5bec68a72b7d976017d3
 
 # === Execution progress ===
 execution_mode: sdd
-execution_plan_hash: sha256:233c66583ff80489302dc37cf8c6963f211972a4b54a27ade63dab2a95cfbe14
-execution_plan_revision: 1
+execution_plan_hash: sha256:72c386917ed9d7a0dec64850e09806c39f10ed266a531718410e815c6c952ee8
+execution_plan_revision: 2
 batches_completed: 7
-test_result: null
-spec_merged: false
+test_result: pass
+spec_merged: true
 
 # === Metadata ===
 change_name: cc-assistant-v4
-last_transition: 2026-08-26T13:15:06.898Z
-last_transition_from: approved-for-build
-last_transition_to: executing
+last_transition: 2026-08-28T11:21:12.390Z
+last_transition_from: executing
+last_transition_to: closing
 
 # === Decision points ===
 dp_0_decisions: 新建 cc-assistant-v4 社区 Skill 目录：开源后网友可提交 PR 往集中式 catalog 配置文件加好 skill，GitHub Pages 静态站消费该文件展示（按主题/课程阶段筛选），v3 课程每模块内置本地快照展示对应阶段社区 skill 介绍；仅收 Claude Code skills；保持 v3 全程本地零上传
@@ -35,11 +35,11 @@ dp_2_result: approved: 4 规划工件评审通过——proposal（定稿，双�
 dp_2_timestamp: 2026-08-22T17:02:07Z
 dp_3_result: approved: v4 执行契约定稿批准——34 REQ 全覆盖无未映射（覆盖清单逐条归属），7 wave（wave-6 课程集成依赖 v3 模块冻结，v3 已 closing 满足），TDD 先红后绿（validate/sync 脚本），零上传/映射解耦/三产物确定性约束明确
 dp_3_timestamp: 2026-08-26T15:10:00Z
-dp_4_result: sdd: plan revision 1; user-confirmed; user-selected execution mode (sdd, recommended)
-dp_4_timestamp: 2026-08-26T13:12:59.678Z
+dp_4_result: sdd: plan revision 2; user-confirmed-revision; wave-7 归档：tasks.md 复选框统一勾选后重录计划锚定新 artifacts hash
+dp_4_timestamp: 2026-08-28T11:18:07.457Z
 dp_5_result: null
 dp_5_timestamp: null
-dp_6_result: null
-dp_6_timestamp: null
-dp_7_result: null
-dp_7_timestamp: null
+dp_6_result: pass: 7/7 wave review pass（wave-1~7）；测试 validate.test 10/10 + sync-catalog.test 13/13；validate/sync --check exit 0；34 REQ 全覆盖；spec 合并（7 delta 入根 specs/）已核验；变更限于契约 scope（catalog/site/.github/课程集成/文档）；T22 修复 2 缺陷含回归
+dp_6_timestamp: 2026-08-26T16:00:00Z
+dp_7_result: confirmed: cc-assistant-v4 社区 Skill 目录交付完成——catalog 数据层+双脚本+静态站+CI/贡献流程+课程集成+文档/eval，7 wave 全 pass，spec 合并归档
+dp_7_timestamp: 2026-08-26T16:02:00Z

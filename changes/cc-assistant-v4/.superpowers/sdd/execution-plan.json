@@ -1,7 +1,7 @@
 {
   "mode": "sdd",
-  "source": "user-confirmed",
-  "rationale": "user-selected execution mode (sdd, recommended)",
+  "source": "user-confirmed-revision",
+  "rationale": "wave-7 归档：tasks.md 复选框统一勾选后重录计划锚定新 artifacts hash",
   "waves": [
     {
       "id": "wave-1-data-layer",
@@ -92,10 +92,10 @@
       ]
     }
   ],
-  "artifacts_hash": "sha256:907ca9fd9b995862f7758420f1d88fb850fe098883b9296335e272adc8b6b90a",
+  "artifacts_hash": "sha256:6fc553135a966826708dd34a96b084885d81b1a0efe90aba242a23c123e5e388",
   "contract_hash": "sha256:a435fec5ef1b71a6cb3b92392faab875ad6d7d5bec68a72b7d976017d3688261",
   "workflow": "auto",
-  "revision": 1,
+  "revision": 2,
   "recommendation": {
     "available_modes": [
       "inline",
@@ -229,17 +229,17 @@
         ]
       }
     ],
-    "artifacts_hash": "sha256:907ca9fd9b995862f7758420f1d88fb850fe098883b9296335e272adc8b6b90a",
+    "artifacts_hash": "sha256:6fc553135a966826708dd34a96b084885d81b1a0efe90aba242a23c123e5e388",
     "contract_hash": "sha256:a435fec5ef1b71a6cb3b92392faab875ad6d7d5bec68a72b7d976017d3688261",
     "workflow": "auto",
-    "execution_plan_revision_at_recommendation": null,
-    "created_at": "2026-08-26T13:12:25.792Z",
-    "hash": "sha256:fef6e5e263ce8c28c6aca9e9988a0b72fd3157d847b4769121435669548c596a"
+    "execution_plan_revision_at_recommendation": 1,
+    "created_at": "2026-08-28T11:18:07.360Z",
+    "hash": "sha256:3c0d1beef48247a64eab8634285fd60f3765e3697b9267bb399bd61b1db97c25"
   },
   "selection": {
     "confirmed": true,
     "followed_recommendation": true,
     "acknowledged_non_recommendation": false
   },
-  "hash": "sha256:233c66583ff80489302dc37cf8c6963f211972a4b54a27ade63dab2a95cfbe14"
+  "hash": "sha256:72c386917ed9d7a0dec64850e09806c39f10ed266a531718410e815c6c952ee8"
 }
