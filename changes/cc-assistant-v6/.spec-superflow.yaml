@@ -2,27 +2,27 @@
 # Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
 
 # === Core state ===
-state: executing
+state: closing
 workflow: auto
-revision: 1
+revision: 2
 
 # === Hashes (fast staleness detection) ===
-artifacts_hash: sha256:342a2a2bde98cf54a60a160884b2e287acd9574ff3b96bbe7d35d866a9a6a51f
+artifacts_hash: sha256:b5f32de3c5db148fe3bf395b55b4a0be40075b55249c952677982137da494a1c
 contract_hash: sha256:6d4af217e61bc276161d6befe3e11670a51fff09799ab350a5857dedadd90b31
 
 # === Execution progress ===
 execution_mode: sdd
-execution_plan_hash: sha256:08ee16b2504fd151558b0fc2713a5f60069ce550cf0556928aba8e7847311d33
-execution_plan_revision: 1
+execution_plan_hash: sha256:d3bc881aac36b200cb0bc37955bc89c2b4d9e3fa958588d7d533c149fced9218
+execution_plan_revision: 2
 batches_completed: 4
-test_result: null
+test_result: pass
 spec_merged: true
 
 # === Metadata ===
 change_name: cc-assistant-v6
-last_transition: 2026-08-29T10:59:36.084Z
-last_transition_from: approved-for-build
-last_transition_to: executing
+last_transition: 2026-08-29T11:04:27.282Z
+last_transition_from: executing
+last_transition_to: closing
 
 # === Decision points ===
 dp_0_decisions: v6 定义：目录收录扩展——统一 skills 数组 + 每条目 type 字段（skill/agent/mcp-server/plugin）；四类全收（commands 不收）；全链路适配（schema/validate/sync/站点/快照/CONTRIBUTING/README//contribute 命令）；既有条目默认 skill 向后兼容；topics 沿用 13 词表；不自动安装验证；单一 change
@@ -35,11 +35,11 @@ dp_2_result: approved: proposal + 5 specs(19 req: MODIFIED REQ-CAT-004 + TYP4/MT
 dp_2_timestamp: 2026-08-29T09:30:03Z
 dp_3_result: approved: 执行契约定稿批准——4 waves(w1-data→w2-display→w3-command-docs→w4-integration)，19 REQ 全映射无未映射，site/data 直拷不归一化定案，每 wave 完成须 review receipt pass
 dp_3_timestamp: 2026-08-29T10:02:35Z
-dp_4_result: sdd: plan revision 1; user-confirmed; user-selected sdd（推荐）：13 任务 4 wave 全串行
-dp_4_timestamp: 2026-08-29T10:12:31.798Z
+dp_4_result: sdd: plan revision 2; user-confirmed-revision; closing 守卫 artifacts hash 刷新：tasks.md 收尾打勾后重录 revision 2
+dp_4_timestamp: 2026-08-29T11:03:55.147Z
 dp_5_result: null
 dp_5_timestamp: null
-dp_6_result: null
-dp_6_timestamp: null
-dp_7_result: null
-dp_7_timestamp: null
+dp_6_result: pass: 验证全绿——Completeness(19 REQ 全落实/4 wave 13 任务全完成)/Correctness(validate=0、sync --check=0、validate.test 13/13、sync.test 15/15、T13 端到端四类)/Coherence(D1-D8↔实现、执行计划↔提交一致) 均 PASS
+dp_6_timestamp: 2026-08-29T11:02:30Z
+dp_7_result: confirmed: v6 归档完成——目录四类收录（skill/agent/mcp-server/plugin）交付，19 REQ 全落实，4 wave 13 任务全 pass，validate/--check 0，双测试 13/13+15/15，spec 已合并（REQ-CAT-004 四类化），audit 已生成，DP-0~DP-6 齐备（DP-5 N/A）
+dp_7_timestamp: 2026-08-29T11:03:39Z
