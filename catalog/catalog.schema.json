@@ -21,7 +21,8 @@
           "install": { "type": "string", "minLength": 1, "description": "可执行的安装指引" },
           "repo": { "type": "string", "format": "uri" },
           "license": { "type": "string", "minLength": 1 },
-          "topics": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true }
+          "topics": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true },
+          "type": { "type": "string", "enum": ["skill", "agent", "mcp-server", "plugin"], "description": "工件形态：skill/agent/mcp-server/plugin；缺省按 skill" }
         }
       }
     }

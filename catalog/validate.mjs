@@ -39,7 +39,8 @@ export function validate({ catalogFile, topicsFile, mappingFile, modulesDir } = 
   const schema = parseJSON(schemaFile, errors);
   if (schema && catalog !== undefined) validateAgainstSchema(catalog, schema, 'catalog.json', '', errors);
 
-  // catalog.json：id 唯一 + topics ⊆ 词表（schema 无法表达跨文件约束）
+  // catalog.json：id 唯一 + topics ⊆ 词表 + type ∈ 枚举（schema 无法表达跨文件/缺省约束；type 可选缺省 skill）
+  const TYPE_ENUM = new Set(['skill', 'agent', 'mcp-server', 'plugin']);
   const skills = catalog && Array.isArray(catalog.skills) ? catalog.skills : [];
   const seen = new Set();
   skills.forEach((s, i) => {
@@ -47,6 +48,7 @@ export function validate({ catalogFile, topicsFile, mappingFile, modulesDir } = 
       if (seen.has(s.id)) errors.push({ file: 'catalog.json', field: `skills[${i}].id`, message: `id 重复: ${s.id}` });
       seen.add(s.id);
     }
+    if (s && s.type !== undefined && !TYPE_ENUM.has(s.type)) errors.push({ file: 'catalog.json', field: `skills[${i}].type`, message: `非法 type: ${s.type}` });
     if (s && Array.isArray(s.topics)) {
       s.topics.forEach((t) => {
         if (typeof t === 'string' && !topicIds.has(t)) errors.push({ file: 'catalog.json', field: `skills[${i}].topics`, message: `词表外主题: ${t}` });

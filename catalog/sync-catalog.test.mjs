@@ -70,6 +70,23 @@ check('二次生成一致（确定性）', out.catalogJson === out2.catalogJson 
   check('--check 手工改快照 → 漂移', c2.ok === false, '未检出漂移');
 }
 
+// v6：四类条目经 sync 传递（catalogJson 保留 type，缺省 skill 不带字段）
+{
+  const cat4 = {
+    skills: [
+      { ...SAMPLE_CATALOG.skills[0] },                                                                             // 缺 type → skill
+      { id: 'agent-x', name: 'Agent X', description: 'd', author: 'A', install: 'i', repo: 'https://x.example/a', license: 'MIT', topics: ['hooks'], type: 'agent' },
+      { id: 'mcp-x', name: 'MCP X', description: 'd', author: 'M', install: 'i', repo: 'https://x.example/m', license: 'MIT', topics: ['mcp'], type: 'mcp-server' },
+      { id: 'plugin-x', name: 'Plugin X', description: 'd', author: 'P', install: 'i', repo: 'https://x.example/p', license: 'MIT', topics: ['hooks'], type: 'plugin' },
+    ],
+  };
+  const o = build({ catalog: cat4, mapping: SAMPLE_MAPPING, topics: SAMPLE_TOPICS });
+  const parsed = JSON.parse(o.catalogJson);
+  const byId = Object.fromEntries(parsed.skills.map((s) => [s.id, s]));
+  check('四类条目 catalogJson 保留 type', byId['agent-x'].type === 'agent' && byId['mcp-x'].type === 'mcp-server' && byId['plugin-x'].type === 'plugin', '缺 type');
+  check('缺 type 条目不带 type 字段（不归一化）', !('type' in byId['b-skill']), '误归一化补写');
+}
+
 // 10. CRLF 检出归一化（git autocrlf 将 \n 检出为 \r\n，比较应忽略行尾）
 {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'v4-sync-crlf-'));

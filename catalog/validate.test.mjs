@@ -118,5 +118,26 @@ const p = mkfixture();
   check('topics.json id 重复 → 失败', r.ok, false, r.errors);
 }
 
+// v6：四类条目（缺 type 按 skill 合法）
+{
+  const c = { skills: [
+    { ...REAL_SKILL },                                                        // 缺 type → skill
+    { ...REAL_SKILL, id: 'agent-x', topics: ['core-workflow'], type: 'agent' },
+    { ...REAL_SKILL, id: 'mcp-x', topics: ['mcp'], type: 'mcp-server' },
+    { ...REAL_SKILL, id: 'plugin-x', topics: ['core-workflow'], type: 'plugin' },
+  ] };
+  const f = mkfixture({ catalog: c });
+  const r = validate({ catalogFile: f.catalog, topicsFile: f.topics, mappingFile: f.mapping, modulesDir: REAL_MODULES });
+  check('四类条目（缺 type 按 skill）→ 通过', r.ok, true, r.errors);
+}
+
+// v6：非法 type（枚举外）→ 失败
+{
+  const c = { skills: [{ ...REAL_SKILL, type: 'command' }] };
+  const f = mkfixture({ catalog: c });
+  const r = validate({ catalogFile: f.catalog, topicsFile: f.topics, mappingFile: f.mapping, modulesDir: REAL_MODULES });
+  check('非法 type（command）→ 失败', r.ok, false, r.errors);
+}
+
 console.log(failures === 0 ? '\n全部用例通过 ✓' : `\n${failures} 个用例失败 ✗`);
 process.exit(failures === 0 ? 0 : 1);
