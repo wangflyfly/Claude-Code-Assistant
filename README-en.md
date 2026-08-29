@@ -159,7 +159,22 @@ GitHub Pages deployment steps (including `gh` CLI) are in [`docs/github-pages-�
 
 ## Contributing
 
-**Recommended**: run `/contribute` in a clone of this repo — describe the skill in natural language and the command generates a valid entry + ready products (no manual JSON editing / script runs). The manual 5 steps below remain as a fallback / reference:
+### Way 1: Use the `/contribute` command (recommended)
+
+Describe the skill in natural language inside a clone of this repo; the command generates a valid entry + ready products:
+
+1. **Enter the repo**: clone this repo and `cd` to its root — `/contribute` is a project-level command that reads the repo's `catalog/catalog.json` and the topic vocabulary
+2. **Trigger**: type `/contribute`, optionally with a one-line description such as `/contribute a skill that formats git commits`
+3. **Fill in fields**: provide the name / when-to-use / author / install / repo / license; the command derives an `id` from the name and suggests topic candidates for you to confirm
+4. **Auto-write and validate**: the command appends the entry to the end of `catalog/catalog.json` and runs `node catalog/validate.mjs` + `node catalog/sync-catalog.mjs` to validate and regenerate the three products (site/data files + course snapshot) until exit code 0
+5. **Handoff**: the command prints a `git commit` example + a PR body following the `skill-entry.md` template (with a "suggest new topic" note when a nearest-topic mapping was used); committing and opening the PR is up to you
+6. **Live after merge**: after the maintainer merges, CI regenerates automatically → **the web catalog + course snapshot update**
+
+> The command only guides and generates locally: it does **not** auto commit / push / open a PR, does not go online, and does not auto-add topics (nearest-topic mapping + PR note; new topics are decided by the maintainer).
+
+### Way 2: Manual flow (fallback / reference)
+
+The equivalent manual 5 steps (for understanding the mechanism / environments without the command):
 
 1. Append an entry to the `skills` array in `catalog/catalog.json` — fields `id` / `name` / `description` (explain "when to use") / `author` / `install` / `repo` (http/https) / `license` / `topics` (must come from `catalog/topics.json`, ≥1)
 2. Validate locally and regenerate products (exit codes must be 0; commit the regenerated products too):

@@ -159,7 +159,22 @@ GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](d
 
 ## 贡献
 
-**推荐**：在仓库克隆内运行 `/contribute` 命令，用自然语言描述 skill 即可自动生成合法条目 + 就绪产物（无需手工改 JSON / 跑脚本）。手动 5 步如下（备选 / 原理说明）：
+### 方式一：用 `/contribute` 命令（推荐）
+
+在仓库克隆内用自然语言描述 skill，命令自动生成合法条目 + 就绪产物：
+
+1. **进入仓库**：克隆本仓库并 `cd` 到仓库根目录——`/contribute` 是项目级命令，读取仓库内的 `catalog/catalog.json` 与主题词表
+2. **触发**：输入 `/contribute`，可带一句话描述，如 `/contribute 一个格式化 git commit 的 skill`
+3. **补全字段**：按提示提供 名字 / 何时用 / 作者 / 安装方式 / 仓库 / 许可证；命令自动从名字生成 `id`，并推断主题候选让你确认
+4. **自动写入与校验**：命令把条目追加到 `catalog/catalog.json` 末尾，跑 `node catalog/validate.mjs` + `node catalog/sync-catalog.mjs` 校验并再生成三产物（site/data 两文件 + 课程快照），直至退出码 0
+5. **交接**：命令输出 `git commit` 示例 + 按 `skill-entry.md` 模板的 PR 正文（词表外就近映射时附「建议新增主题」备注）；提交与提 PR 由你自己执行
+6. **合入即上线**：维护者合入后 CI 自动再生成 → **网页目录 + 课程快照自动更新**
+
+> 命令只引导与本地生成：**不自动 commit / push / 开 PR**、不联网、不自动新增主题（词表外就近映射 + PR 备注，新增主题由维护者决定）。
+
+### 方式二：手动流程（备选 / 原理说明）
+
+与命令等价的手动 5 步（供了解原理 / 无命令环境使用）：
 
 1. 在 `catalog/catalog.json` 的 `skills` 数组末尾加条目——字段 `id` / `name` / `description`（说明「何时用」）/ `author` / `install` / `repo`（http/https）/ `license` / `topics`（须来自 `catalog/topics.json`，≥1）
 2. 本地校验 + 重新生成产物（退出码必须 0，再生成的三产物要一起提交）：
