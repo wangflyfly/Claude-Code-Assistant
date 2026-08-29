@@ -1,0 +1,45 @@
+# .spec-superflow.yaml — lightweight state machine
+# Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
+
+# === Core state ===
+state: exploring
+workflow: auto
+revision: 1
+
+# === Hashes (fast staleness detection) ===
+artifacts_hash: sha256:9769d84c629a967f2e2ba0e2f2c90df6a84d10c953b6d02ae26560ba8bc1b2a3
+contract_hash: sha256:88e7ad431a2bf2fb64afe065d5a6536506af3ee0afa4825d19de557c4ba2f67e
+
+# === Execution progress ===
+execution_mode: sdd
+execution_plan_hash: sha256:ab223568581e3c84a895569e1d2bc26fce02de67533d5d4782e2976f03abc12d
+execution_plan_revision: 1
+batches_completed: 0
+test_result: null
+spec_merged: false
+
+# === Metadata ===
+change_name: cc-assistant-v5
+last_transition: 2026-08-29T02:37:05.743Z
+last_transition_from: null
+last_transition_to: null
+
+# === Decision points ===
+dp_0_decisions: v5 定义：封装 /contribute 斜杠命令简化社区贡献；自动化边界=条目就绪（不自动 commit/PR）；形态=纯斜杠命令（项目级 .claude/commands/contribute.md 零安装）；主题映射=推断+确认；词表外=就近主题+PR 备注（方案一）；非目标=不装 gh/不加 node 脚本/不自动新增主题/不改 v4 数据与 CI；单一 change 不拆分
+dp_0_result: null
+dp_0_confirmed: true
+dp_0_timestamp: null
+dp_1_result: confirmed: 社区贡献流程复杂 → v5 新增项目级 /contribute 斜杠命令（零安装）：读描述→生成 id→推断 topics+确认→词表外就近主题+PR 备注→写 catalog.json→validate+sync 至退出码0→输出 commit/PR 交接（含建议新增主题备注）；成功判据=零知识贡献者跑通得合法条目+三产物就绪+validate/sync 0+词表外就近映射不报错+eval 通过+无回归
+dp_1_timestamp: 2026-08-29T02:39:28Z
+dp_2_result: approved: proposal + 5 specs(15 req: CMD4/ENT2/TOP2/VAL3/DOC4) + design(D1-D8) + tasks(4 batches 8 tasks)，各文档自检3/3轮遗留0，v5 /contribute 命令定义锁定
+dp_2_timestamp: 2026-08-29T03:24:32Z
+dp_3_result: approved: 执行契约定稿批准——4 waves(w1-eval→w2-command→w3-docs→w4-integration)，15 REQ 全映射无未映射，每 wave 完成须 review receipt pass，Execution Mode 待 build 前 recommend 确认
+dp_3_timestamp: 2026-08-29T03:36:16Z
+dp_4_result: sdd: plan revision 1; user-confirmed; user-selected sdd（推荐）：8 任务 4 wave 全串行，依赖与 review receipt 显式
+dp_4_timestamp: 2026-08-29T06:37:51.306Z
+dp_5_result: null
+dp_5_timestamp: null
+dp_6_result: null
+dp_6_timestamp: null
+dp_7_result: null
+dp_7_timestamp: null
