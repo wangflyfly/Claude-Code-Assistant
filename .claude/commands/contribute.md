@@ -36,7 +36,7 @@ slug 化为空串、含非法字符、或与既有条目冲突时：请贡献者
 - 最终 `topics` 必须非空、项不重复、全部 ⊆ 词表
 - 附词表 description 帮助贡献者选择
 
-若贡献者表示词表内无合适主题：引导其在候选主题中选定语义最接近的一个（就近映射，禁止写词表外主题或留空），并记住「发生就近映射」标志（用于交接 PR 备注）。
+若贡献者表示词表内无合适主题：引导其在候选主题中选定语义最接近的一个（就近映射，禁止写词表外主题或留空），并记住「发生就近映射」标志（用于交接 PR 备注）。若推断候选为空集，展示完整词表让贡献者挑选最近似者（仍须 ⊆ 词表、非空、不重复）。
 
 ## 4. 写入条目
 
@@ -50,7 +50,7 @@ slug 化为空串、含非法字符、或与既有条目冲突时：请贡献者
 
 以退出码判定成功（读取 `$?`），不依赖输出文案。
 
-**不改数据层**：`catalog/topics.json`、`catalog/course-mapping.json`、`catalog/catalog.schema.json`、`catalog/validate.mjs`、`catalog/sync-catalog.mjs`、`.github/workflows/catalog-ci.yml` 一律不动。
+**不改数据层**：`catalog/topics.json`、`catalog/course-mapping.json`、`catalog/catalog.schema.json`、`catalog/validate.mjs`、`catalog/sync-catalog.mjs`、`.github/workflows/catalog-ci.yml` 一律不动。`.github/PULL_REQUEST_TEMPLATE/skill-entry.md` 模板文件也不修改（仅在 PR 正文附加备注行）。
 
 ## 6. 交接输出
 
