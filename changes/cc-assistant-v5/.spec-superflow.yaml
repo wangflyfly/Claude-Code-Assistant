@@ -2,27 +2,27 @@
 # Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
 
 # === Core state ===
-state: executing
+state: closing
 workflow: auto
-revision: 1
+revision: 2
 
 # === Hashes (fast staleness detection) ===
-artifacts_hash: sha256:9769d84c629a967f2e2ba0e2f2c90df6a84d10c953b6d02ae26560ba8bc1b2a3
+artifacts_hash: sha256:f45a30d0e12b4a24ab610ba82415e319ade6be86d9be9c700b0ee2e589aab585
 contract_hash: sha256:88e7ad431a2bf2fb64afe065d5a6536506af3ee0afa4825d19de557c4ba2f67e
 
 # === Execution progress ===
 execution_mode: sdd
-execution_plan_hash: sha256:ab223568581e3c84a895569e1d2bc26fce02de67533d5d4782e2976f03abc12d
-execution_plan_revision: 1
+execution_plan_hash: sha256:f7a44d6f5833f9d278ab5f2cc25020fc72ed906c483a46826f6c7c89e0f21e56
+execution_plan_revision: 2
 batches_completed: 4
 test_result: pass
 spec_merged: true
 
 # === Metadata ===
 change_name: cc-assistant-v5
-last_transition: 2026-08-29T06:58:02.167Z
-last_transition_from: approved-for-build
-last_transition_to: executing
+last_transition: 2026-08-29T07:30:33.101Z
+last_transition_from: executing
+last_transition_to: closing
 
 # === Decision points ===
 dp_0_decisions: v5 定义：封装 /contribute 斜杠命令简化社区贡献；自动化边界=条目就绪（不自动 commit/PR）；形态=纯斜杠命令（项目级 .claude/commands/contribute.md 零安装）；主题映射=推断+确认；词表外=就近主题+PR 备注（方案一）；非目标=不装 gh/不加 node 脚本/不自动新增主题/不改 v4 数据与 CI；单一 change 不拆分
@@ -35,8 +35,8 @@ dp_2_result: approved: proposal + 5 specs(15 req: CMD4/ENT2/TOP2/VAL3/DOC4) + de
 dp_2_timestamp: 2026-08-29T03:24:32Z
 dp_3_result: approved: 执行契约定稿批准——4 waves(w1-eval→w2-command→w3-docs→w4-integration)，15 REQ 全映射无未映射，每 wave 完成须 review receipt pass，Execution Mode 待 build 前 recommend 确认
 dp_3_timestamp: 2026-08-29T03:36:16Z
-dp_4_result: sdd: plan revision 1; user-confirmed; user-selected sdd（推荐）：8 任务 4 wave 全串行，依赖与 review receipt 显式
-dp_4_timestamp: 2026-08-29T06:37:51.306Z
+dp_4_result: sdd: plan revision 2; user-confirmed-revision; closing 守卫 artifacts hash 刷新：tasks.md 收尾打勾后重录计划 revision 2
+dp_4_timestamp: 2026-08-29T07:28:29.340Z
 dp_5_result: null
 dp_5_timestamp: null
 dp_6_result: pass: 验证全绿——Completeness(15 REQ 全落实/4 wave 8 任务全完成)/Correctness(validate=0、sync --check=0、T8 eval 13/13、数据层原样)/Coherence(D1 7 步↔命令、执行计划↔提交一致) 均 PASS
