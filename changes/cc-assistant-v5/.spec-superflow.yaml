@@ -16,7 +16,7 @@ execution_plan_hash: sha256:ab223568581e3c84a895569e1d2bc26fce02de67533d5d4782e2
 execution_plan_revision: 1
 batches_completed: 4
 test_result: null
-spec_merged: false
+spec_merged: true
 
 # === Metadata ===
 change_name: cc-assistant-v5
