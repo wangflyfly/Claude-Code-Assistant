@@ -159,6 +159,18 @@ GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](d
 
 ## 贡献
 
+这个目录的价值来自社区分享：把你**验证过好用**的 Claude Code skill 收进来，让学习者按主题发现、复用，作者署名归你。
+
+**贡献什么**
+- ✅ 独立可用的 Claude Code skill（SKILL.md 形态）——一个可复用流程 / 技巧 / 自动化
+- ❌ 不收 plugins / MCP servers / commands / agents
+- 判据：`repo` 可访问、`license` 明确、`description` 说清「何时用」、`topics` 与能力匹配
+
+**为什么贡献**
+- **被看见**：合入后自动进网页目录 + 课程「社区好 skill」快照，学习者按主题能找到你的 skill
+- **被署名**：`author` 字段归你，贡献有据
+- **反哺**：你用的机制让更多人复用——社区越活跃、课程能引用的好 skill 越多
+
 ### 方式一：用 `/contribute` 命令（推荐）
 
 在仓库克隆内用自然语言描述 skill，命令自动生成合法条目 + 就绪产物：
