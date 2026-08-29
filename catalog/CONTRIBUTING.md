@@ -6,7 +6,7 @@
 
 > **推荐方式（优先）**：在仓库克隆内运行 `/contribute`，用自然语言描述条目（名字 / 何时用 / 仓库 / 作者 / 安装方式 / 许可证）即可自动生成合法条目、跑校验并再生成三产物。以下手动步骤为**原理说明 / 备选**。
 
-## 如何新增一条 skill
+## 如何新增一条条目（skill / agent / mcp-server / plugin）
 
 1. 在 `catalog/catalog.json` 的 `skills` 数组**末尾**追加一条记录，字段按 REQ-CAT-002：
    - `type`：可选，`skill` / `agent` / `mcp-server` / `plugin`（缺省按 skill）；`commands` 不收

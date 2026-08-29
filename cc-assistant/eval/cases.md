@@ -576,3 +576,14 @@
 ### O-07 · REQ-TDC-001/003 文档与模板四类口径
 - **WHEN** 阅读 CONTRIBUTING 或按 PR 模板提 PR
 - **THEN** 收录范围与判据为四类、模板含 type 字段与形态判据
+
+### O-RED 基线区（无 /contribute 四类对照）—— v6 声明
+
+> 四类无命令时的额外失败规律（相对 N-RED 单类型基线），T13 已实测有命令后收敛：
+
+| # | 四类手动失败规律 | 表现 |
+|---|---|---|
+| O-R1 | type 漏标 / 误标 | 默认按 skill，agent/mcp/plugin 条目被误标 skill；或填 command 枚举外值 |
+| O-R2 | install 形态错误 | skill 型 install 用在 mcp-server / plugin 上，安装指引不可执行 |
+
+**基线结论**：无命令时四类的手动字段规范 / 形态判定负担更重（v6 动机）；T13 验证 `/contribute` type-first 后上述规律收敛（type 询问、install 按类型、校验闭环退出码 0）。
