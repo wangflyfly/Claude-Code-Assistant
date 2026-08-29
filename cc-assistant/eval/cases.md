@@ -462,3 +462,85 @@
 | M-R4 id 不校验 | ✅ 模板规则 + schema `^[a-z0-9-]+$` + validate 重复检查 | 同上 |
 
 **GREEN 收敛**：validate=0、sync=0、--check=0、validate.test=10/10。**顺带修复 2 处真实缺陷**：① `_community-skills.md` 被误当课程模块（仅排除 m0）→ validate 对 pristine repo 报「缺少模块键」——已排除该生成文件（含回归）；② `--check` 对 git autocrlf 检出的 CRLF 行尾误报漂移——已行尾归一化（含回归用例）。
+
+## N. /contribute 命令贡献场景（REQ-CMD-001~004 / REQ-ENT-001~002 / REQ-TOP-001~002 / REQ-VAL-001~003 / REQ-DOC-003）
+
+> v5 新增。每条场景 = 贡献者动作（WHEN）→ 期望命令行为（THEN）。T1 用无命令手动流程定义基线失败规律（RED），T8 用有命令复测收敛（GREEN）。VAL-003（SHALL NOT 不改数据层）不可 WHEN/THEN 表达，归 T8 回归验证。
+
+### N-01 · REQ-CMD-001 命令可触发
+- **WHEN** 贡献者在仓库克隆内输入 `/contribute`
+- **THEN** 命令被触发，开始引导贡献者完成一条 skill 条目贡献（项目级命令，无需用户级安装）
+
+### N-02 · REQ-CMD-002 带参触发（$ARGUMENTS）
+- **WHEN** 贡献者输入 `/contribute 一个格式化 git commit 的 skill`
+- **THEN** 命令以该描述为初始输入，继续收集缺失字段
+
+### N-03 · REQ-CMD-002 无参触发（交互式）
+- **WHEN** 贡献者仅输入 `/contribute`
+- **THEN** 命令依次提问收集所需字段
+
+### N-04 · REQ-CMD-003 缺字段补齐（install）
+- **WHEN** 贡献者未提供 `install` 字段
+- **THEN** 命令提示并提供「可执行的安装指引」示例，要求贡献者补齐后再继续
+
+### N-05 · REQ-CMD-003 repo 协议非法
+- **WHEN** 贡献者提供的 `repo` 不是 http/https URL
+- **THEN** 命令提示协议要求并请贡献者重新输入合法 repo，再继续
+
+### N-06 · REQ-ENT-001 id 生成（slug 化 + 唯一）
+- **WHEN** 贡献者提供 name 为 "My Format Skill"
+- **THEN** 生成候选 id "my-format-skill"，全目录唯一则采用
+
+### N-07 · REQ-ENT-001 id 回退（非 ASCII/空/冲突）
+- **WHEN** 贡献者提供的中文名 slug 化为空/非法，或候选 id 与既有条目冲突
+- **THEN** 命令要求贡献者手动输入匹配 `^[a-z0-9-]+$` 的 id，合法后才继续
+
+### N-08 · REQ-TOP-001 主题推断 + 确认
+- **WHEN** 命令根据描述给出候选主题
+- **THEN** 展示候选（附词表 description）让贡献者确认/调整；确认后 topics 非空、项不重复、全部 ⊆ `catalog/topics.json` 词表
+
+### N-09 · REQ-TOP-002 词表外就近映射
+- **WHEN** 贡献者说「这些主题都不合适」
+- **THEN** 命令引导其在候选主题中选定语义最接近者；最终 topics 仍非空且 ⊆ 词表；交接 PR 正文附加「建议新增主题」备注行
+
+### N-10 · REQ-ENT-002 条目合法写入
+- **WHEN** 命令写入新条目
+- **THEN** 新条目位于 `catalog/catalog.json` 的 `skills` 数组末尾，8 字段齐全，既有条目原样保留
+
+### N-11 · REQ-VAL-001 validate 校验闭环
+- **WHEN** 写入后 `validate.mjs` 报错（如 topics 词表外）
+- **THEN** 命令修复后重跑，直到退出码 0 才继续
+
+### N-12 · REQ-VAL-002 再生成 + 防漂移复核
+- **WHEN** 条目写入且 validate 通过
+- **THEN** 命令运行 `sync-catalog.mjs` 再生成三产物并 `--check` 复核，退出码 0（失败重 sync 再复核，仍失败停止并报告漂移）
+
+### N-13 · REQ-CMD-004 交接输出
+- **WHEN** 命令完成条目写入并校验通过
+- **THEN** 输出 commit 命令示例 + PR 正文（按 skill-entry.md 模板固定字段）；仅本次发生就近映射时含「建议新增主题」备注行；不自动执行任何 git 写操作
+
+### N-RED 基线区（无 /contribute 对照）—— T1 声明
+
+> 无命令基线以 README 贡献段 5 步 / CONTRIBUTING 4 步手动流程为佐证（有意时序：基线不单独先跑，T8 复测对照）。
+
+无命令时贡献者要自己记住字段规范/词表/双脚本/防漂移/PR 模板：
+
+| # | 手动流程失败规律 | 表现 |
+|---|---|---|
+| N-R1 | 字段规范无引导 | 漏 `install` / 凭直觉填 repo 协议 / 描述不说明「何时用」 |
+| N-R2 | 主题词表无引导 | topics 用词表外标签或为空 |
+| N-R3 | 双脚本无提示 | 不跑 validate / 不重新生成三产物，PR 报漂移 |
+| N-R4 | id 唯一/格式不校验 | 不核对 `^[a-z0-9-]+$` 与既有条目冲突 |
+
+**基线结论**：无 `/contribute` 时贡献者负担重（v5 动机）；GREEN（T8）验证有命令后上述失败规律收敛。
+
+### N-GREEN 区（有 /contribute 对照）—— T8 填充
+
+> T8 用子智能体模拟贡献者跑 `/contribute` 全流程复测。完整报告 `.superpowers/sdd/reports/wave-4-integration.md`。
+
+| 失败规律 | GREEN 收敛判定 | 证据 |
+|---|---|---|
+| N-R1 字段引导 | ✅ 命令收集 6 字段（含 install、repo http/https 校验），缺失补齐 | wave-4-integration.md |
+| N-R2 词表引导 | ✅ 命令推断候选 + 确认，就近映射，topics ⊆ 词表 | 同上 |
+| N-R3 双脚本闭环 | ✅ 命令 validate 重试 + sync 再生成 + `--check` 复核至 0 | 同上 |
+| N-R4 id 校验 | ✅ 命令 slug + 唯一检查 + 回退手输 | 同上 |
