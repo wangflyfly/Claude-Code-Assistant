@@ -1,0 +1,45 @@
+# .spec-superflow.yaml — lightweight state machine
+# Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
+
+# === Core state ===
+state: closing
+workflow: full
+revision: 6
+
+# === Hashes (fast staleness detection) ===
+artifacts_hash: sha256:6237acf88431bca6b2ff722e86e0aa6cefe23c8ceb041d71884b530617da7357
+contract_hash: sha256:8a3a28206f2946a82ec4b0c47d674cd498319a61569c014f648a9cbfe628bd44
+
+# === Execution progress ===
+execution_mode: sdd
+execution_plan_hash: sha256:1d2dd289d6d18ee9f51805d0bd1d5613743fdbfea1a16af332351166761bdfc3
+execution_plan_revision: 6
+batches_completed: 5
+test_result: pass
+spec_merged: true
+
+# === Metadata ===
+change_name: cc-assistant-v2
+last_transition: 2026-08-15T07:36:45.265Z
+last_transition_from: executing
+last_transition_to: closing
+
+# === Decision points ===
+dp_0_decisions: 新建 cc-assistant-v2 引导 skill：给有开发经验但不会用 Claude Code 的开发者上手引导。交互式任务驱动·边做边教；覆盖核心闭环+进阶(Skill/Rule/Hook、MCP、Agent/子代理、Plan Mode)；基于 claude-code-guide 做编排层+交叉引用；沿用 cc-assistant 名称覆盖旧版；遵守 docs/skill-development-spec.md；保持聚焦；沟通=先起草再审
+dp_0_result: confirmed
+dp_0_confirmed: true
+dp_0_timestamp: 2026-08-15T03:37:54Z
+dp_1_result: confirmed
+dp_1_timestamp: 2026-08-15T03:38:18Z
+dp_2_result: approved: proposal + 6 specs(20 req) + design(12 decisions) + tasks(5 batches 15 tasks)；安装用户级；v1 清理与文档更新已定
+dp_2_timestamp: 2026-08-15T04:28:53Z
+dp_3_result: approved: 执行契约（Intent Lock/范围围栏/约束 D1-D12/5 wave/20 REQ 全覆盖/测试义务/回退条件），spec-selfcheck 复核覆盖 20/20 无 drift
+dp_3_timestamp: 2026-08-15T06:02:55Z
+dp_4_result: sdd: plan revision 6; user-confirmed-revision; tasks.md 复选框 T13-T15 随 Wave 5 勾选，test_result=pass，刷新 hash
+dp_4_timestamp: 2026-08-15T07:25:08.140Z
+dp_5_result: null
+dp_5_timestamp: null
+dp_6_result: pass: ssf validate 全绿、TDD GREEN 8/8、e2e 3/3、test_result=pass
+dp_6_timestamp: 2026-08-15T07:36:25Z
+dp_7_result: confirmed: cc-assistant-v2 上手引导 skill 实现完成，5 wave 全 pass，specs 已合并，用户确认归档
+dp_7_timestamp: 2026-08-15T07:36:28Z

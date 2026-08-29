@@ -28,7 +28,7 @@
 
 ## Batch 1: 确定性核心
 
-- [ ] **Task 1.1 — 目录合并 + 健康度评分脚本**
+- [x] **Task 1.1 — 目录合并 + 健康度评分脚本**
   - 文件：`cc-assistant/scripts/catalog.py`、`cc-assistant/scripts/test_catalog.py`
   - TDD：
     1. **RED**：先写 `test_catalog.py`，用例覆盖：`merge_catalogs`（自定义覆盖内置同 id、内置独有保留、custom 为空 dict / None）；`score_health`（空项目=20/需关注、1 skill=25/待改进、6 skill+5 rule=65/优秀、封顶 100）。运行 `python scripts/test_catalog.py` → 失败（catalog.py 不存在）。
@@ -38,7 +38,7 @@
     5. **验证**：`python scripts/test_catalog.py` 全绿，无 TODO。
   - Depends on: 无
 
-- [ ] **Task 1.2 — 场景信号配置**
+- [x] **Task 1.2 — 场景信号配置**
   - 文件：`cc-assistant/data/scenarios.json`
   - TDD：
     1. **RED**：对照 spec REQ-MATCH-001 列出 6 场景信号表（new-feature/bug-fix/testing/docs/refactor/init 的信号与权重）与 priority、confidence，作为期望。
@@ -52,7 +52,7 @@
 
 > 每个 Task 的 TDD 用 eval 用例：先在 `eval/cases.md` 写入"项目状态 → 期望输出"，跑一遍确认当前无实现不满足，再写对应 SKILL.md 段，重跑验证。
 
-- [ ] **Task 2.1 — Scanner + Matcher 指令**
+- [x] **Task 2.1 — Scanner + Matcher 指令**
   - 文件：`cc-assistant/SKILL.md`（frontmatter + Scanner/Matcher 段）、`cc-assistant/eval/cases.md`
   - TDD：
     1. **RED**：在 `eval/cases.md` 加用例：① React 项目 + untracked `src/*.tsx` → 识别 react + new-feature（高置信）；② 非 git 仓库 → 跳过 git 信号不报错；③ 成熟项目无 `.claude/` → 不判 init。
@@ -62,7 +62,7 @@
     5. **验证**：对应 spec SCAN-001~005、MATCH-001~004 逐条覆盖。
   - Depends on: Task 1.2（读 scenarios.json）
 
-- [ ] **Task 2.2 — Recommender + Health Check 指令**
+- [x] **Task 2.2 — Recommender + Health Check 指令**
   - 文件：`cc-assistant/SKILL.md`（Recommender/Health 段）、`cc-assistant/eval/cases.md`
   - TDD：
     1. **RED**：加用例：① python 项目 → 不推荐 react-best-practices；② 已启用 test-generator → 不再推荐；③ 学习项目+新手 → 只出 1-2 条；④ 空项目 `/assist health` → 20 分"需关注"。
@@ -72,7 +72,7 @@
     5. **验证**：对应 REC-001~008、HEALTH-001~004。
   - Depends on: Task 1.1（catalog.py）、Task 2.1
 
-- [ ] **Task 2.3 — Feedback + Apply 指令**
+- [x] **Task 2.3 — Feedback + Apply 指令**
   - 文件：`cc-assistant/SKILL.md`（Feedback/Apply 段）、`cc-assistant/eval/cases.md`
   - TDD：
     1. **RED**：加用例：① 推荐后用户输入 👍 → 关联到最近一条并记录；② 用户拒绝确认 → 不执行安装；③ 确认启用 conventional-commit → 写入 `.claude/rules/conventional-commit.md`。
@@ -84,7 +84,7 @@
 
 ## Batch 3: 命令文件
 
-- [ ] **Task 3.1 — 4 个薄斜杠命令**
+- [x] **Task 3.1 — 4 个薄斜杠命令**
   - 文件：`cc-assistant/commands/assist.md`、`assist-health.md`、`assist-apply.md`、`feedback.md`
   - TDD：
     1. **RED**：明确每个命令的触发行为（如 `/assist` → 触发 skill 完整流程；`/assist health` → 只出健康报告）。
@@ -96,7 +96,7 @@
 
 ## Batch 4: 安装 + 端到端验证
 
-- [ ] **Task 4.1 — 安装到用户级**
+- [x] **Task 4.1 — 安装（项目级 `.claude/`，用户要求覆盖契约默认的用户级）**
   - 文件：复制 `cc-assistant/SKILL.md`、`data/`、`scripts/` → `~/.claude/skills/cc-assistant/`；复制 `commands/*.md` → `~/.claude/commands/`
   - TDD：
     1. **RED**：确认 `~/.claude/skills/cc-assistant/` 与 `~/.claude/commands/assist.md` 当前不存在或为旧版。
@@ -106,7 +106,7 @@
     5. **验证**：文件就位，路径与 design D5 一致。
   - Depends on: Task 3.1
 
-- [ ] **Task 4.2 — 端到端验证**
+- [x] **Task 4.2 — 端到端验证**
   - 文件：`cc-assistant/eval/cases.md`（完善全部用例）
   - TDD：
     1. **RED**：在临时 React 项目跑 `/assist`，记录期望（识别 react + 场景 + 真实目录推荐 + 健康度 + 无虚构数字）。
