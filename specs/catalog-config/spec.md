@@ -27,12 +27,19 @@
 - **WHEN** `catalog.json` 不是合法 JSON、或结构不满足 schema（如字段类型错误、缺必填项）
 - **THEN** CI 校验失败并给出定位（文件 + 字段 + 原因）
 
-### Requirement: REQ-CAT-004 收录范围限定
-系统 SHALL 只收录 Claude Code skills（SKILL.md 形态）——不收录 plugins / MCP servers / commands / agents，作为贡献指南与维护者审核的收录判据。
+### Requirement: REQ-CAT-004 收录范围扩展为四类
+系统 SHALL 收录 `skill` / `agent` / `mcp-server` / `plugin` 四类可独立安装 / 配置的 Claude Code 工件；`commands` 仍不收录（REQ-CAT-004 由 cc-assistant-v6 修改）。
 
-#### Scenario: 非 SKILL.md 形态被拒收
-- **WHEN** 贡献者提交的条目不是独立 Claude Code skill（如是一个 MCP server 或 command）
-- **THEN** 维护者按收录判据要求其改为「以 skill 为粒度的条目」，或拒绝收录
+#### Scenario: commands 仍排除
+- **WHEN** 贡献者提交一条 `command` 类型条目
+- **THEN** 校验失败，提示 commands 不在收录范围
+
+#### Scenario: 四类收录
+- **WHEN** 贡献者提交 skill / agent / mcp-server / plugin 四类条目
+- **THEN** 均按对应形态判据审核收录
+
+### Previous version
+> 原 REQ-CAT-004（cc-assistant-v4，被 cc-assistant-v6 修改）：系统 SHALL 只收录 Claude Code skills（SKILL.md 形态）——不收录 plugins / MCP servers / commands / agents，作为贡献指南与维护者审核的收录判据。
 
 ### Requirement: REQ-CAT-005 cc-assistant 自荐条目
 系统 SHALL 在 `catalog.json` 中收录 `cc-assistant` 自身作为首条自荐条目（其余字段按 REQ-CAT-002 填写，`author` 为维护者）。
