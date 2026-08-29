@@ -9,6 +9,16 @@
       "repo": "https://github.com/wangflyfly/Claude-Code-Assistant",
       "license": "MIT",
       "topics": ["core-workflow", "memory", "rules", "skills", "subagent", "hooks", "mcp", "headless", "sdk", "plugins", "engineering", "plan-mode", "project-workflow"]
+    },
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "description": "何时用：想把 Claude Code 的工作方式规范化为可复用流程时——创意头脑风暴、任务规划、测试驱动开发、系统化调试、代码评审、git worktree 隔离、并行子智能体等",
+      "author": "Jesse Vincent (obra)",
+      "install": "/plugin install superpowers@superpowers-marketplace（需先把 obra/superpowers-marketplace 添加为 plugin 源）",
+      "repo": "https://github.com/obra/superpowers-marketplace",
+      "license": "MIT",
+      "topics": ["plan-mode", "engineering", "project-workflow"]
     }
   ]
 }
