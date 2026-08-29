@@ -159,7 +159,7 @@ GitHub Pages deployment steps (including `gh` CLI) are in [`docs/github-pages-�
 
 ## Contributing
 
-Add a skill to the community catalog in 5 steps:
+**Recommended**: run `/contribute` in a clone of this repo — describe the skill in natural language and the command generates a valid entry + ready products (no manual JSON editing / script runs). The manual 5 steps below remain as a fallback / reference:
 
 1. Append an entry to the `skills` array in `catalog/catalog.json` — fields `id` / `name` / `description` (explain "when to use") / `author` / `install` / `repo` (http/https) / `license` / `topics` (must come from `catalog/topics.json`, ≥1)
 2. Validate locally and regenerate products (exit codes must be 0; commit the regenerated products too):

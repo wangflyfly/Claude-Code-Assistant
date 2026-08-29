@@ -3,6 +3,8 @@
 > 收录范围：仅 **Claude Code skills**（SKILL.md 形态）。plugins / MCP servers / commands / agents **不收录**（REQ-CAT-004）。
 > 免责声明：收录仅表示通过结构校验与维护者审核，**不构成对 skill 质量 / 安全性的背书**；安装前请自行核对（REQ-CON-005）。
 
+> **推荐方式（优先）**：在仓库克隆内运行 `/contribute`，用自然语言描述 skill（名字 / 何时用 / 仓库 / 作者 / 安装方式 / 许可证）即可自动生成合法条目、跑校验并再生成三产物。以下手动步骤为**原理说明 / 备选**。
+
 ## 如何新增一条 skill
 
 1. 在 `catalog/catalog.json` 的 `skills` 数组**末尾**追加一条记录，字段按 REQ-CAT-002：

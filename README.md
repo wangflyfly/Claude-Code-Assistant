@@ -159,7 +159,7 @@ GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](d
 
 ## 贡献
 
-给社区 Skill 目录加一条 skill，5 步：
+**推荐**：在仓库克隆内运行 `/contribute` 命令，用自然语言描述 skill 即可自动生成合法条目 + 就绪产物（无需手工改 JSON / 跑脚本）。手动 5 步如下（备选 / 原理说明）：
 
 1. 在 `catalog/catalog.json` 的 `skills` 数组末尾加条目——字段 `id` / `name` / `description`（说明「何时用」）/ `author` / `install` / `repo`（http/https）/ `license` / `topics`（须来自 `catalog/topics.json`，≥1）
 2. 本地校验 + 重新生成产物（退出码必须 0，再生成的三产物要一起提交）：

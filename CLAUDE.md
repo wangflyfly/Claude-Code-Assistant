@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**Claude Code Horse Tamer**（驯马师 · Claude Code 上手引导，原 CC Assistant）是一个 Claude Code Skill + 薄斜杠命令，给有开发经验但不会用 Claude Code 的开发者，以模块化上手引导课程（每模块真实小练习、多会话渐进续接）边做边教，完成从零基础到能独立干活。领域词汇见 `CONTEXT.md`（本仓库唯一术语表，输出时使用其定义、勿漂移到同义词）。当前 v4 需求、规格、设计、任务清单以 spec-superflow change `changes/cc-assistant-v4/` 为准（`.spec-superflow.yaml` 状态机，当前 state `closing`，已归档）。
+**Claude Code Horse Tamer**（驯马师 · Claude Code 上手引导，原 CC Assistant）是一个 Claude Code Skill + 薄斜杠命令，给有开发经验但不会用 Claude Code 的开发者，以模块化上手引导课程（每模块真实小练习、多会话渐进续接）边做边教，完成从零基础到能独立干活。领域词汇见 `CONTEXT.md`（本仓库唯一术语表，输出时使用其定义、勿漂移到同义词）。当前 v5 需求、规格、设计、任务清单以 spec-superflow change `changes/cc-assistant-v5/` 为准（`.spec-superflow.yaml` 状态机，执行中）；v4（社区 Skill 目录 + GitHub Pages）已归档于 `changes/cc-assistant-v4/`。
 
 ## Skill 开发规范
 
@@ -30,7 +30,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 目录子系统（社区 Skill 目录）
 
-仓库附带社区 Skill 目录子系统（v4）：`catalog/catalog.json` 为唯一事实源；`catalog/sync-catalog.mjs` 机器生成 `site/data/`（GitHub Pages 发布源 `site/`）与课程快照 `cc-assistant/modules/_community-skills.md`；社区贡献走 PR（模板 `skill-entry.md` → CI `validate` 结构校验 + `--check` 防漂移 → 维护者审核合入 → CI `sync` 再生成）。术语见 `CONTEXT.md`。
+仓库附带社区 Skill 目录子系统（v4）：`catalog/catalog.json` 为唯一事实源；`catalog/sync-catalog.mjs` 机器生成 `site/data/`（GitHub Pages 发布源 `site/`）与课程快照 `cc-assistant/modules/_community-skills.md`；社区贡献走 `/contribute` 命令自动生成条目与产物（备选手动 PR：模板 `skill-entry.md` → CI `validate` 结构校验 + `--check` 防漂移 → 维护者审核合入 → CI `sync` 再生成）。术语见 `CONTEXT.md`。
 
 ## Agent skills
 
