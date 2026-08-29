@@ -19,6 +19,7 @@
     const allT = document.createElement('button');
     allT.type = 'button';
     allT.className = 'chip active';
+    allT.dataset.type = '';
     allT.textContent = '全部';
     allT.addEventListener('click', () => { activeType = null; render(); });
     typeChipsEl.appendChild(allT);
@@ -74,7 +75,7 @@
   function render() {
     const list = skills.filter(matches);
     chipsEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.topic === activeTopic));
-    typeChipsEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.type === activeType));
+    typeChipsEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', (c.dataset.type || null) === activeType));
     document.getElementById('filter-status').textContent =
       `当前：${activeType ? '类型 ' + activeType : '全部类型'}${activeTopic ? ' + 主题 ' + activeTopic : ''}${activeModule ? ' + 模块 ' + activeModule : ''}｜${list.length} 条条目`;
 
