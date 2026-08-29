@@ -33,9 +33,9 @@
 
 ## 收录判据与审核流程
 
-1. **形态**：必须是独立 Claude Code skill（SKILL.md），非 plugin / MCP server / command / agent。
+1. **形态**：按 `type` 分支核对（skill=SKILL.md / agent=agent.md / mcp-server=可配置 MCP / plugin=marketplace 包），与 `type` 一致；commands 不收录。
 2. **可访问性**：`repo` 指向真实可访问的来源仓库。
-3. **字段**：`license` 明确；`description` 说明「何时用」且与 skill 实际一致；`topics` 与 skill 实际能力匹配。
+3. **字段**：`license` 明确；`description` 说明「何时用」且与条目实际一致；`topics` 与条目实际能力匹配（`type` 是形态、`topics` 是发现主题，二者正交）；`install` 按类型给出可执行指引。
 4. **审核**：维护者按上述清单逐项核对，不满足任一项则要求修改或拒绝；CI 通过后仍须维护者显式批准合入（REQ-CON-004，无自动合入）。
 
 ## 被拒的常见原因
