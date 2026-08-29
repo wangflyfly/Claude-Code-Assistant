@@ -164,7 +164,7 @@ GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](d
 **贡献什么**
 - ✅ 可独立安装 / 配置的 Claude Code 工件：**skill**（SKILL.md 形态）/ **agent**（agent.md）/ **MCP server**（`.mcp.json` 配置）/ **plugin**（marketplace 包）
 - ❌ commands 不收
-- 判据：`repo` 可访问、`license` 明确、`description` 说清「何时用」、`topics` 与能力匹配、`type` 与形态一致
+- 判据：`repo` 可访问、`license` 明确、`description` 说清「何时用」、`topics` 与能力匹配（`type` 是形态、`topics` 是发现主题，二者正交）、`type` 与形态一致、`install` 按类型给出可执行指引
 
 **为什么贡献**
 - **被看见**：合入后自动进网页目录 + 课程「社区好 skill」快照，学习者按主题能找到你的 skill

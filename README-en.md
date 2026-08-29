@@ -164,7 +164,7 @@ This catalog's value comes from the community: share the Claude Code skills **yo
 **What to contribute**
 - ✅ A standalone-installable Claude Code artifact: **skill** (SKILL.md form) / **agent** (agent.md) / **MCP server** (`.mcp.json` config) / **plugin** (marketplace package)
 - ❌ Not accepted: commands
-- Criteria: accessible `repo`, clear `license`, `description` states "when to use", `topics` match capability, `type` matches the artifact form
+- Criteria: accessible `repo`, clear `license`, `description` states "when to use", `topics` match capability (`type` is the artifact form, `topics` are discovery topics — orthogonal), `type` matches the artifact form, `install` gives actionable guidance per type
 
 **Why contribute**
 - **Visibility**: after merge it automatically appears in the web catalog + the course's "good community skills" snapshot, findable by topic
