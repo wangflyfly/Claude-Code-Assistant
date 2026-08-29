@@ -139,5 +139,13 @@ const p = mkfixture();
   check('非法 type（command）→ 失败', r.ok, false, r.errors);
 }
 
+// v6：install 缺失 → 失败（REQ-MTV-003）
+{
+  const c = { skills: [{ ...REAL_SKILL, install: undefined }] };
+  const f = mkfixture({ catalog: c });
+  const r = validate({ catalogFile: f.catalog, topicsFile: f.topics, mappingFile: f.mapping, modulesDir: REAL_MODULES });
+  check('install 缺失 → 失败', r.ok, false, r.errors);
+}
+
 console.log(failures === 0 ? '\n全部用例通过 ✓' : `\n${failures} 个用例失败 ✗`);
 process.exit(failures === 0 ? 0 : 1);
