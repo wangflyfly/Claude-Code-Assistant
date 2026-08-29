@@ -1,9 +1,9 @@
 ---
-description: 引导贡献者向社区 Skill 目录（catalog/catalog.json）贡献一条 Claude Code skill——用自然语言描述即可得到合法条目 + 三产物就绪，无需手工编辑 JSON / 跑脚本。用于贡献者想新增一条 skill 时。
-argument-hint: [可选] skill 的一句话描述，如「一个格式化 git commit 的 skill」
+description: 引导贡献者向社区 Skill 目录（catalog/catalog.json）贡献一条 Claude Code 条目（skill / agent / mcp-server / plugin）——用自然语言描述即可得到合法条目 + 三产物就绪，无需手工编辑 JSON / 跑脚本。用于贡献者想新增一条 skill / agent / MCP server / plugin 时。
+argument-hint: [可选] 条目的一句话描述，如「一个格式化 git commit 的 skill」
 ---
 
-# /contribute — 贡献一条社区 skill
+# /contribute — 贡献一条社区条目（skill / agent / mcp-server / plugin）
 
 你是社区 Skill 目录的贡献引导。按下列步骤执行；全程只引导、不越界——不自动 commit / push / 开 PR，提交与安装由贡献者自己决定。
 
@@ -12,9 +12,16 @@ argument-hint: [可选] skill 的一句话描述，如「一个格式化 git com
 1. 确认当前工作目录是仓库根（存在 `catalog/catalog.json`）。若不在，提示贡献者先克隆 / 进入本仓库。
 2. 检查未提交工作区改动：`git status --short`。若有与本次贡献无关的改动，提示贡献者先 commit 或 stash，避免新条目与本地改动混淆。
 
-## 1. 收集字段
+## 1. 确认类型与收集字段
 
-初始输入 = `$ARGUMENTS`（若有）；其余字段逐一交互收集（缺哪个问哪个），每字段非空，缺失 / 非法时提示补齐后再继续：
+1. **先确认条目类型**：`skill` / `agent` / `mcp-server` / `plugin`（四选一；四类共享字段结构，`install` 按类型给对应安装指引）。
+2. 初始输入 = `$ARGUMENTS`（若有）；其余字段逐一交互收集（缺哪个问哪个），每字段非空，缺失 / 非法时提示补齐后再继续：
+
+**类型与 install 指引对应**：
+- `skill`：复制 SKILL.md 到 `~/.claude/skills/<name>/`
+- `agent`：复制 agent.md 到 `~/.claude/agents/`
+- `mcp-server`：`claude mcp add <name> -- <command>` 或 `.mcp.json` 配置
+- `plugin`：`/plugin install <name>@<marketplace>`
 
 - `name`：skill 名称
 - `description`：一句话说明「何时用」（触发条件）
@@ -40,7 +47,7 @@ slug 化为空串、含非法字符、或与既有条目冲突时：请贡献者
 
 ## 4. 写入条目
 
-向 `catalog/catalog.json` 的 `skills` 数组**末尾**追加新条目（8 字段：id / name / description / author / install / repo / license / topics）。用编辑工具写 JSON，**不修改、不删除、不重排既有条目**。
+向 `catalog/catalog.json` 的 `skills` 数组**末尾**追加新条目（9 字段：id / name / description / author / install / repo / license / topics / type——`type` 为第 1 步确认的值，缺省不写即 skill）。用编辑工具写 JSON，**不修改、不删除、不重排既有条目**。
 
 ## 5. 校验闭环
 
@@ -57,6 +64,6 @@ slug 化为空串、含非法字符、或与既有条目冲突时：请贡献者
 输出交接步骤，**不自动执行任何 git 写操作**：
 
 - **commit 示例**：`git add catalog/catalog.json site/data/catalog.json site/data/course-mapping.json cc-assistant/modules/_community-skills.md && git commit -m "feat(catalog): 收录 <name>"`
-- **PR 正文**：按 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` 模板固定字段填写条目字段 + 自检清单；**仅当本流程发生就近映射时**，在模板固定字段之外附加一行「建议新增主题：<贡献者想要的词表外主题>」。
+- **PR 正文**：按 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` 模板固定字段填写条目字段（含 `type`）+ 自检清单；**仅当本流程发生就近映射时**，在模板固定字段之外附加一行「建议新增主题：<贡献者想要的词表外主题>」。
 
 最后告知贡献者：提交与提 PR 由贡献者自己执行；合入后 CI 会自动再生成并上线网页。

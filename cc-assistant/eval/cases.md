@@ -544,3 +544,35 @@
 | N-R2 词表引导 | ✅ 命令推断候选 + 确认，就近映射，topics ⊆ 词表 | 同上 |
 | N-R3 双脚本闭环 | ✅ 命令 validate 重试 + sync 再生成 + `--check` 复核至 0 | 同上 |
 | N-R4 id 校验 | ✅ 命令 slug + 唯一检查 + 回退手输 | 同上 |
+
+## O. v6 目录四类收录场景（REQ-TYP/MTV/TAD/TAC/TDC、MODIFIED REQ-CAT-004）
+
+> v6 新增。覆盖四类（skill/agent/mcp-server/plugin）收录、校验、展示与贡献命令。
+
+### O-01 · REQ-TYP-001 type 可选缺省 skill
+- **WHEN** 一条目未写 `type`
+- **THEN** 按 skill 处理（校验 / 展示 / 快照均视为 skill）
+
+### O-02 · REQ-TYP-002 非法 type 被拒
+- **WHEN** 一条目写 `type: command`（枚举外）
+- **THEN** 校验失败并定位到条目与值（commands 不收录，REQ-CAT-004）
+
+### O-03 · REQ-TYP-003 superpowers 为 plugin
+- **WHEN** 读取 superpowers 条目
+- **THEN** 其 `type` 为 `plugin`
+
+### O-04 · REQ-MTV-002 四类校验通过
+- **WHEN** 校验 skill / agent / mcp-server / plugin 各一条合法条目
+- **THEN** 全部通过，退出码 0（install 缺失被拒）
+
+### O-05 · REQ-TAD-002/003 站点类型徽章与筛选
+- **WHEN** 浏览站点或点击类型筛选
+- **THEN** 每条目显示类型徽章（缺省 skill）；按类型筛选与主题 / 模块取 AND
+
+### O-06 · REQ-TAC-001/002 /contribute 支持四类
+- **WHEN** 贡献者用 `/contribute` 贡献 agent / mcp-server / plugin
+- **THEN** 命令先问类型、按类型收集字段与 install 指引、写入 9 字段、校验闭环退出码 0
+
+### O-07 · REQ-TDC-001/003 文档与模板四类口径
+- **WHEN** 阅读 CONTRIBUTING 或按 PR 模板提 PR
+- **THEN** 收录范围与判据为四类、模板含 type 字段与形态判据

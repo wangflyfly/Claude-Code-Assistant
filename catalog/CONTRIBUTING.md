@@ -1,15 +1,17 @@
 # 社区 Skill 目录贡献指南
 
-> 收录范围：仅 **Claude Code skills**（SKILL.md 形态）。plugins / MCP servers / commands / agents **不收录**（REQ-CAT-004）。
-> 免责声明：收录仅表示通过结构校验与维护者审核，**不构成对 skill 质量 / 安全性的背书**；安装前请自行核对（REQ-CON-005）。
+> 收录范围：**skill / agent / mcp-server / plugin 四类**（可独立安装 / 配置的 Claude Code 工件，REQ-CAT-004 扩展）。commands **不收录**。
+> 免责声明：收录仅表示通过结构校验与维护者审核，**不构成对条目质量 / 安全性的背书**；安装前请自行核对（REQ-CON-005）。
+> `type`（工件形态：skill/agent/mcp-server/plugin）与 `topics`（发现主题）**正交**：任一类型可用任一主题发现，二者不强制映射。
 
-> **推荐方式（优先）**：在仓库克隆内运行 `/contribute`，用自然语言描述 skill（名字 / 何时用 / 仓库 / 作者 / 安装方式 / 许可证）即可自动生成合法条目、跑校验并再生成三产物。以下手动步骤为**原理说明 / 备选**。
+> **推荐方式（优先）**：在仓库克隆内运行 `/contribute`，用自然语言描述条目（名字 / 何时用 / 仓库 / 作者 / 安装方式 / 许可证）即可自动生成合法条目、跑校验并再生成三产物。以下手动步骤为**原理说明 / 备选**。
 
 ## 如何新增一条 skill
 
 1. 在 `catalog/catalog.json` 的 `skills` 数组**末尾**追加一条记录，字段按 REQ-CAT-002：
+   - `type`：可选，`skill` / `agent` / `mcp-server` / `plugin`（缺省按 skill）；`commands` 不收
    - `id`：小写字母/数字/连字符，全目录唯一
-   - `name` / `author` / `install` / `repo`（http/https URL）/ `license`：非空
+   - `name` / `author` / `install` / `repo`（http/https URL）/ `license`：非空（`install` 按类型给可执行指引：skill/agent 复制、mcp-server 命令配置、plugin marketplace）
    - `description`：一句话说明「何时用」（触发条件）
    - `topics`：≥ 1 个，全部来自 `catalog/topics.json`
 2. 本地预校验（两个命令都须退出码 0）：
@@ -38,7 +40,8 @@
 
 ## 被拒的常见原因
 
-- 非 SKILL.md 形态（是 MCP server / command / plugin / agent）。
+- 形态与 `type` 不符（如标 skill 但实为 plugin / MCP server / command / agent）。
+- `type` 枚举外值（如 `command`——commands 不收录）。
 - `id` 重复或含大写 / 非连字符字符。
 - `topics` 含 `topics.json` 词表外的标签。
 - `repo` 不是 http/https URL 或不可访问。

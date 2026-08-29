@@ -162,9 +162,9 @@ GitHub Pages deployment steps (including `gh` CLI) are in [`docs/github-pages-�
 This catalog's value comes from the community: share the Claude Code skills **you've found genuinely useful**, so learners can discover and reuse them by topic — with the author credit going to you.
 
 **What to contribute**
-- ✅ A self-contained Claude Code skill (SKILL.md form) — a reusable workflow / technique / automation
-- ❌ Not accepted: plugins / MCP servers / commands / agents
-- Criteria: accessible `repo`, clear `license`, `description` states "when to use", `topics` match the skill's actual capability
+- ✅ A standalone-installable Claude Code artifact: **skill** (SKILL.md form) / **agent** (agent.md) / **MCP server** (`.mcp.json` config) / **plugin** (marketplace package)
+- ❌ Not accepted: commands
+- Criteria: accessible `repo`, clear `license`, `description` states "when to use", `topics` match capability, `type` matches the artifact form
 
 **Why contribute**
 - **Visibility**: after merge it automatically appears in the web catalog + the course's "good community skills" snapshot, findable by topic
