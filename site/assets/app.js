@@ -11,6 +11,27 @@
 
   let activeTopic = null;
   let activeModule = null;
+  let activeType = null;
+
+  const TYPES = ['skill', 'agent', 'mcp-server', 'plugin'];
+  const typeChipsEl = document.getElementById('type-chips');
+  if (typeChipsEl) {
+    const allT = document.createElement('button');
+    allT.type = 'button';
+    allT.className = 'chip active';
+    allT.textContent = '全部';
+    allT.addEventListener('click', () => { activeType = null; render(); });
+    typeChipsEl.appendChild(allT);
+    TYPES.forEach((t) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'chip';
+      btn.dataset.type = t;
+      btn.textContent = t;
+      btn.addEventListener('click', () => { activeType = activeType === t ? null : t; render(); });
+      typeChipsEl.appendChild(btn);
+    });
+  }
 
   const chipsEl = document.getElementById('topic-chips');
   topics.forEach((t) => {
@@ -37,6 +58,7 @@
   sel.addEventListener('change', () => { activeModule = sel.value || null; render(); });
 
   function matches(s) {
+    if (activeType && (s.type ?? 'skill') !== activeType) return false;
     if (activeTopic && !(s.topics ?? []).includes(activeTopic)) return false;
     if (activeModule) {
       const mapped = mapping[activeModule] ?? [];
@@ -52,8 +74,9 @@
   function render() {
     const list = skills.filter(matches);
     chipsEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.topic === activeTopic));
+    typeChipsEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.type === activeType));
     document.getElementById('filter-status').textContent =
-      `当前：${activeTopic ? '主题 ' + activeTopic : '全部主题'}${activeModule ? ' + 模块 ' + activeModule : ''}｜${list.length} 个 skill`;
+      `当前：${activeType ? '类型 ' + activeType : '全部类型'}${activeTopic ? ' + 主题 ' + activeTopic : ''}${activeModule ? ' + 模块 ' + activeModule : ''}｜${list.length} 条条目`;
 
     const el = document.getElementById('skill-list');
     el.textContent = '';
@@ -63,6 +86,10 @@
 
       const h = document.createElement('h3');
       h.textContent = s.name;
+      const badge = document.createElement('span');
+      badge.className = 'type-badge';
+      badge.textContent = s.type ?? 'skill';
+      h.appendChild(badge);
       const span = document.createElement('span');
       span.className = 'topics';
       span.textContent = ' ' + (s.topics ?? []).join(', ');
@@ -102,7 +129,7 @@
     if (list.length === 0) {
       const p = document.createElement('p');
       p.className = 'empty';
-      p.textContent = '没有匹配的 skill。';
+      p.textContent = '没有匹配的条目。';
       el.appendChild(p);
     }
   }

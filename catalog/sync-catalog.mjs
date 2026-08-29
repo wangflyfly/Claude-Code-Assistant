@@ -19,14 +19,14 @@ export function build({ catalog, mapping, topics }) {
   for (const s of sortedSkills) for (const topic of s.topics ?? []) if (byTopic.has(topic)) byTopic.get(topic).push(s);
 
   const sortedTopics = [...(topics ?? [])].sort((a, b) => a.id.localeCompare(b.id));
-  const lines = ['# 社区好 Skill 快照', '', '> 本文件由 `catalog/sync-catalog.mjs` 从 `catalog/catalog.json`（skill 条目）+ `catalog/topics.json`（主题分组）机器生成，随课程分发，勿手工编辑。', ''];
+  const lines = ['# 社区好 Skill 快照', '', '> 本文件由 `catalog/sync-catalog.mjs` 从 `catalog/catalog.json`（条目）+ `catalog/topics.json`（主题分组）机器生成，随课程分发，勿手工编辑。', ''];
   for (const t of sortedTopics) {
     lines.push(`## ${t.id} — ${t.description}`, '');
     const list = byTopic.get(t.id) ?? [];
     if (list.length === 0) {
       lines.push('（暂无收录 skill）', '');
     } else {
-      for (const s of list) lines.push(`- **${s.name}** — ${s.description}`, `  - install: ${s.install}`, `  - repo: ${s.repo}`, '');
+      for (const s of list) lines.push(`- **${s.name}** — ${s.description}`, `  - type: ${s.type ?? 'skill'}`, `  - install: ${s.install}`, `  - repo: ${s.repo}`, '');
     }
   }
   return { catalogJson, mappingJson, snapshot: lines.join('\n') };

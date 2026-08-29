@@ -36,7 +36,35 @@
         "plan-mode",
         "engineering",
         "project-workflow"
-      ]
+      ],
+      "type": "plugin"
+    },
+    {
+      "id": "weekly-retro-agent",
+      "name": "Weekly Retro Agent",
+      "description": "何时用：想让 Claude Code 定期复盘提交记录与工作模式、输出周报式洞察时",
+      "author": "wshobson",
+      "install": "复制 repo 内 agent markdown 到 ~/.claude/agents/（详见 repo 说明）",
+      "repo": "https://github.com/wshobson/agents",
+      "license": "MIT",
+      "topics": [
+        "engineering",
+        "project-workflow"
+      ],
+      "type": "agent"
+    },
+    {
+      "id": "filesystem-mcp",
+      "name": "Filesystem MCP Server",
+      "description": "何时用：想让 Claude 通过 MCP 访问本地文件系统（读写/搜索/目录操作）时——官方参考实现，适合学习或二次开发",
+      "author": "Model Context Protocol",
+      "install": "claude mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem（或 .mcp.json 配置，详见 repo 说明）",
+      "repo": "https://github.com/modelcontextprotocol/servers",
+      "license": "MIT",
+      "topics": [
+        "mcp"
+      ],
+      "type": "mcp-server"
     }
   ]
 }
