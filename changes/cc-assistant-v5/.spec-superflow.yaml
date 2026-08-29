@@ -2,7 +2,7 @@
 # Derived data. Always rebuildable from artifacts. Lost/corrupt → fall back to content-level detection.
 
 # === Core state ===
-state: exploring
+state: executing
 workflow: auto
 revision: 1
 
@@ -20,9 +20,9 @@ spec_merged: false
 
 # === Metadata ===
 change_name: cc-assistant-v5
-last_transition: 2026-08-29T02:37:05.743Z
-last_transition_from: null
-last_transition_to: null
+last_transition: 2026-08-29T06:58:02.167Z
+last_transition_from: approved-for-build
+last_transition_to: executing
 
 # === Decision points ===
 dp_0_decisions: v5 定义：封装 /contribute 斜杠命令简化社区贡献；自动化边界=条目就绪（不自动 commit/PR）；形态=纯斜杠命令（项目级 .claude/commands/contribute.md 零安装）；主题映射=推断+确认；词表外=就近主题+PR 备注（方案一）；非目标=不装 gh/不加 node 脚本/不自动新增主题/不改 v4 数据与 CI；单一 change 不拆分

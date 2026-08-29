@@ -536,7 +536,7 @@
 
 ### N-GREEN 区（有 /contribute 对照）—— T8 填充
 
-> T8 用子智能体模拟贡献者跑 `/contribute` 全流程复测。完整报告 `.superpowers/sdd/reports/wave-4-integration.md`。
+> T8 用子智能体模拟贡献者跑 `/contribute` 全流程复测，**已验证 13/13 PASS**（含 repo 协议拒绝 / id 中文名回退 / 就近映射 / validate 失败重试 / 防漂移负例）。完整报告 `.superpowers/sdd/reports/wave-4-integration.md`。
 
 | 失败规律 | GREEN 收敛判定 | 证据 |
 |---|---|---|
