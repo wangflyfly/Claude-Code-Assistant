@@ -15,7 +15,7 @@ execution_mode: sdd
 execution_plan_hash: sha256:ab223568581e3c84a895569e1d2bc26fce02de67533d5d4782e2976f03abc12d
 execution_plan_revision: 1
 batches_completed: 4
-test_result: null
+test_result: pass
 spec_merged: true
 
 # === Metadata ===
@@ -39,7 +39,7 @@ dp_4_result: sdd: plan revision 1; user-confirmed; user-selected sdd（推荐）
 dp_4_timestamp: 2026-08-29T06:37:51.306Z
 dp_5_result: null
 dp_5_timestamp: null
-dp_6_result: null
-dp_6_timestamp: null
-dp_7_result: null
-dp_7_timestamp: null
+dp_6_result: pass: 验证全绿——Completeness(15 REQ 全落实/4 wave 8 任务全完成)/Correctness(validate=0、sync --check=0、T8 eval 13/13、数据层原样)/Coherence(D1 7 步↔命令、执行计划↔提交一致) 均 PASS
+dp_6_timestamp: 2026-08-29T07:22:58Z
+dp_7_result: confirmed: v5 归档完成——/contribute 项目级命令交付，15 REQ 全落实，4 wave 8 任务全 pass，validate/--check 0，T8 eval 13/13，数据层原样，spec 已合并，audit 已生成，DP-0~DP-6 齐备（DP-5 N/A）
+dp_7_timestamp: 2026-08-29T07:23:45Z
