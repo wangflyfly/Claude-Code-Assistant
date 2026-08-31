@@ -10,10 +10,10 @@
 - **THEN** 能看到四类收录范围、各类型形态说明、type 与 topics 正交说明
 
 ### Requirement: REQ-TDC-002 README 双语言贡献引导
-系统 SHALL 更新 `README.md` 与 `README-en.md` 贡献段的「贡献什么 / 为什么贡献 / 判据」为四类口径，中英镜像一致。
+系统 SHALL 更新 `README.md` 与 `README-zh.md` 贡献段的「贡献什么 / 为什么贡献 / 判据」为四类口径，中英镜像一致。
 
 #### Scenario: 双语言四类口径
-- **WHEN** 阅读 README.md 与 README-en.md 贡献段
+- **WHEN** 阅读 README.md 与 README-zh.md 贡献段
 - **THEN** 两处均表述四类收录（贡献什么/为什么/判据），无中英漂移
 
 ### Requirement: REQ-TDC-003 PR 模板类型化

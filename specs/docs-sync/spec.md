@@ -10,10 +10,10 @@
 - **THEN** 能看到「推荐用 `/contribute` 命令」的说明，以及作为备选 / 原理的手动步骤
 
 ### Requirement: REQ-DOC-002 README 双语言入口
-系统 SHALL 在 `README.md` 与 `README-en.md` 的贡献段同时提及 `/contribute` 入口，保持中英镜像一致。
+系统 SHALL 在 `README.md` 与 `README-zh.md` 的贡献段同时提及 `/contribute` 入口，保持中英镜像一致。
 
 #### Scenario: 双语言一致
-- **WHEN** 用户分别阅读 `README.md` 与 `README-en.md` 的贡献段
+- **WHEN** 用户分别阅读 `README.md` 与 `README-zh.md` 的贡献段
 - **THEN** 两处都提及 `/contribute` 入口，无中英漂移
 
 ### Requirement: REQ-DOC-003 eval 贡献者用例

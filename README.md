@@ -1,14 +1,14 @@
 <h1 align="center">Claude Code Horse Tamer</h1>
 
 <p align="center">
-  <strong>驯服 Claude Code 这匹烈马的模块化上手引导课程</strong>
+  <strong>A modular onboarding course that teaches you to tame Claude Code</strong>
   <br />
-  <em>11 模块 · 多会话续接 · 真实小练习 · 两阶段教学 · 社区 Skill 目录</em>
+  <em>11 modules · multi-session continuation · real micro-exercises · two-phase teaching · community skill catalog</em>
 </p>
 
 <p align="center">
   <a href="https://github.com/anthropics/claude-code"><img src="https://img.shields.io/badge/Built_with-Claude_Code-D97757?style=for-the-badge&amp;logo=claude&amp;logoColor=white" alt="Built with Claude Code" /></a>
-  <a href="#快速开始"><img src="https://img.shields.io/badge/快速开始-4CAF50?style=for-the-badge" alt="Quick Start" /></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-4CAF50?style=for-the-badge" alt="Quick Start" /></a>
   <a href="#license"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License" /></a>
 </p>
 
@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  中文 · <a href="README-en.md">English</a>
+  <a href="README-zh.md">中文</a> · English
 </p>
 
 <p align="center">
@@ -30,79 +30,81 @@
 
 ---
 
-Claude Code Horse Tamer（驯马师）是一个 Claude Code Skill + `/assist` 斜杠命令，给「有开发经验、但不会用 Claude Code」的开发者，用**真实任务边做边教**——像驯服烈马一样驯服 Claude Code，完成从零基础到能独立干活。
+Claude Code Horse Tamer (驯马师) is a Claude Code Skill plus an `/assist` slash command that teaches developers who can code but are new to Claude Code — taming Claude Code like a wild horse, from zero to productive on real tasks.
 
-## 功能特性
+## Features
 
-| 特性 | 说明 |
+| Feature | Description |
 |---|---|
-| 模块化课程 | 11 个机制模块（核心 → 收官整合），固定次序推进，一次 `/assist` 只教 1 个 |
-| 多会话渐进续接 | 进度存 `.claude/cc-assistant/progress.json`，中断后从上次模块续接，不重讲已完成模块 |
-| 真实小练习 | 每模块一个与学习者真实项目串联的练习，由学习者动手、skill 不代做 |
-| 两阶段教学 | 进阶必修（11 模块广度）→ 高阶可选（重点模块深入实操 + 综合项目） |
-| 收官整合 | 组合 2+ 机制的综合任务 + 体系讲解（四层架构 / 触发口诀 / 选型决策树，改写归因） |
-| 社区 Skill 目录 | 课程内置快照 + GitHub Pages 静态站，按主题 / 课程模块筛选社区 skill |
+| Modular course | 11 mechanism modules (Core → Capstone) in fixed order; one `/assist` teaches exactly one module |
+| Multi-session continuation | Progress persisted in `.claude/cc-assistant/progress.json`; resumes from the last module without re-teaching |
+| Real micro-exercises | One exercise per module tied to the learner's real project, done by the learner, never by the skill |
+| Two-phase teaching | Beginner phase (all 11 modules, breadth) → advanced phase (optional deep dives + a capstone project) |
+| Capstone integration | A cross-module task combining 2+ mechanisms plus a system overview (four-layer architecture / trigger mnemonic / selection decision tree, rewritten with attribution) |
+| Community skill catalog | In-course snapshot plus a GitHub Pages site to browse community skills by topic / course module |
 
-## 社区 Skill 目录（社区的作用）
+## Community Skill Catalog (what the community does)
 
-这个项目不只教你学 Claude Code，还带一个**社区 Skill 目录**——社区成员（网友）把好用的 Claude Code skill 提交进目录，经维护者审核收录后，成为课程的教学素材：
+This project does more than teach you Claude Code — it ships a **community skill catalog**. Community members submit useful Claude Code skills to the catalog; once a maintainer reviews and merges them, they become teaching material for the course:
 
-1. **社区贡献**：任何开发者都能按模板提交一条好用的 skill（见 [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md)），目录以 `catalog/catalog.json` 为唯一事实源。
-2. **收录与分发**：维护者审核合入后，CI 自动生成「课程快照」（`_community-skills.md`）并更新网页目录（GitHub Pages `site/`）。
-3. **教学引用**：课程每个模块（如 Hooks / MCP / Agent SDK）的「社区好 skill」小节，展示本模块对应主题的推荐 skill——学完一个机制，顺着推荐就能发现更多能直接上手的好 skill。
-4. **零上传**：课程运行时不联网，只看本地快照；是否安装由你自己决定。
+**Live catalog**: [https://wangflyfly.github.io/Claude-Code-Assistant/](https://wangflyfly.github.io/Claude-Code-Assistant/) — browse community skills by topic / course module
 
-这样形成闭环：**课程教你用机制 → 目录帮你发现更多好 skill → 你也能贡献回来**，社区越活跃、课程能引用的好 skill 越多。
+1. **Community contribution** — any developer can submit a good skill using the template (see [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md)); `catalog/catalog.json` is the single source of truth.
+2. **Curate and distribute** — after a maintainer merges a PR, CI regenerates the course snapshot (`_community-skills.md`) and updates the web catalog (GitHub Pages `site/`).
+3. **Teaching references** — every course module (e.g., Hooks / MCP / Agent SDK) has a "community good skills" section that shows recommended skills for that module's topics — after learning a mechanism, follow the recommendations to discover more skills you can use right away.
+4. **Zero upload** — the course never goes online at runtime; it only reads the local snapshot, and installing any skill is your decision.
 
-## 快速开始
+This forms a loop: **the course teaches you the mechanisms → the catalog helps you discover more good skills → and you can contribute back**, so the more active the community, the more good skills the course can point to.
 
-### 安装
+## Quick Start
+
+### Install
 
 ```bash
-# 复制到用户级技能目录（任意项目可用）
+# Copy to the user-level skill directory (available in any project)
 cp -r cc-assistant/SKILL.md cc-assistant/modules ~/.claude/skills/cc-assistant/
 ```
 
-### 使用
+### Use
 
 ```bash
-# 在任意项目目录触发课程
+# Trigger the course in any project directory
 /assist
 ```
 
-## 使用方法
+## Usage
 
-### 首次进入
+### First entry
 
-输入 `/assist` → M0 定场说明 → 选定一个真实项目 → 询问「全新开始 / 此前学过想续接」。
+Type `/assist` → M0 onboarding → pick a real project → answer "fresh start / resume".
 
-### 模块教学
+### Module teaching
 
-每个模块按「概念（是什么/何时用）→ 场景演示 → 真实轻练习」推进，练习由学习者自己动手。
+Each module follows "concept (what / when) → scenario demo → real micro-exercise"; the learner does the exercise.
 
-### 多会话续接
+### Multi-session continuation
 
-再次 `/assist` → 自动读取 `progress.json`，从上次 `currentModule` 续接；文件缺失/损坏时询问定位，不静默出错。
+Type `/assist` again → reads `progress.json` and resumes from `currentModule`; if the file is missing or corrupt it asks, never fails silently.
 
-### 目录命令（维护者）
+### Catalog commands (maintainers)
 
 ```bash
-node catalog/validate.mjs              # 结构校验（JSON / schema / id 唯一 / topics ⊆ 词表 / 映射键一致）
-node catalog/sync-catalog.mjs          # 重新生成 site/data/ 与课程快照
-node catalog/sync-catalog.mjs --check  # 防漂移检查（退出码 0=一致 / 1=漂移）
+node catalog/validate.mjs              # structural validation (JSON / schema / id uniqueness / topics ⊆ vocabulary / mapping keys)
+node catalog/sync-catalog.mjs          # regenerate site/data/ and the course snapshot
+node catalog/sync-catalog.mjs --check  # drift check (exit 0 = consistent / 1 = drifted)
 ```
 
-## 架构
+## Architecture
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
 graph LR
-    A[课程编排<br/>SKILL.md] --> B[模块教学<br/>modules/*.md]
-    B --> C[进度续接<br/>progress.json]
-    D[catalog.json<br/>唯一事实源] --> E[sync-catalog.mjs]
+    A[Course orchestration<br/>SKILL.md] --> B[Module teaching<br/>modules/*.md]
+    B --> C[Progress<br/>progress.json]
+    D[catalog.json<br/>single source] --> E[sync-catalog.mjs]
     E --> F[site/data/*<br/>GitHub Pages]
-    E --> G[_community-skills.md<br/>课程快照]
-    H[社区 PR<br/>skill-entry.md] --> I[CI validate<br/>GitHub Actions]
+    E --> G[_community-skills.md<br/>course snapshot]
+    H[Community PR<br/>skill-entry.md] --> I[CI validate<br/>GitHub Actions]
     I --> D
 
     classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
@@ -116,89 +118,85 @@ graph LR
     class H external
 ```
 
-## 配置
+## Configuration
 
-目录数据层为唯一事实源（机器校验，非环境变量）：
+The catalog data layer is the single source of truth (machine-validated, not environment variables):
 
-| 文件 | 说明 |
+| File | Description |
 |---|---|
-| `catalog/catalog.json` | skill 条目唯一事实源（`skills` 数组） |
-| `catalog/topics.json` | 主题词表（机器可读唯一源，每主题 `id` + `description`） |
-| `catalog/course-mapping.json` | 课程模块 → 主题标签映射（无 phase 粒度） |
+| `catalog/catalog.json` | Single source of truth for skill entries (`skills` array) |
+| `catalog/topics.json` | Topic vocabulary (machine-readable single source; each topic `id` + `description`) |
+| `catalog/course-mapping.json` | Course module → topic mapping (no phase granularity) |
 
-## 目录结构
+## Project Structure
 
 ```
-cc-assistant/               # 课程 skill（编排层 + 模块 + eval）
-├── SKILL.md                # 课程编排层（正文 <200 词）
-├── modules/                # m0 定场 + 11 课程模块 + 社区 skill 快照
-└── eval/cases.md           # 场景用例（TDD 输入）
-catalog/                    # 社区 Skill 目录数据层
-├── catalog.json            # 唯一事实源
-├── topics.json             # 主题词表
-├── course-mapping.json     # 模块 → 主题映射
-├── validate.mjs            # 结构校验脚本
-└── sync-catalog.mjs        # 三产物生成 + 防漂移
-site/                       # GitHub Pages 发布源（静态站）
-docs/                       # 使用说明书 / 部署指南 / 设计输入
+cc-assistant/               # Course skill (orchestration layer + modules + eval)
+├── SKILL.md                # Course orchestration (<200-word body)
+├── modules/                # m0 onboarding + 11 course modules + community skill snapshot
+└── eval/cases.md           # Scenario cases (TDD input)
+catalog/                    # Community skill catalog data layer
+├── catalog.json            # Single source of truth
+├── topics.json             # Topic vocabulary
+├── course-mapping.json     # Module → topic mapping
+├── validate.mjs            # Structural validation script
+└── sync-catalog.mjs        # Product generation + drift check
+site/                       # GitHub Pages publish source (static site)
+docs/                       # Manual / deployment guide / design inputs
 ```
 
-## 技术栈
+## Tech Stack
 
-| 层 | 技术 | 用途 |
+| Layer | Technology | Purpose |
 |---|---|---|
-| 课程引擎 | Markdown + Claude Code Skill | SKILL.md 编排 + modules 教学 |
-| 目录脚本 | Node.js | `validate.mjs` / `sync-catalog.mjs` |
-| 静态站 | HTML / CSS / JavaScript | `site/` 客户端渲染与筛选 |
-| CI/CD | GitHub Actions | PR `validate` 只读 + 合入 `sync` 再生成 |
-| 发布 | GitHub Pages | `site/` 发布源 |
+| Course engine | Markdown + Claude Code Skill | SKILL.md orchestration + module teaching |
+| Catalog scripts | Node.js | `validate.mjs` / `sync-catalog.mjs` |
+| Static site | HTML / CSS / JavaScript | `site/` client-side rendering and filtering |
+| CI/CD | GitHub Actions | PR `validate` (read-only) + merge `sync` regeneration |
+| Publishing | GitHub Pages | `site/` publish source |
 
-## 部署
+## Contributing
 
-GitHub Pages 部署步骤（含 `gh` CLI）见 [`docs/github-pages-部署.md`](docs/github-pages-部署.md)。核心：推 `main` → 设置 Pages 发布源为 `site/` → CI `sync` job 在目录 PR 合入后自动再生成，网页无需人工改动。
+This catalog's value comes from the community: share the Claude Code skills **you've found genuinely useful**, so learners can discover and reuse them by topic — with the author credit going to you.
 
-## 贡献
+**What to contribute**
+- ✅ A standalone-installable Claude Code artifact: **skill** (SKILL.md form) / **agent** (agent.md) / **MCP server** (`.mcp.json` config) / **plugin** (marketplace package)
+- ❌ Not accepted: commands
+- Criteria: accessible `repo`, clear `license`, `description` states "when to use", `topics` match capability (`type` is the artifact form, `topics` are discovery topics — orthogonal), `type` matches the artifact form, `install` gives actionable guidance per type
 
-这个目录的价值来自社区分享：把你**验证过好用**的 Claude Code skill 收进来，让学习者按主题发现、复用，作者署名归你。
+**Why contribute**
+- **Visibility**: after merge it automatically appears in the web catalog + the course's "good community skills" snapshot, findable by topic
+- **Credit**: the `author` field is yours
+- **Give back**: the mechanisms you use get reused by more people — the livelier the community, the better the course
 
-**贡献什么**
-- ✅ 可独立安装 / 配置的 Claude Code 工件：**skill**（SKILL.md 形态）/ **agent**（agent.md）/ **MCP server**（`.mcp.json` 配置）/ **plugin**（marketplace 包）
-- ❌ commands 不收
-- 判据：`repo` 可访问、`license` 明确、`description` 说清「何时用」、`topics` 与能力匹配（`type` 是形态、`topics` 是发现主题，二者正交）、`type` 与形态一致、`install` 按类型给出可执行指引
+### Way 1: Use the `/contribute` command (recommended)
 
-**为什么贡献**
-- **被看见**：合入后自动进网页目录 + 课程「社区好 skill」快照，学习者按主题能找到你的 skill
-- **被署名**：`author` 字段归你，贡献有据
-- **反哺**：你用的机制让更多人复用——社区越活跃、课程能引用的好 skill 越多
+Describe the skill in natural language inside a clone of this repo; the command generates a valid entry + ready products:
 
-### 方式一：用 `/contribute` 命令（推荐）
+1. **Enter the repo**: clone this repo and `cd` to its root — `/contribute` is a project-level command that reads the repo's `catalog/catalog.json` and the topic vocabulary
+2. **Trigger**: type `/contribute`, optionally with a one-line description such as `/contribute a skill that formats git commits`
+3. **Fill in fields**: provide the name / when-to-use / author / install / repo / license; the command derives an `id` from the name and suggests topic candidates for you to confirm
+4. **Auto-write and validate**: the command appends the entry to the end of `catalog/catalog.json` and runs `node catalog/validate.mjs` + `node catalog/sync-catalog.mjs` to validate and regenerate the three products (site/data files + course snapshot) until exit code 0
+5. **Handoff**: the command prints a `git commit` example + a PR body following the `skill-entry.md` template (with a "suggest new topic" note when a nearest-topic mapping was used); committing and opening the PR is up to you
+6. **Live after merge**: after the maintainer merges, CI regenerates automatically → **the web catalog + course snapshot update**
 
-在仓库克隆内用自然语言描述 skill，命令自动生成合法条目 + 就绪产物：
+> The command only guides and generates locally: it does **not** auto commit / push / open a PR, does not go online, and does not auto-add topics (nearest-topic mapping + PR note; new topics are decided by the maintainer).
 
-1. **进入仓库**：克隆本仓库并 `cd` 到仓库根目录——`/contribute` 是项目级命令，读取仓库内的 `catalog/catalog.json` 与主题词表
-2. **触发**：输入 `/contribute`，可带一句话描述，如 `/contribute 一个格式化 git commit 的 skill`
-3. **补全字段**：按提示提供 名字 / 何时用 / 作者 / 安装方式 / 仓库 / 许可证；命令自动从名字生成 `id`，并推断主题候选让你确认
-4. **自动写入与校验**：命令把条目追加到 `catalog/catalog.json` 末尾，跑 `node catalog/validate.mjs` + `node catalog/sync-catalog.mjs` 校验并再生成三产物（site/data 两文件 + 课程快照），直至退出码 0
-5. **交接**：命令输出 `git commit` 示例 + 按 `skill-entry.md` 模板的 PR 正文（词表外就近映射时附「建议新增主题」备注）；提交与提 PR 由你自己执行
-6. **合入即上线**：维护者合入后 CI 自动再生成 → **网页目录 + 课程快照自动更新**
+### Way 2: Manual flow (fallback / reference)
 
-> 命令只引导与本地生成：**不自动 commit / push / 开 PR**、不联网、不自动新增主题（词表外就近映射 + PR 备注，新增主题由维护者决定）。
+The equivalent manual 5 steps (for understanding the mechanism / environments without the command):
 
-### 方式二：手动流程（备选 / 原理说明）
-
-与命令等价的手动 5 步（供了解原理 / 无命令环境使用）：
-
-1. 在 `catalog/catalog.json` 的 `skills` 数组末尾加条目——字段 `id` / `name` / `description`（说明「何时用」）/ `author` / `install` / `repo`（http/https）/ `license` / `topics`（须来自 `catalog/topics.json`，≥1）
-2. 本地校验 + 重新生成产物（退出码必须 0，再生成的三产物要一起提交）：
+1. Append an entry to the `skills` array in `catalog/catalog.json` — fields `id` / `name` / `description` (explain "when to use") / `author` / `install` / `repo` (http/https) / `license` / `topics` (must come from `catalog/topics.json`, ≥1)
+2. Validate locally and regenerate products (exit codes must be 0; commit the regenerated products too):
    ```bash
-   node catalog/validate.mjs          # 结构校验（JSON / schema / id 唯一 / topics ⊆ 词表 / 映射键）
-   node catalog/sync-catalog.mjs      # 重新生成 site/data/ 两文件 + 课程快照
+   node catalog/validate.mjs          # structural validation (JSON / schema / id uniqueness / topics ⊆ vocabulary / mapping keys)
+   node catalog/sync-catalog.mjs      # regenerate site/data/ files + course snapshot
    ```
-3. 按 `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` 模板提 PR
-4. CI `validate` job 自动校验（结构 + 防漂移）→ 维护者审核合入
-5. 合入后 CI 自动再生成 → **网页目录 + 课程快照自动更新**
+3. Open a PR using the `.github/PULL_REQUEST_TEMPLATE/skill-entry.md` template
+4. CI `validate` checks automatically (structure + drift) → maintainer reviews and merges
+5. After merge, CI regenerates automatically → **the web catalog + course snapshot update**
 
-详见 [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md)（收录判据、被拒常见原因）。
+See [`catalog/CONTRIBUTING.md`](catalog/CONTRIBUTING.md) for full details (acceptance criteria, common rejections).
 
 ## License
 
